@@ -44,9 +44,5 @@ The platform fosters a sense of community, supports local artisans, and promotes
 
 ---
 
-## 🎨 **Design Preview**
-
-![Handcrafted Haven](https://link-to-your-design-image.com)
-
-## 🤝 **Contributors
+## 🤝 **Contributors**
 Gabriel Yanqui
