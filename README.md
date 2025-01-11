@@ -37,12 +37,5 @@ The platform fosters a sense of community, supports local artisans, and promotes
 
 ---
 
-## 💡 **Key Features**
-- **User-friendly Experience:** Clean interface, with an emphasis on intuitive navigation and smooth interactions.
-- **Customizable Profiles:** Sellers can personalize their profiles to showcase their unique styles and stories.
-- **Filter Options:** Users can filter products by various criteria, such as category, price, and ratings.
-
----
-
 ## 🤝 **Contributors**
 Gabriel Yanqui
