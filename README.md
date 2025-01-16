@@ -41,3 +41,4 @@ The platform fosters a sense of community, supports local artisans, and promotes
 Gabriel Yanqui
 Josue Sinaca Gomez
 Min-ting Chuang
+Carlos Cervantes
