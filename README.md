@@ -38,7 +38,7 @@ The platform fosters a sense of community, supports local artisans, and promotes
 ---
 
 ## 🤝 **Contributors**
-Gabriel Yanqui
-Josue Sinaca Gomez
-Min-ting Chuang
-Carlos Cervantes
+- Gabriel Yanqui
+- Josue Sinaca Gomez
+- Min-ting Chuang
+- Carlos Cervantes
