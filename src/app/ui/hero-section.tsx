@@ -11,7 +11,7 @@ export function HeroSection() {
     console.log(term);
   }, 300);
   return (
-    <div className="bg-yellow-300 md:p-12 lg:p-24">
+    <div className="bg-custom-yellow md:p-12 lg:p-24">
       <div className="bg-white md:rounded-t-3xl p-2 md:p-4 lg:p-6 flex flex-col gap-4">
         {/* header section(begin) */}
         <div className="flex flex-col lg:flex-row w-full justify-between">
@@ -57,7 +57,7 @@ export function HeroSection() {
               />
               <button
                 type="submit"
-                className="absolute top-2 right-3 lg:top-2 lg:right-3 transform translate-y-0.5 p-1 bg-yellow-300 rounded-full"
+                className="absolute top-2 right-3 lg:top-2 lg:right-3 transform translate-y-0.5 p-1 bg-custom-yellow rounded-full"
               >
                 <FaSearch />
               </button>
@@ -83,7 +83,7 @@ export function HeroSection() {
           />
           <Link href="/">
             <button
-              className={`bg-yellow-300 text-black ${poppins_black.className} text-xl md:text-3xl lg:text-7xl rounded-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 hover:bg-black hover:text-yellow-300 transition-all duration-300`}
+              className={`bg-custom-yellow text-black ${poppins_black.className} text-xl md:text-3xl lg:text-7xl rounded-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 hover:bg-black hover:text-custom-yellow transition-all duration-300`}
             >
               Be part of us
             </button>
