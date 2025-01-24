@@ -5,9 +5,9 @@ import Image from "next/image";
 export function ArtistStory() {
   return (
     <div className={`bg-yellow-300 px-24 py-8`}>
-      <h2 className={`${poppins_black.className} text-3xl mb-4`}>ARTIST STORY</h2>
-      <div className="flex flex-row">
-        <div className="max-w-72 h-auto flex-none mr-8">
+      <h2 className={`${poppins_black.className} text-3xl mb-4 text-center md:text-left`}>ARTIST STORY</h2>
+      <div className="flex flex-col md:flex-row">
+        <div className="max-w-72 h-auto flex-none mb-8 md:mb-0 md:mr-8">
           <Image
             src="/placeholder/user-placeholder.webp"
             width={300}
@@ -18,7 +18,7 @@ export function ArtistStory() {
         </div>
         <div className="flex flex-col justify-between">
         <div className="h-[250px] overflow-hidden" >
-              <h3 className={`${poppins_medium.className} text-2xl mb-4`}>Name</h3>
+              <h3 className={`${poppins_medium.className} text-2xl mb-4`}>[Name]</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Eligendi, maiores? Eum ea tempora natus. Consequuntur incidunt
@@ -83,7 +83,7 @@ export function ArtistStory() {
                 beatae.
               </p>
             </div>
-          <div className="flex justify-end">
+          <div className="flex justify-center md:justify-end">
             <button className="bg-black text-white px-4 py-2 rounded-lg">
               Check it out
             </button>
