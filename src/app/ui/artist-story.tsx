@@ -19,7 +19,7 @@ export function ArtistStory() {
         <div className="flex flex-col justify-between">
         <div className="h-[250px] overflow-hidden" >
               <h3 className={`${poppins_medium.className} text-2xl mb-4`}>[Name]</h3>
-              <p>
+              <p className="leading-8">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Eligendi, maiores? Eum ea tempora natus. Consequuntur incidunt
                 molestias velit saepe eum tempore labore, placeat sed magnam
