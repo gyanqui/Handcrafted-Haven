@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { poppins_black, poppins_medium } from "./font";
+import { poppins_black, poppins_medium} from "./font";
 import { FaSearch } from "react-icons/fa";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -10,7 +10,7 @@ export function HeroSection() {
     console.log(term);
   }, 300);
   return (
-    <div className="bg-yellow-300 p-8">
+    <div className="bg-yellow-300 p-24">
       <div className="bg-white rounded-t-3xl p-6 flex flex-col gap-4">
         {/* header section(begin) */}
         <div className="flex flex-row w-full justify-between">
@@ -26,7 +26,7 @@ export function HeroSection() {
               Handcrafted Haven
             </p>
           </div>
-          <ul className="flex flex-row flex-grow justify-evenly items-center">
+          <ul className={`${poppins_medium.className} text-lg flex flex-row flex-grow justify-evenly items-center`}>
             <li>Artists</li>
             <li>Products</li>
             <li>Reviews</li>
@@ -37,19 +37,19 @@ export function HeroSection() {
             </label>
             <input
               type="text"
-              className="border border-gray-400 rounded-3xl px-2"
+              className="border border-gray-400 rounded-3xl px-2 text-lg"
               placeholder="Search"
               onChange={(e) => handleSearch(e.target.value)}
             />
             <button
               type="submit"
-              className="absolute top-2 right-3 p-1 bg-yellow-300 rounded-full"
+              className="absolute top-2 right-3 transform translate-y-0.5 p-1 bg-yellow-300 rounded-full"
             >
               <FaSearch />
             </button>
           </div>
           <div>
-            <button className="bg-black text-white py-2 px-4 rounded-lg">
+            <button className="bg-black text-white text-lg py-2 px-4 rounded-lg">
               Log In
             </button>
           </div>
