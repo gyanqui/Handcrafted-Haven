@@ -6,7 +6,7 @@ const users = [
     {
       id: '410544b2-4001-4271-9855-fec4b6a6442a',
       name: 'User',
-      email: 'user@nextmail.com',
+      email: 'user@heavenmail.com',
       password: '123456',
     },
   ];
@@ -130,6 +130,18 @@ const users = [
       date: '2022-06-05',
     },
   ];
+
+  const sellers = [
+
+  ]
+
+  const products = [
+
+  ]
+
+  const reviewsAndRatings = [
+    
+  ]
   
   const revenue = [
     { month: 'Jan', revenue: 2000 },
