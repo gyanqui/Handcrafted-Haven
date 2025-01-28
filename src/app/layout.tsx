@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { poppins_regular } from "./ui/font";
-import { poppins_medium } from "./ui/font";
-import { poppins_black } from "./ui/font";
+import { 
+  poppins
+
+} from "./ui/font";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins_regular} antialiased`}
+        className={`${poppins} antialiased`}
       >
         {children}
       </body>
