@@ -27,6 +27,8 @@ The platform fosters a sense of community, supports local artisans, and promotes
 - **Responsive Design:** The platform is designed to be fully responsive, ensuring a seamless user experience across various devices, including smartphones and tablets.
 - **Branding:** Consistent and cohesive branding, with a unified color scheme, typography, and layout.
 - **Navigation:** The application will have an intuitive, easy-to-navigate interface, with clear hierarchies and consistent navigation elements.
+- **Figma Link:**
+https://www.figma.com/design/IHH6OdqK42nHu4vjoykqV5/Shopping-Website-(Community)?node-id=2-2&t=x5GBpNbnClDhsXjR-1
 
 ## ⚙ **Technology Stack**
 - **Front-End:** HTML, CSS, JavaScript, Next.js

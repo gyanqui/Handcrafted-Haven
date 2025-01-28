@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { poppins_black, poppins_medium } from "./font";
+import { poppins } from "./font";
 import { FaSearch } from "react-icons/fa";
 import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
@@ -28,7 +28,7 @@ export function HeroSection() {
                 />
               </Link>
               <Link href="/">
-                <p className={`${poppins_black.className} text-2xl px-2`}>
+                <p className={`${poppins.className} text-2xl px-2`}>
                   Handcrafted Haven
                 </p>
               </Link>
@@ -36,7 +36,7 @@ export function HeroSection() {
 
             {/* nav bar */}
             <ul
-              className={`${poppins_medium.className} text-lg flex flex-row flex-grow justify-evenly items-center py-4 lg:py-0`}
+              className={`${poppins.className} text-lg flex flex-row flex-grow justify-evenly items-center py-4 lg:py-0`}
             >
               <li className="hover:underline">Artists</li>
               <li className="hover:underline">Products</li>
@@ -83,7 +83,7 @@ export function HeroSection() {
           />
           <Link href="/">
             <button
-              className={`bg-custom-yellow text-black ${poppins_black.className} text-xl md:text-3xl lg:text-7xl rounded-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 hover:bg-black hover:text-custom-yellow transition-all duration-300`}
+              className={`bg-custom-yellow text-black ${poppins.className} text-xl md:text-3xl lg:text-7xl rounded-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 hover:bg-black hover:text-custom-yellow transition-all duration-300`}
             >
               Be part of us
             </button>

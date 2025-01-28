@@ -1,13 +1,13 @@
 "use client";
 
-import { poppins_black, poppins_medium } from "./font";
+import { poppins } from "./font";
 import Image from "next/image";
 
 export function ArtistStory() {
   return (
     <div className={`bg-custom-yellow py-8 md:px-12 lg:px-24 md:py-4 lg:py-8`}>
       <h2
-        className={`${poppins_black.className} text-3xl mb-4 text-center md:text-left`}
+        className={`${poppins.className} text-3xl mb-4 text-center md:text-left`}
       >
         ARTIST STORY
       </h2>
@@ -23,7 +23,7 @@ export function ArtistStory() {
         </div>
         <div className={`flex flex-col justify-between`} >
           <div className="h-[250px] overflow-hidden">
-            <h3 className={`${poppins_medium.className} text-2xl mb-4`}>
+            <h3 className={`${poppins.className} text-2xl mb-4`}>
               [Name]
             </h3>
             <p className="leading-8 p-2 md:p-0">
