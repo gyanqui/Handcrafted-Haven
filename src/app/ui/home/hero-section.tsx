@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { poppins } from "./font";
+import { poppins } from "../font";
 import { FaSearch } from "react-icons/fa";
 import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";

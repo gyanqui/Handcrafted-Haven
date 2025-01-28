@@ -1,9 +1,9 @@
-import { HeroSection } from "./ui/hero-section";
-import { ArtistStory } from "./ui/artist-story";
-import { 
+import { HeroSection } from "./ui/home/hero-section";
+import { ArtistStory } from "./ui/home/artist-story";
+import {
   Heading,
   ArrivalCard,
-  NewPopularCard
+  NewPopularCard,
 } from "@/app/ui/home/PromotionComponents";
 
 export default function Home() {

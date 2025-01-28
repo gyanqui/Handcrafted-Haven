@@ -1,6 +1,6 @@
 "use client";
 
-import { poppins } from "./font";
+import { poppins } from "../font";
 import Image from "next/image";
 
 export function ArtistStory() {
