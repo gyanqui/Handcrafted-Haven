@@ -1,12 +1,64 @@
-todo
+// todo
 //change seed
 
-// import bcrypt from 'bcrypt';
-// import { db } from '@vercel/postgres';
-// import { invoices, customers, revenue, users } from '../lib/placeholder-data';
+import bcrypt from 'bcrypt';
+import { db } from '@vercel/postgres';
+import { sellers, products } from '../lib/placeholder-data';
 
-// const client = await db.connect();
+const client = await db.connect();
 
+async function seedSellers() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS sellers (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      firstname VARCHAR(255) NOT NULL,
+      lastname VARCHAR(255) NOT NULL,
+      birthday DATE NOT NULL,
+      email TEXT NOT NULL UNIQUE,
+      password TEXT NOT NULL
+    );
+  `;
+
+  const insertedSellers = await Promise.all(
+    sellers.map(async (seller) => {
+      const hashedPassword = await bcrypt.hash(seller.password, 10);
+      return client.sql`
+        INSERT INTO sellers (id, firstname, lastname, birthday, email, password)
+        VALUES (${seller.id}, ${seller.firstname}, ${seller.lastname}, ${seller.birthday}, ${seller.email}, ${hashedPassword})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+    }),
+  );
+
+  return insertedSellers;
+}
+
+async function seedProducts() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS products (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      firstname VARCHAR(255) NOT NULL,
+      lastname VARCHAR(255) NOT NULL,
+      birthday DATE NOT NULL,
+      email TEXT NOT NULL UNIQUE,
+      password TEXT NOT NULL
+    );
+  `;
+
+  const insertedProducts = await Promise.all(
+    products.map(async (product) => {
+      return client.sql`
+        INSERT INTO products (id, name, category, price, quantity, description, image_url)
+        VALUES (${product.id}, ${product.name}, ${product.category}, ${product.price}, ${product.quantity}, ${product.description}, ${product.image_url})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+    }),
+  );
+
+  return insertedProducts;
+}
 // async function seedUsers() {
 //   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 //   await client.sql`
@@ -105,21 +157,22 @@ todo
 // }
 
 export async function GET() {
-    return Response.json({
-      message:
-        'Uncomment this file and remove this line. You can delete this file when you are finished.',
-    });
-    // try {
-    //   await client.sql`BEGIN`;
-    //   await seedUsers();
+    // return Response.json({
+    //   message:
+    //     'Uncomment this file and remove this line. You can delete this file when you are finished.',
+    // });
+    try {
+      await client.sql`BEGIN`;
+      await seedSellers();
+      await seedProducts();
     //   await seedCustomers();
     //   await seedInvoices();
     //   await seedRevenue();
-    //   await client.sql`COMMIT`;
+      await client.sql`COMMIT`;
   
-    //   return Response.json({ message: 'Database seeded successfully' });
-    // } catch (error) {
-    //   await client.sql`ROLLBACK`;
-    //   return Response.json({ error }, { status: 500 });
-    // }
+      return Response.json({ message: 'Database seeded successfully' });
+    } catch (error) {
+      await client.sql`ROLLBACK`;
+      return Response.json({ error }, { status: 500 });
+    }
   }

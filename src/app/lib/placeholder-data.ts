@@ -132,30 +132,35 @@ const users = [
   ];
 
   const sellers = [
+    {
+        id: '410544b2-4001-4271-9855-fec4b6a6442a',
+        firstname: 'User',
+        lastname: '1',
+        birthday: '1992-06-05',
+        email: 'seller@heavenmail.com',
+        password: '123456',
+      },
 
   ]
 
   const products = [
+    {
+        id: '123e4567-e89b-12d3-a456-426614174000',
+        name: 'UltraSoft Pillow',
+        category: 'Home & Living',
+        price: 29.99,
+        quantity: 50,
+        description: 'A super soft pillow that provides excellent support for a good night\'s sleep.', 
+        image_url: 'https://i.postimg.cc/FR95kV35/Capture.png',
+    },
+    {
 
+    }
   ]
 
   const reviewsAndRatings = [
-    
+
   ]
   
-  const revenue = [
-    { month: 'Jan', revenue: 2000 },
-    { month: 'Feb', revenue: 1800 },
-    { month: 'Mar', revenue: 2200 },
-    { month: 'Apr', revenue: 2500 },
-    { month: 'May', revenue: 2300 },
-    { month: 'Jun', revenue: 3200 },
-    { month: 'Jul', revenue: 3500 },
-    { month: 'Aug', revenue: 3700 },
-    { month: 'Sep', revenue: 2500 },
-    { month: 'Oct', revenue: 2800 },
-    { month: 'Nov', revenue: 3000 },
-    { month: 'Dec', revenue: 4800 },
-  ];
   
-  export { users, customers, invoices, revenue };
+  export { sellers, products, };
