@@ -5,6 +5,7 @@ import {
   ArrivalCard,
   NewPopularCard
 } from "@/app/ui/home/PromotionComponents";
+import Footer from "./ui/home/footer"
 
 export default function Home() {
   return (
@@ -22,6 +23,9 @@ export default function Home() {
       <div className="bg-white p-5 md:flex justify-evenly">
         <NewPopularCard />
         <NewPopularCard />
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   );
