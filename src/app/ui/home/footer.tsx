@@ -9,10 +9,10 @@ const Footer = () => {
           <h2 className="text-2xl font-bold mb-4">Handcraftd Haven</h2>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, maiores? Eum ea tempora natus.</p>
           <div className="flex mt-4">
-            <Link href="https://facebook.com"><p className="p-2 bg-yellow-500 rounded-lg mr-3"><FaFacebookF className="text-xl text-black" /></p></Link>
-            <Link href="https://instagram.com"><p className="p-2 bg-yellow-500 rounded-lg mr-3"><FaInstagram className="text-xl text-black" /></p></Link>
-            <Link href="https://twitter.com"><p className="p-2 bg-yellow-500 rounded-lg mr-3"><FaTwitter className="text-xl text-black" /></p></Link>
-            <Link href="https://linkedin.com"><p className="p-2 bg-yellow-500 rounded-lg mr-3"><FaLinkedinIn className="text-xl text-black" /></p></Link>
+            <Link href="https://facebook.com"><p className="p-2 bg-custom-yellow rounded-lg mr-3"><FaFacebookF className="text-xl text-black" /></p></Link>
+            <Link href="https://instagram.com"><p className="p-2 bg-custom-yellow rounded-lg mr-3"><FaInstagram className="text-xl text-black" /></p></Link>
+            <Link href="https://twitter.com"><p className="p-2 bg-custom-yellow rounded-lg mr-3"><FaTwitter className="text-xl text-black" /></p></Link>
+            <Link href="https://linkedin.com"><p className="p-2 bg-custom-yellow rounded-lg mr-3"><FaLinkedinIn className="text-xl text-black" /></p></Link>
           </div>
           
 
