@@ -65,7 +65,7 @@ async function seedUsers() {
     CREATE TABLE IF NOT EXISTS users (
       user_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
       username TEXT NOT NULL UNIQUE,
-      user_email TEXT NOT NULL UNIQUE,
+      email TEXT NOT NULL UNIQUE,
       created_at DATE NOT NULL,
       password TEXT NOT NULL
       firstname VARCHAR(255) NOT NULL,
@@ -79,8 +79,8 @@ async function seedUsers() {
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       return client.sql`
-        INSERT INTO users (user_id, username, user_email, created_at, password, firstname, lastname, type)
-        VALUES (${user.user_id}, ${user.username}, ${user.user_email}, ${user.created_at}, ${hashedPassword}, ${user.firstname}, ${user.lastname}, ${user.type})
+        INSERT INTO users (user_id, username, email, created_at, password, firstname, lastname, type)
+        VALUES (${user.user_id}, ${user.username}, ${user.email}, ${user.created_at}, ${hashedPassword}, ${user.firstname}, ${user.lastname}, ${user.type})
         ON CONFLICT (user_id) DO NOTHING;
       `;
     }),
@@ -129,7 +129,7 @@ async function seedReview() {
   const insertedUsers = await Promise.all(
     reviews.map(async (review) => {
       return client.sql`
-        INSERT INTO reviews (review_id, username, user_email, created_at, password, firstname, lastname, type)
+        INSERT INTO reviews (review_id, username, email, created_at, password, firstname, lastname, type)
         VALUES (${review.review_id}, ${review.title}, ${review.created_at}, ${review.rating}, ${review.review}, ${review.product_id}, ${review.user_id})
         ON CONFLICT (review_id) DO NOTHING;
       `;

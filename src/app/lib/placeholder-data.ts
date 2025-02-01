@@ -6,7 +6,7 @@ const users = [
   {
     user_id: '3958dc9e-712f-4377-85e9-fec4b6a6442a',
     username: 'Seller1',
-    user_email: 'user@heavenmail.com',
+    email: 'user@heavenmail.com',
     created_at: '2025-01-01',
     password: '123456',
     firstname: 'Alex',
@@ -18,7 +18,7 @@ const users = [
   {
     user_id: "a2f50c11-1f14-43d8-8f70-42b54a4b7f28",
     username: "User1",
-    user_email: "user@heavenmail.com",
+    email: "user@heavenmail.com",
     created_at: "2025-01-02",
     password: "abcdef",
     firstname: "Jane",
@@ -30,7 +30,7 @@ const users = [
   {
     user_id: "f74a9f60-6f0c-4c1d-8746-1d2831be8f46",
     username: "Admin1",
-    user_email: "admin@heavenmail.com",
+    email: "admin@heavenmail.com",
     created_at: "2025-01-03",
     password: "654321",
     firstname: "Chris",

@@ -24,7 +24,7 @@ export type Products = {
 export type User = {
     user_id: string;
     username: string;
-    user_email: string;
+    email: string;
     registration_date: Date;
     password: string;
     firstname: string;

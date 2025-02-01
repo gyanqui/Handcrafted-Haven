@@ -8,7 +8,7 @@ export type State = {
     errors?: {
       user_id?: string[];
       username?: string[];
-      user_email?: string[];
+      email?: string[];
       created_at?: Date;
       password?: string[];
       firstname?: string[];
@@ -25,7 +25,7 @@ import bcrypt from 'bcrypt';
 const FormSchema = z.object({
     user_id: z.string({invalid_type_error: 'Invalid User.'}),
     username: z.string(),
-    user_email: z.string(),
+    email: z.string(),
     created_at: z.string(),
     password: z.string(),
     firstname: z.string(),
@@ -41,7 +41,7 @@ export async function createUser(prevState: State, formData: FormData) {
     const validatedFields = CreateUser.safeParse({
       // user_id: formData.get('user_id'),
       username: formData.get('username'),
-      user_email: formData.get('user_email'),
+      email: formData.get('email'),
       password: formData.get('password'),
       firstname: formData.get('firstname'),
       lastname: formData.get('lastname'),
@@ -52,14 +52,14 @@ export async function createUser(prevState: State, formData: FormData) {
             message: 'Missing Fields. Failed to Create User.'
         }
     }
-    const { username, user_email, password, firstname, lastname } = validatedFields.data;
+    const { username, email, password, firstname, lastname } = validatedFields.data;
     const created_at = new Date().toISOString().split('T')[0];
     const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
         await sql`
-            INSERT INTO invoices (username, created_at, user_email, password, firstname, lastname, type )
-            VALUES (${username}, ${created_at}, ${user_email}, ${hashedPassword}, ${firstname}, ${lastname}, User )
+            INSERT INTO users (username, created_at, email, password, firstname, lastname, type )
+            VALUES (${username}, ${created_at}, ${email}, ${hashedPassword}, ${firstname}, ${lastname}, "User" )
         `;
     } catch (error) {
         console.error('Error creating new user:', error);
