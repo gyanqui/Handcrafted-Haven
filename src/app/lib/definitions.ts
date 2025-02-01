@@ -3,62 +3,51 @@
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export type Seller = {
-    id: string;
-    firstname: string;
-    lastname: string;
-    birthday: Date;
-    email: string;
-    password: string;
+    seller_id: string;
+    seller_email: string;
+    address: string;
+    status: string;
+    introduction: string;
   };
 
 export type Products = {
-    id: string;
+    product_id: string;
     name: string;
-    category: string;
     price: number;
     quantity: number;
     description: string;
     image_url: string;
+    seller_id:string;
+    category_id: string;
 }
 
 export type User = {
-    id: string;
-    name: string;
-    email: string;
+    user_id: string;
+    username: string;
+    user_email: string;
+    registration_date: Date;
     password: string;
+    firstname: string;
+    lastname: string;
+    type: string;
+    profile_picture: string;
   };
   
-  export type Customer = {
-    id: string;
-    name: string;
-    email: string;
-    image_url: string;
-  };
-  
-  export type CustomersTableType = {
-    id: string;
-    name: string;
-    email: string;
-    image_url: string;
-    total_invoices: number;
-    total_pending: number;
-    total_paid: number;
-  };
-  
-  export type FormattedCustomersTable = {
-    id: string;
-    name: string;
-    email: string;
-    image_url: string;
-    total_invoices: number;
-    total_pending: string;
-    total_paid: string;
-  };
-  
-  export type CustomerField = {
-    id: string;
-    name: string;
-  };
+export type Category = {
+  category_id: string;
+  name: string;
+};
+export type Rating = {
+  rating_id: string;
+  title: string;
+  created_at: Date;
+  rating: string;
+  review: string;
+  product_id: string;
+  user_id: string;
+}
+
+
   
 
   

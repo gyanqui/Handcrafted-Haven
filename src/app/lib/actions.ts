@@ -6,46 +6,60 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from "next/navigation";
 export type State = {
     errors?: {
-        customerId?: string[];
-        amount?: string[];
-        status?: string[];
+      user_id?: string[];
+      username?: string[];
+      user_email?: string[];
+      created_at?: Date;
+      password?: string[];
+      firstname?: string[];
+      lastname?: string[];
+      type: string[];
+      profile_picture?: string[] | null;
     };
     message?: string | null;
 };
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+import bcrypt from 'bcrypt';
 
 const FormSchema = z.object({
-    id: z.string(),
-    customerId: z.string({ invalid_type_error: 'Please select a customer.'}),
-    amount: z.coerce.number().gt(0, {message: 'Please enter an amount greater than $0.'}),
-    status: z.enum(['pending', 'paid'], {invalid_type_error: 'Please select an invoice status'}),
-    date: z.string(),
+    user_id: z.string({invalid_type_error: 'Invalid User.'}),
+    username: z.string(),
+    user_email: z.string(),
+    created_at: z.string(),
+    password: z.string(),
+    firstname: z.string(),
+    lastname: z.string(),
+    type: z.string(),
+    profile_picture: z.string(),
   });
 
-const CreateUser = FormSchema.omit({ id: true, date: true });
+const CreateUser = FormSchema.omit({ created_at: true, profile_picture: true, user_id: true, type: true });
 
 export async function createUser(prevState: State, formData: FormData) {
     // const { customerId, amount, status} = CreateInvoice.parse({
     const validatedFields = CreateUser.safeParse({
-        customerId: formData.get('customerId'),
-        amount: formData.get('amount'),
-        status: formData.get('status'),
+      // user_id: formData.get('user_id'),
+      username: formData.get('username'),
+      user_email: formData.get('user_email'),
+      password: formData.get('password'),
+      firstname: formData.get('firstname'),
+      lastname: formData.get('lastname'),
     });
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Missing Fields. Failed to Create Invoice.'
+            message: 'Missing Fields. Failed to Create User.'
         }
     }
-    const { customerId, amount, status } = validatedFields.data;
-    const amountInCents = amount * 100;
-    const date = new Date().toISOString().split('T')[0];
+    const { username, user_email, password, firstname, lastname } = validatedFields.data;
+    const created_at = new Date().toISOString().split('T')[0];
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
         await sql`
-            INSERT INTO invoices (customer_id, amount, status, date)
-            VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
+            INSERT INTO invoices (username, created_at, user_email, password, firstname, lastname, type )
+            VALUES (${username}, ${created_at}, ${user_email}, ${hashedPassword}, ${firstname}, ${lastname}, User )
         `;
     } catch (error) {
         console.error('Error creating new user:', error);
