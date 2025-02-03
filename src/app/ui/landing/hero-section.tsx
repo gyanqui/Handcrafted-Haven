@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
 
-export function HeroSection() {
+export default function HeroSection() {
   const handleSearch = useDebouncedCallback((term: string) => {
     console.log(term);
   }, 300);

@@ -1,5 +1,5 @@
-import { HeroSection } from "./ui/landing/hero-section";
-import { ArtistStory } from "./ui/landing/artist-story";
+import HeroSection from "./ui/landing/hero-section";
+import ArtistStory from "./ui/landing/artist-story";
 import {
   Heading,
   ArrivalCard,

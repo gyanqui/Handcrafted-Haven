@@ -1,6 +1,4 @@
 import ProductCard from "./ProductCard";
-import { Rate } from "antd";
-import { Poppins } from "next/font/google";
 import { poppins } from "../font";
 
 export default function ProductWrapper() {

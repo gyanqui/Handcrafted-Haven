@@ -20,7 +20,7 @@ const users = [
       firstname: "Jane",
       lastname: "Doe",
       type: "User",
-      profile_picture: null,
+      profile_picture: '/artists/artist1.webp',
       // seller_id: "52a8fcbe-1722-41e7-8291-57807e0eae41"
     },
     {
