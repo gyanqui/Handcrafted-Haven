@@ -12,7 +12,8 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         'custom-yellow': '#E6C744',
-        'custom-grey': '#C2C8DA'
+        'custom-grey': '#C2C8DA',
+        'yellow-hover': '#EBD56F',
       },
     },
   },
