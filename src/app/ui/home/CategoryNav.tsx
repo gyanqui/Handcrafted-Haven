@@ -1,6 +1,6 @@
 import CategoryCard from "./CategoryCard";
 
-export function CategoryNav() {
+export default function CategoryNav() {
     const categories = [
         {
           category_id: 'd8e9f8b6-7cb4-4fbb-bc07-23dfeff30c2d',

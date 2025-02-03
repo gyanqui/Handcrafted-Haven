@@ -3,7 +3,7 @@
 import { poppins } from "../font";
 import Image from "next/image";
 
-export function ArtistStory() {
+export default function ArtistStory() {
   return (
     <div className={`bg-custom-yellow py-8 md:px-12 lg:px-24 md:py-4 lg:py-8`}>
       <h2

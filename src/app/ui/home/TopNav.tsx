@@ -16,7 +16,7 @@ export default function TopNav() {
     console.log(term);
   }, 300);
   return (
-    <div className="flex flex-row justify-between items-center bg-custom-yellow h-12 p-1 md:p-2 lg:p-4">
+    <div className="min-w-[390px] flex flex-row justify-between items-center bg-custom-yellow h-12 p-1 md:p-2 lg:px-8">
       {/* responsive menu */}
       <div className="p-2 text-2xl lg:hidden">
         <GiHamburgerMenu />

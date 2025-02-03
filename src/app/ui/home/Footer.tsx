@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/f
 export default function Footer() {
     const thisYear = new Date().getFullYear();
     return (
-        <div className="bg-black text-white flex flex-row items-center justify-between px-4 h-12">
+        <div className="min-w-[390px] bg-black text-white flex flex-row items-center justify-between px-8 h-12">
             <div className="flex flex-col flex-grow md:flex-row">
                 <p className={`${poppins.className} font-extrabold`}>Handcrafted Haven</p>
                 <p className="text-custom-grey md:ml-4">&copy;{thisYear} WDD430 Group 11</p>
