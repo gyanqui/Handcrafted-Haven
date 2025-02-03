@@ -38,9 +38,9 @@ export default function HeroSection() {
             <ul
               className={`${poppins.className} text-lg flex flex-row flex-grow justify-evenly items-center py-4 lg:py-0`}
             >
-              <li className="hover:underline">Artists</li>
-              <li className="hover:underline">Products</li>
-              <li className="hover:underline">Reviews</li>
+              <Link href='/home/artists' className="hover:underline"><li>Artists</li></Link>
+              <Link href='/home/products' className="hover:underline"><li>Products</li></Link>
+              <Link href='/home/reviews' className="hover:underline"><li >Reviews</li></Link>
             </ul>
           </div>
           <div className="flex flex-row">
@@ -65,7 +65,7 @@ export default function HeroSection() {
             {/* login button */}
             <div>
               <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
-                Log In
+                <Link href='/home/login'>Log In</Link>
               </button>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function HeroSection() {
             alt="image of a variety of handcrafted items"
             className="opacity-50"
           />
-          <Link href="/">
+          <Link href="/home/sign-up">
             <button
               className={`bg-custom-yellow text-black ${poppins.className} text-xl md:text-3xl lg:text-7xl rounded-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 hover:bg-black hover:text-custom-yellow transition-all duration-300`}
             >

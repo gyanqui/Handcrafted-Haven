@@ -22,7 +22,7 @@ export default function LoginPage() {
         <div >
             <span className='px-4 text-sm' >
                 Not a member yet?&nbsp;
-                <Link href={'/sign-up'}>
+                <Link href={'/home/sign-up'}>
                     <span className='text-blue-400 hover:text-purple-500 underline'>
                         Sign up now!   
                     </span>

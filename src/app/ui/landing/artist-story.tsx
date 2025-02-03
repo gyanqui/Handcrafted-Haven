@@ -1,19 +1,8 @@
+import Link from "next/link";
 import { poppins } from "../font";
 import Image from "next/image";
 
-interface ArtistStoryProps {
-  firstname: string;
-  lastname: string;
-  url: string;
-  introduction: string;
-}
-
-export default function ArtistStory({
-  firstname,
-  lastname,
-  url,
-  introduction,
-}: ArtistStoryProps) {
+export default function ArtistStory() {
   const artist = {
     seller_id: "410544b2-4001-4271-9855-fec4b6a6442a",
     introduction:
@@ -45,12 +34,16 @@ export default function ArtistStory({
             <h3 className={`${poppins.className} text-2xl mb-4`}>
               {artist?.firstname} {artist?.lastname}
             </h3>
-            <p className="leading-8 p-2 md:p-0 indent-12">{artist.introduction}</p>
+            <p className="leading-8 p-2 md:p-0 indent-12">
+              {artist.introduction}
+            </p>
           </div>
           <div className="flex justify-center md:justify-end">
-            <button className="bg-black text-white px-4 py-2 rounded-lg">
-              Check it out
-            </button>
+            <Link href={`/home/artists/${artist.seller_id}`}>
+              <button className="bg-black text-white px-4 py-2 rounded-lg">
+                Check it out
+              </button>
+            </Link>
           </div>
         </div>
       </div>
