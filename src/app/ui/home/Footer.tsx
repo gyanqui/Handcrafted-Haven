@@ -6,9 +6,9 @@ export default function Footer() {
     const thisYear = new Date().getFullYear();
     return (
         <div className="bg-black text-white flex flex-row items-center justify-between px-4 h-12">
-            <div>
+            <div className="flex flex-col flex-grow md:flex-row">
                 <p className={`${poppins.className} font-extrabold`}>Handcrafted Haven</p>
-                <p className="text-custom-grey">&copy;{thisYear} WDD430 Group 11</p>
+                <p className="text-custom-grey md:ml-4">&copy;{thisYear} WDD430 Group 11</p>
             </div>
             <div className="flex flex-row flex-wrap gap-1">
                 <Link href="https://facebook.com" target="_blank" className="bg-custom-yellow p-1 rounded-lg"><FaFacebookF className=" text-black text-xl"/></Link>
