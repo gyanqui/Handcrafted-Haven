@@ -1,11 +1,11 @@
-import { HeroSection } from "./ui/home/hero-section";
-import { ArtistStory } from "./ui/home/artist-story";
+import { HeroSection } from "./ui/landing/hero-section";
+import { ArtistStory } from "./ui/landing/artist-story";
 import {
   Heading,
   ArrivalCard,
   NewPopularCard,
-} from "@/app/ui/home/PromotionComponents";
-import Footer from "./ui/home/footer"
+} from "@/app/ui/landing/PromotionComponents";
+import Footer from "./ui/landing/footer"
 
 export default function Home() {
   return (
