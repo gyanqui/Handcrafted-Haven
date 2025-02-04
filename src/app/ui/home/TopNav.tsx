@@ -81,12 +81,14 @@ export default function TopNav() {
           placeholder="Search"
           onChange={(e) => handleSearch(e.target.value)}
         />
-        <button
-          type="submit"
-          className="absolute top-1 right-3 lg:top-1 lg:right-3 transform p-1 bg-custom-yellow rounded-full"
-        >
-          <FaSearch />
-        </button>
+        <Link href='/home/search'>
+          <button
+            type="submit"
+            className="absolute top-1 right-3 lg:top-1 lg:right-3 transform p-1 bg-custom-yellow rounded-full"
+          >
+            <FaSearch />
+          </button>
+        </Link>
       </div>
       {/* management dashboard */}
       <div className="hidden lg:block">
