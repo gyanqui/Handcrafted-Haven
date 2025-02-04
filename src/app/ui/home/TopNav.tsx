@@ -10,16 +10,24 @@ import { RxAvatar } from "react-icons/rx";
 import { BsCart } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
+import { useState } from "react";
 
 export default function TopNav() {
+  const [isOpen, setIsOpen] = useState(false)  // side menu open status
+  
+  const toggleOpen = () => setIsOpen((current) => !current)
+
   const handleSearch = useDebouncedCallback((term: string) => {
     console.log(term);
   }, 300);
   return (
     <div className="min-w-[390px] flex flex-row justify-between items-center bg-custom-yellow h-12 p-1 md:p-2 lg:px-8">
       {/* responsive menu */}
-      <div className="p-2 text-2xl lg:hidden">
-        <GiHamburgerMenu />
+      <div className={`${isOpen ? "hidden" : "visible p-2 text-2xl"} cursor-pointer lg:hidden`}>
+        <GiHamburgerMenu onClick={toggleOpen}/>
+      </div>
+      <div className={`${isOpen ? "visible p-2 text-2xl" : "hidden"} cursor-pointer lg:hidden`}>
+        <MdClose onClick={toggleOpen}/>
       </div>
       {/* logo */}
       <div>

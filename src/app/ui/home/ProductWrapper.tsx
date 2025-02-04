@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 import { poppins } from "../font";
-import Image from "next/image";
+
 export interface ProductProps {
   product_id: string;
   name: string;
