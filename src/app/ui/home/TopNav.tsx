@@ -10,6 +10,8 @@ import { RxAvatar } from "react-icons/rx";
 import { BsCart } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
+import SideMenu from "./SideMenu";
+import { Drawer } from "antd";
 import { useState } from "react";
 
 export default function TopNav() {
@@ -23,11 +25,8 @@ export default function TopNav() {
   return (
     <div className="min-w-[390px] flex flex-row justify-between items-center bg-custom-yellow h-12 p-1 md:p-2 lg:px-8">
       {/* responsive menu */}
-      <div className={`${isOpen ? "hidden" : "visible p-2 text-2xl"} cursor-pointer lg:hidden`}>
-        <GiHamburgerMenu onClick={toggleOpen}/>
-      </div>
-      <div className={`${isOpen ? "visible p-2 text-2xl" : "hidden"} cursor-pointer lg:hidden`}>
-        <MdClose onClick={toggleOpen}/>
+      <div className="p-2 text-2xl cursor-pointer lg:hidden">
+        {isOpen ? <MdClose onClick={toggleOpen}/> : <GiHamburgerMenu onClick={toggleOpen}/>}
       </div>
       {/* logo */}
       <div>
@@ -84,6 +83,9 @@ export default function TopNav() {
       <div className="hidden lg:block">
         <button className="bg-black text-white rounded-md px-2 py-1">Log Out</button>
       </div>
+      <Drawer placement="left" open={isOpen} onClose={toggleOpen} width="100%" closable={false} style={{backgroundColor: "black", color: "white"}}>
+        <SideMenu toggleOpen={toggleOpen}/>
+      </Drawer>
     </div>
   );
 }
