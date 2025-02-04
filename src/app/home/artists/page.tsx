@@ -1,10 +1,10 @@
-import ArtistCard from "@/app/ui/home/ArtistCard";
+import ArtistWrapper from "@/app/ui/home/ArtistWrapper";
 
 export default function Page() {
-    
-    return (
-        <div className="p-8">
-            <ArtistCard />
-        </div>
-    )
+  
+  return (
+    <div className="p-8">
+      <ArtistWrapper />
+    </div>
+  );
 }
