@@ -62,7 +62,7 @@ export default function CategoryNav() {
   return (
     <div className="flex flex-row items-center mx-8 my-4 p-1 gap-4 overflow-x-auto h-[280px]">
         {categories.map((category) => (
-            <CategoryCard key={category.category_id} name={category.category} url={category.category_url} />
+            <CategoryCard key={category.category_id} name={category.category} url={category.category_url} id={category.category_id} />
         ))}
       
     </div>

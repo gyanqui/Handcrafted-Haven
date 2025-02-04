@@ -1,5 +1,6 @@
 import ProductCard from "./ProductCard";
 import { poppins } from "../font";
+import Link from "next/link";
 
 export interface ProductProps {
   product_id: string;
@@ -27,14 +28,16 @@ export default function ProductWrapper({
       </h1>
       <div className="flex flex-row overflow-auto lg:justify-center gap-4">
         {products.map((product) => (
-          <ProductCard
-            key={product.product_id}
-            product_id={product.product_id}
-            name={product.name}
-            image_url={product.image_url}
-            price={product.price}
-            averageRate={product.averageRate}
-          />
+          
+            <ProductCard
+              key={product.product_id}
+              product_id={product.product_id}
+              name={product.name}
+              image_url={product.image_url}
+              price={product.price}
+              averageRate={product.averageRate}
+            />
+          
         ))}
       </div>
     </div>
