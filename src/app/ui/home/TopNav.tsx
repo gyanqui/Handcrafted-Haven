@@ -13,11 +13,12 @@ import { MdClose } from "react-icons/md";
 import SideMenu from "./SideMenu";
 import { Drawer } from "antd";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function TopNav() {
-  const [isOpen, setIsOpen] = useState(false)  // side menu open status
-  
-  const toggleOpen = () => setIsOpen((current) => !current)
+  const [isOpen, setIsOpen] = useState(false); // side menu open status
+
+  const toggleOpen = () => setIsOpen((current) => !current);
 
   const handleSearch = useDebouncedCallback((term: string) => {
     console.log(term);
@@ -26,34 +27,49 @@ export default function TopNav() {
     <div className="min-w-[390px] flex flex-row justify-between items-center bg-custom-yellow h-12 p-1 md:p-2 lg:px-8">
       {/* responsive menu */}
       <div className="p-2 text-2xl cursor-pointer lg:hidden">
-        {isOpen ? <MdClose onClick={toggleOpen}/> : <GiHamburgerMenu onClick={toggleOpen}/>}
+        {isOpen ? (
+          <MdClose onClick={toggleOpen} />
+        ) : (
+          <GiHamburgerMenu onClick={toggleOpen} />
+        )}
       </div>
+
       {/* logo */}
       <div>
-        <Image
-          src="/logo.webp"
-          width={30}
-          height={30}
-          alt="logo picture"
-          className="md:hidden"
-        />
-        <p
-          className={`${poppins.className} text-xl font-extrabold md:block hidden`}
-        >
-          HandCrafted Haven
-        </p>
+        <Link href="/home">
+          <Image
+            src="/logo.webp"
+            width={30}
+            height={30}
+            alt="logo picture"
+            className="md:hidden"
+          />
+        </Link>
+        <Link href="/home">
+          <p
+            className={`${poppins.className} text-xl font-extrabold md:block hidden`}
+          >
+            HandCrafted Haven
+          </p>
+        </Link>
       </div>
+
       {/* artists and products */}
       <div className="lg:flex flex-row gap-4 px-4 hidden">
         <div>
-          <LuUsersRound className="inline" />
-          <span>Artists</span>
+          <Link href="/home/artists">
+            <LuUsersRound className="inline" />
+            <span>Artists</span>
+          </Link>
         </div>
         <div>
-          <AiOutlineProduct className="inline" />
-          <span>Products</span>
+          <Link href="/home/products">
+            <AiOutlineProduct className="inline" />
+            <span>Products</span>
+          </Link>
         </div>
       </div>
+
       {/* search bar */}
       <div className="relative flex flex-grow items-center px-2 w-fit">
         <label htmlFor="search" className="sr-only">
@@ -75,16 +91,29 @@ export default function TopNav() {
       {/* management dashboard */}
       <div className="hidden lg:block">
         <div className="flex flex-row gap-4 px-2">
-          <RxAvatar className="inline text-2xl" />
-          <BsCart className="inline text-2xl" />
+          <Link href="/home/dashboard">
+            <RxAvatar className="inline text-2xl" />
+          </Link>
+          <Link href="/home/shopping-cart">
+            <BsCart className="inline text-2xl" />
+          </Link>
         </div>
       </div>
-        {/* sign out  */}
+      {/* sign out  */}
       <div className="hidden lg:block">
-        <button className="bg-black text-white rounded-md px-2 py-1">Log Out</button>
+        <button className="bg-black text-white rounded-md px-2 py-1">
+          Log Out
+        </button>
       </div>
-      <Drawer placement="left" open={isOpen} onClose={toggleOpen} width="100%" closable={false} style={{backgroundColor: "black", color: "white"}}>
-        <SideMenu toggleOpen={toggleOpen}/>
+      <Drawer
+        placement="left"
+        open={isOpen}
+        onClose={toggleOpen}
+        width="100%"
+        closable={false}
+        style={{ backgroundColor: "black", color: "white" }}
+      >
+        <SideMenu toggleOpen={toggleOpen} />
       </Drawer>
     </div>
   );
