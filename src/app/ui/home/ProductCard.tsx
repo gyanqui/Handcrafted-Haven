@@ -1,23 +1,18 @@
 import { Rate } from "antd";
 import Image from "next/image";
+import { ProductProps } from "./ProductWrapper";
 
-interface ProductCardProps {
-  name: string;
-  url: string;
-  price: number;
-  rate: number;
-}
 export default function ProductCard({
   name,
-  url,
+  image_url,
   price,
-  rate,
-}: ProductCardProps) {
+  averageRate,
+}: ProductProps) {
   return (
     <div>
       <div className="border border-custom-grey rounded-t-3xl w-[300px]">
         <Image
-          src={url}
+          src={image_url}
           alt={`picture of ${name}`}
           width={300}
           height={300}
@@ -27,7 +22,9 @@ export default function ProductCard({
           {name}
         </p>
         <div className="flex flex-row justify-between">
-          <div className="px-2"><Rate disabled allowHalf defaultValue={rate}/></div>
+          <div className="px-2">
+            <Rate disabled allowHalf defaultValue={averageRate} />
+          </div>
           <div className="text-right text-xl font-bold px-2">${price}</div>
         </div>
       </div>
