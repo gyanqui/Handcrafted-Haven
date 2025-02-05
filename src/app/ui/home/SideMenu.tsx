@@ -5,10 +5,8 @@ import { LuUsersRound } from "react-icons/lu";
 import { AiOutlineProduct } from "react-icons/ai";
 import { SlLogout } from "react-icons/sl";
 import Link from "next/link";
+import { SideMenuProps } from "@/app/lib/definitions";
 
-interface SideMenuProps {
-  toggleOpen: () => void;
-}
 export default function SideMenu({ toggleOpen }: SideMenuProps) {
   return (
     <div className="bg-black text-custom-yellow flex flex-col items-center h-full justify-between">
@@ -34,9 +32,9 @@ export default function SideMenu({ toggleOpen }: SideMenuProps) {
           </Link>
         </div>
         <div>
-          <Link href='/home/artists' onClick={toggleOpen}>
+          <Link href='/home/artisans' onClick={toggleOpen}>
           <LuUsersRound className="inline m-4" />
-          Artists
+          Artisans
           </Link>
         </div>
         <div>

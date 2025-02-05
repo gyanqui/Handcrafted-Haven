@@ -38,7 +38,7 @@ export default function HeroSection() {
             <ul
               className={`${poppins.className} text-lg flex flex-row flex-grow justify-evenly items-center py-4 lg:py-0`}
             >
-              <Link href='/home/artists' className="hover:underline"><li>Artists</li></Link>
+              <Link href='/home/artisans' className="hover:underline"><li>Artisans</li></Link>
               <Link href='/home/products' className="hover:underline"><li>Products</li></Link>
               <Link href='/home/reviews' className="hover:underline"><li >Reviews</li></Link>
             </ul>

@@ -5,6 +5,6 @@ export default function Page() {
     const params = useParams();
     const id = params.id;
     return (
-        <>Artist ID <span className="font-bold">{id}</span> page</>
+        <>Artisan ID <span className="font-bold">{id}</span> page</>
     )
 }

@@ -1,17 +1,7 @@
 import Image from "next/image";
 import { Rate } from "antd";
 import Link from "next/link";
-
-export interface ReviewProps {
-    review_id: string,
-    product_id: string,
-    image_url: string,
-    username: string,
-    rating: number,
-    created_at: string,
-    product_name: string
-    review: string
-}
+import { ReviewProps } from "@/app/lib/definitions";
 
 export default function ReviewCard({product_id, image_url, username, rating, created_at, product_name, review }: ReviewProps) {
   return (

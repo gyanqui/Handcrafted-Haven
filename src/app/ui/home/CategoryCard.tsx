@@ -1,11 +1,7 @@
 import Image from "next/image"
 import Link from "next/link";
+import { CategoryCardProps } from "@/app/lib/definitions";
 
-interface CategoryCardProps {
-    name: string;
-    url: string;
-    id: string
-}
 export default function CategoryCard({name, url, id} : CategoryCardProps) {
     return (
         <div>

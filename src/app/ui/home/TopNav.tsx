@@ -54,12 +54,12 @@ export default function TopNav() {
         </Link>
       </div>
 
-      {/* artists and products */}
+      {/* artisans and products */}
       <div className="lg:flex flex-row gap-4 px-4 hidden">
         <div>
-          <Link href="/home/artists">
+          <Link href="/home/artisans">
             <LuUsersRound className="inline" />
-            <span>Artists</span>
+            <span>Artisans</span>
           </Link>
         </div>
         <div>
