@@ -14,7 +14,7 @@ export type State = {
       firstname?: string[];
       lastname?: string[];
       type: string[];
-      profile_picture?: string[] | null;
+      profile_image_url?: string[] | null;
     };
     message?: string | null;
 };
@@ -31,10 +31,10 @@ const FormSchema = z.object({
     firstname: z.string(),
     lastname: z.string(),
     type: z.string(),
-    profile_picture: z.string(),
+    profile_image_url: z.string(),
   });
 
-const CreateUser = FormSchema.omit({ created_at: true, profile_picture: true, user_id: true, type: true });
+const CreateUser = FormSchema.omit({ created_at: true, profile_image_url: true, user_id: true, type: true });
 
 export async function createUser(prevState: State, formData: FormData) {
     // const { customerId, amount, status} = CreateInvoice.parse({

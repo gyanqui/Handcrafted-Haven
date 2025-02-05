@@ -10,7 +10,7 @@ export default function Page() {
       username: "Seller1",
       firstname: "Alex",
       lastname: "Johnson",
-      profile_picture: "/artisans/artisan1.webp",
+      profile_image_url: "/artisans/artisan1.webp",
       address: "123 Maple Street Springfield, Anytown 12345 United States",
     },
     {
@@ -21,7 +21,7 @@ export default function Page() {
       username: "User1",
       firstname: "Jane",
       lastname: "Doe",
-      profile_picture: "/artisans/artisan2.webp",
+      profile_image_url: "/artisans/artisan2.webp",
       address: "456 Oak Avenue, Riverdale, Anycity 67890, Canada",
     },
     {
@@ -32,7 +32,7 @@ export default function Page() {
       username: "Admin1",
       firstname: "Chris",
       lastname: "Smith",
-      profile_picture: null,
+      profile_image_url: null,
       address: "789 Pine Street, Maplewood, Anyprovince 34567, Australia",
     },
   ];

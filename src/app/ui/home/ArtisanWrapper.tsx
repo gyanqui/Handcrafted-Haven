@@ -13,7 +13,7 @@ export default function ArtisanWrapper({sellers}: ArtisanWrapperProps) {
           address={seller.address}
           firstname={seller.firstname}
           lastname={seller.lastname}
-          profile_picture={seller.profile_picture}
+          profile_image_url={seller.profile_image_url}
         />
       ))}
     </div>

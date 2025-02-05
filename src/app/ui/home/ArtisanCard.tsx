@@ -6,7 +6,7 @@ import { ArtisanCardProps } from "@/app/lib/definitions";
 
 export default function ArtisanCard({
   seller_id,
-  profile_picture,
+  profile_image_url,
   firstname,
   lastname,
   seller_email,
@@ -21,7 +21,7 @@ export default function ArtisanCard({
       <div className="min-w-[150px] w-[150px] min-h-[200px] h-[200px] ">
         <Link href={`/home/artisans/${seller_id}`}>
           <Image
-            src={profile_picture || '/placeholder/user-placeholder.webp'}
+            src={profile_image_url || '/placeholder/user-placeholder.webp'}
             alt={`${firstname} ${lastname}'s photo`}
             width={300}
             height={400}

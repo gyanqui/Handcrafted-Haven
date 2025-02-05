@@ -28,7 +28,7 @@ export type User = {
     firstname: string;
     lastname: string;
     type: string;
-    profile_picture: string;
+    profile_image_url: string;
   };
   
 export type Category = {
@@ -65,7 +65,7 @@ export type ProductWrapperProps = {
 
 export type ArtisanCardProps = {
   seller_id: string;
-  profile_picture: string | null;
+  profile_image_url: string | null;
   firstname: string;
   lastname: string;
   seller_email: string;

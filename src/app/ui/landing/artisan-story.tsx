@@ -9,7 +9,7 @@ export default function ArtisanStory() {
       "Hello! I'm Alex Johnson, an experienced seller specializing in premium home goods and unique décor items. With a keen eye for quality and design, I curate a selection of products that blend functionality with style. My commitment is to provide exceptional customer service and ensure a seamless shopping experience. Whether you're looking to enhance your living space or find the perfect gift, I'm here to help you discover something truly special. Let's make your home a reflection of your taste and personality!",
     firstname: "Alex",
     lastname: "Johnson",
-    profile_picture: "/artisans/artisan1.webp",
+    profile_image_url: "/artisans/artisan1.webp",
   };
 
   return (
@@ -22,7 +22,7 @@ export default function ArtisanStory() {
       <div className="flex flex-col items-center md:items-start md:flex-row">
         <div className="max-w-72 h-auto flex-none mb-8 md:mb-0 md:mr-8">
           <Image
-            src={artisan.profile_picture || "/placeholder/user-placeholder.webp"}
+            src={artisan.profile_image_url || "/placeholder/user-placeholder.webp"}
             width={300}
             height={400}
             alt={`Artisan ${artisan?.firstname} ${artisan?.lastname}'s photo`}
