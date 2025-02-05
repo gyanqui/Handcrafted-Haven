@@ -2,7 +2,7 @@ const users = [
   {
     user_id: "3958dc9e-712f-4377-85e9-fec4b6a6442a",
     username: "Seller1",
-    email: "user@heavenmail.com",
+    email: "user1@heavenmail.com",
     created_at: "2025-01-01T00:00:00.000Z",
     password: "123456",
     firstname: "Alex",
@@ -13,7 +13,7 @@ const users = [
   {
     user_id: "a2f50c11-1f14-43d8-8f70-42b54a4b7f28",
     username: "User1",
-    email: "user@heavenmail.com",
+    email: "user2@heavenmail.com",
     created_at: "2025-01-02T00:00:00.000Z",
     password: "abcdef",
     firstname: "Jane",
@@ -54,7 +54,7 @@ const sellers = [
     user_id: users[1].user_id,
   },
   {
-    seller_id: "789abcd0-2345-6789-0abc-def123456789",
+    seller_id: "8a126989-a1af-4dc9-9ae6-cb66a10b4625",
     seller_email: "pottery@clayworks.com",
     address: "789 Pine Street, Maplewood, Anyprovince 34567, Australia",
     status: "active",
@@ -68,64 +68,64 @@ const categories = [
   {
     category_id: "d8e9f8b6-7cb4-4fbb-bc07-23dfeff30c2d",
     category: "Pottery & Ceramics",
-    category_url: "/category/pottery.webp",
+    category_url: "/category/pottery.webp", //0
   },
   {
     category_id: "b9e1a526-77c1-4a9a-8e0f-6599b6e2f00c",
     category: "Woodcraft & Carving",
-    category_url: "/category/woodcraft.webp",
+    category_url: "/category/woodcraft.webp", //1
   },
   {
     category_id: "712e774e-0ad4-4c10-8a1a-981f9df5f7e8",
     category: "Textile & Fiber Arts",
-    category_url: "/category/textile.webp",
+    category_url: "/category/textile.webp", //2
   },
   {
     category_id: "f40f68b8-e8c3-473a-b6b3-324684703c19",
     category: "Glass Creations",
-    category_url: "/category/glass.webp",
+    category_url: "/category/glass.webp", //3
   },
   {
     category_id: "a5f1749f-89be-44e1-a6e1-f2c21b5eb930",
     category: "Metal Art & Jewelry",
-    category_url: "/category/metal.webp",
+    category_url: "/category/metal.webp",  //4
   },
   {
     category_id: "21dff6d8-3a79-4882-b8ef-78412b7ba946",
     category: "Leather Goods",
-    category_url: "/category/leather.webp",
+    category_url: "/category/leather.webp",  //5
   },
   {
     category_id: "c1a6319c-5825-4d83-8989-c05b4a3cb3cb",
     category: "Paper & Stationery",
-    category_url: "/category/paper.webp",
+    category_url: "/category/paper.webp",  //6
   },
   {
     category_id: "f65053b2-3d83-4ef4-a6fa-e3b34f43f3d7",
     category: "Candles & Scents",
-    category_url: "/category/candles.webp",
+    category_url: "/category/candles.webp",  //7
   },
   {
     category_id: "8761b01c-b6c3-4f3d-901a-196451de41fa",
     category: "Bath & Body",
-    category_url: "/category/bath.webp",
+    category_url: "/category/bath.webp",  //8
   },
   {
     category_id: "34a76a1b-6d4c-4911-9f93-093129c3a4b6",
     category: "Mosaic & Mixed Media",
-    category_url: "/category/mixed-media.webp",
+    category_url: "/category/mixed-media.webp",  //9
   },
   {
     category_id: "e10d8d8d-8c91-44d3-b8c0-1dfb6d2179a3",
     category: "Other",
-    category_url: "/category/other.webp",
+    category_url: "/category/other.webp",  //10
   },
 ];
 
 const products = [
   {
-    product_id: "1",
-    name: "Luxury Bath Soap Set",
+    product_id: "1bb5b9e8-0e3f-4e3b-a146-cc22f2ab429b",
+    name: "Luxury Bath Soap Set",  //1
     price: 25.0,
     quantity: 50,
     description:
@@ -136,8 +136,8 @@ const products = [
     category_id: categories[8].category_id, // Refers to "bath & body"
   },
   {
-    product_id: "2",
-    name: "Aromatic Bath Bomb Set",
+    product_id: "29195daa-b926-4ef8-9bf4-157aaf16daa1",
+    name: "Aromatic Bath Bomb Set",  //2
     price: 15.0,
     quantity: 100,
     description:
@@ -148,8 +148,8 @@ const products = [
     category_id: categories[8].category_id, // Refers to "bath & body"
   },
   {
-    product_id: "3",
-    name: "Herbal Lightening Cream",
+    product_id: "1fa9e5ff-52a5-4aed-95f6-51afadb15d5a",
+    name: "Herbal Lightening Cream",  //3
     price: 18.0,
     quantity: 30,
     description:
@@ -160,8 +160,8 @@ const products = [
     category_id: categories[8].category_id, // Refers to "bath & body"
   },
   {
-    product_id: "4",
-    name: "Fragrant Stone Diffuser",
+    product_id: "a4e449e2-7eec-4616-95e8-3f85c8eef300",
+    name: "Fragrant Stone Diffuser",  //4
     price: 30.0,
     quantity: 40,
     description:
@@ -172,8 +172,8 @@ const products = [
     category_id: categories[7].category_id, // Refers to "candles & scents"
   },
   {
-    product_id: "5",
-    name: "Handcrafted Jelly Candles",
+    product_id: "b4585f60-9993-428d-bc00-18fe7fe2b2c1",
+    name: "Handcrafted Jelly Candles",  //5
     price: 20.0,
     quantity: 60,
     description:
@@ -184,8 +184,8 @@ const products = [
     category_id: categories[7].category_id, // Refers to "candles & scents"
   },
   {
-    product_id: "6",
-    name: "Gold Number Birthday Candles",
+    product_id: "a5d676c2-0dfc-4c58-86ec-b6cc59466b38",
+    name: "Gold Number Birthday Candles",  //6
     price: 5.0,
     quantity: 120,
     description:
@@ -196,8 +196,8 @@ const products = [
     category_id: categories[7].category_id, // Refers to "candles & scents"
   },
   {
-    product_id: "7",
-    name: "Handcrafted Glass Candle Holders",
+    product_id: "f1c9d849-1b70-4fc3-84a5-fdb30a254198",
+    name: "Handcrafted Glass Candle Holders",  //7
     price: 35.0,
     quantity: 50,
     description:
@@ -208,8 +208,8 @@ const products = [
     category_id: categories[3].category_id, // Refers to "glass creations"
   },
   {
-    product_id: "8",
-    name: "Miniature Glass Garden Terrarium",
+    product_id: "3b5bc02c-3fd2-4b4f-bab6-4901ff8d64c0",
+    name: "Miniature Glass Garden Terrarium",  //8
     price: 40.0,
     quantity: 30,
     description:
@@ -220,8 +220,8 @@ const products = [
     category_id: categories[3].category_id, // Refers to "glass creations"
   },
   {
-    product_id: "9",
-    name: "Mosaic Solar-Powered Lanterns",
+    product_id: "19e24558-5087-4b44-9c9d-4b31eaf30a47",
+    name: "Mosaic Solar-Powered Lanterns", //9
     price: 50.0,
     quantity: 25,
     description:
@@ -232,8 +232,8 @@ const products = [
     category_id: categories[3].category_id, // Refers to "glass creations"
   },
   {
-    product_id: "10",
-    name: "Elegant Lace Leather Belt",
+    product_id: "2c407920-1332-4eb2-87f2-74c88738c14c",
+    name: "Elegant Lace Leather Belt",  //10
     price: 20.0,
     quantity: 80,
     description:
@@ -244,8 +244,8 @@ const products = [
     category_id: categories[5].category_id, // Refers to "leather goods"
   },
   {
-    product_id: "11",
-    name: "Leather Horse Keychain",
+    product_id: "86c35669-b6bc-4640-9a38-79c9820e77c4",
+    name: "Leather Horse Keychain",  //11
     price: 12.0,
     quantity: 150,
     description:
@@ -256,8 +256,8 @@ const products = [
     category_id: categories[5].category_id, // Refers to "leather goods"
   },
   {
-    product_id: "12",
-    name: "Classic Leather Wallet",
+    product_id: "e6e57e49-4a8b-4ac3-b9e6-6617ebbb0dc5",
+    name: "Classic Leather Wallet", //12
     price: 40.0,
     quantity: 60,
     description:
@@ -268,8 +268,8 @@ const products = [
     category_id: categories[5].category_id, // Refers to "leather goods"
   },
   {
-    product_id: "13",
-    name: "Vintage Metal Motorcycle Models",
+    product_id: "6fa182e4-d64e-4049-b8b6-35b38f07a5cf",
+    name: "Vintage Metal Motorcycle Models",  //13
     price: 60.0,
     quantity: 20,
     description:
@@ -280,8 +280,8 @@ const products = [
     category_id: categories[4].category_id, // Refers to "metal art & jewelry"
   },
   {
-    product_id: "14",
-    name: "Handcrafted Rose Quartz Pendant",
+    product_id: "71263ee4-b75a-4f40-95b5-1b4174db2fcb",
+    name: "Handcrafted Rose Quartz Pendant",  //14
     price: 25.0,
     quantity: 50,
     description:
@@ -292,8 +292,8 @@ const products = [
     category_id: categories[4].category_id, // Refers to "metal art & jewelry"
   },
   {
-    product_id: "15",
-    name: "Antique-Style Engraved Ring",
+    product_id: "8b5e3c58-b81b-49b7-8701-fb45b0a22cda",
+    name: "Antique-Style Engraved Ring",  //15
     price: 30.0,
     quantity: 40,
     description:
@@ -304,8 +304,8 @@ const products = [
     category_id: categories[4].category_id, // Refers to "metal art & jewelry"
   },
   {
-    product_id: "16",
-    name: "Miniature Bistro Dollhouse",
+    product_id: "7d1ea43e-62c5-46a7-8f48-63a2a1c60f6c",
+    name: "Miniature Bistro Dollhouse",  //16
     price: 70.0,
     quantity: 15,
     description:
@@ -313,11 +313,11 @@ const products = [
     image_url: "/products/mixed-house.webp",
     created_at: "2025-01-18T11:35:15Z",
     seller_id: sellers[2].seller_id,
-    category_id: categories[10].category_id, // Refers to "mosaic & mixed media"
+    category_id: categories[9].category_id, // Refers to "mosaic & mixed media"
   },
   {
-    product_id: "17",
-    name: "Wood & Resin Ocean Lamp",
+    product_id: "d0ad9d5e-0982-4e4b-995c-41edfc0710da",
+    name: "Wood & Resin Ocean Lamp",  //17
     price: 120.0,
     quantity: 10,
     description:
@@ -325,11 +325,11 @@ const products = [
     image_url: "/products/mixed-lamp.webp",
     created_at: "2024-11-04T11:17:08Z",
     seller_id: sellers[0].seller_id,
-    category_id: categories[10].category_id, // Refers to "mosaic & mixed media"
+    category_id: categories[9].category_id, // Refers to "mosaic & mixed media"
   },
   {
-    product_id: "18",
-    name: "Mandala Mosaic Coaster Set",
+    product_id: "fc5d7ee5-b0c2-468c-b3bb-798b38fa0078",
+    name: "Mandala Mosaic Coaster Set",  //18
     price: 25.0,
     quantity: 50,
     description:
@@ -340,8 +340,8 @@ const products = [
     category_id: categories[3].category_id, // Refers to "glass creations"
   },
   {
-    product_id: "19",
-    name: "Colorful Mosaic Vase Collection",
+    product_id: "fe11fffb-ec6b-4d97-bab0-8dc7b426f632",
+    name: "Colorful Mosaic Vase Collection",  //19
     price: 35.0,
     quantity: 30,
     description:
@@ -352,8 +352,8 @@ const products = [
     category_id: categories[3].category_id, // Refers to "glass creations"
   },
   {
-    product_id: "20",
-    name: "Colorful Kids' Animal Artwork",
+    product_id: "b1c8e90c-617e-4070-87b6-603ea8368cc8",
+    name: "Colorful Kids' Animal Artwork",  //20
     price: 45.0,
     quantity: 20,
     description:
@@ -361,11 +361,11 @@ const products = [
     image_url: "/products/other-kids-drawing.webp",
     created_at: "2024-12-28T05:26:53Z",
     seller_id: sellers[1].seller_id,
-    category_id: categories[11].category_id, // Refers to "other"
+    category_id: categories[10].category_id, // Refers to "other"
   },
   {
-    product_id: "21",
-    name: "Fantasy Feather Metal Bookmarks",
+    product_id: "53a26c5e-1e52-441d-851d-99b0ee978f76",
+    name: "Fantasy Feather Metal Bookmarks",  //21
     price: 12.0,
     quantity: 100,
     description:
@@ -376,8 +376,8 @@ const products = [
     category_id: categories[7].category_id, // Refers to "paper & stationery"
   },
   {
-    product_id: "22",
-    name: "Pop-Up Heart Love Card",
+    product_id: "b6c2d5a4-4ebc-4d40-96b0-2a1e7ff4b52c",
+    name: "Pop-Up Heart Love Card",  //22
     price: 8.0,
     quantity: 150,
     description:
@@ -388,8 +388,8 @@ const products = [
     category_id: categories[7].category_id, // Refers to "paper & stationery"
   },
   {
-    product_id: "23",
-    name: "DIY Gingerbread House Kit",
+    product_id: "64d3c927-4f1a-437b-83a5-499d9703a791",
+    name: "DIY Gingerbread House Kit",  //23
     price: 25.0,
     quantity: 50,
     description:
@@ -400,8 +400,8 @@ const products = [
     category_id: categories[7].category_id, // Refers to "paper & stationery"
   },
   {
-    product_id: "24",
-    name: "Kintsugi Ceramic Bowl",
+    product_id: "e6a8b015-47b3-4263-8925-4cc5648f6526",
+    name: "Kintsugi Ceramic Bowl",  //24
     price: 50.0,
     quantity: 25,
     description:
@@ -412,8 +412,8 @@ const products = [
     category_id: categories[0].category_id, // Refers to "pottery & ceramics"
   },
   {
-    product_id: "25",
-    name: "Handmade Boy Doll with Outfits",
+    product_id: "41d2c5a4-06d8-4c3e-8ad6-92de80b77e1b",
+    name: "Handmade Boy Doll with Outfits",  //25
     price: 35.0,
     quantity: 40,
     description:
@@ -424,8 +424,8 @@ const products = [
     category_id: categories[2].category_id, // Refers to "textile & fiber arts"
   },
   {
-    product_id: "26",
-    name: "Quilted Dog Vest",
+    product_id: "8b8a5db7-66c5-4a8f-91d5-41b68f3d19a7",
+    name: "Quilted Dog Vest",  //26
     price: 25.0,
     quantity: 60,
     description:
@@ -436,8 +436,8 @@ const products = [
     category_id: categories[2].category_id, // Refers to "textile & fiber arts"
   },
   {
-    product_id: "27",
-    name: "Embroidered Leaf Brooch",
+    product_id: "06e99fdc-6d59-4532-8893-22f9a9ebda98",
+    name: "Embroidered Leaf Brooch",  //27
     price: 10.0,
     quantity: 100,
     description:
@@ -448,8 +448,8 @@ const products = [
     category_id: categories[2].category_id, // Refers to "textile & fiber arts"
   },
   {
-    product_id: "28",
-    name: "Crocheted Star Scarf",
+    product_id: "54cfb496-9494-4e2a-b8f3-21f0d7b9cbd7",
+    name: "Crocheted Star Scarf",  //28
     price: 40.0,
     quantity: 30,
     description:
@@ -460,8 +460,8 @@ const products = [
     category_id: categories[2].category_id, // Refers to "textile & fiber arts"
   },
   {
-    product_id: "29",
-    name: "Vintage Wooden Jewelry Box",
+    product_id: "64e5a9cd-999e-46f7-82be-c74f98d11b40",
+    name: "Vintage Wooden Jewelry Box",  //29
     price: 45.0,
     quantity: 20,
     description:
@@ -472,8 +472,8 @@ const products = [
     category_id: categories[1].category_id, // Refers to "woodcraft & carving"
   },
   {
-    product_id: "30",
-    name: "Hand-Carved Wooden Elephants",
+    product_id: "86a49916-d0f1-40f5-8ef1-7f9ff438fc42",
+    name: "Hand-Carved Wooden Elephants",  //30
     price: 30.0,
     quantity: 40,
     description:
@@ -484,8 +484,8 @@ const products = [
     category_id: categories[1].category_id, // Refers to "woodcraft & carving"
   },
   {
-    product_id: "31",
-    name: "Engraved Wooden Spoons Set",
+    product_id: "77a641fc-5220-40c1-a391-ff1c94f20fbb",
+    name: "Engraved Wooden Spoons Set",  //31
     price: 20.0,
     quantity: 50,
     description:
@@ -515,17 +515,17 @@ const reviews = [
     rating: 4,
     review:
       "This Kintsugi bowl is a stunning piece of art. The golden repairs give it a unique charm and symbolize resilience beautifully. I love using it as a decorative piece. However, I expected it to be a bit heavier and sturdier.",
-    product_id: products[24].product_id,
+    product_id: products[23].product_id,
     user_id: users[2].user_id,
   },
   {
-    review_id: "e67a9d32-4c1b-47d9-8f6c-987654321efg",
+    review_id: "89c837c3-0114-41f7-8efa-83e7c1266ff5",
     title: "Soft and warm!",
     created_at: "2024-11-15T00:00:00Z",
     rating: 4.5,
     review:
       "This scarf is beautifully made and super soft. The star tassels add a unique touch. I love it, but I wish it was slightly longer for better wrapping.",
-    product_id: products[28].product_id,
+    product_id: products[27].product_id,
     user_id: users[0].user_id,
   },
   {
@@ -553,7 +553,7 @@ const reviews = [
     "created_at": "2024-12-05T00:00:00Z",
     "rating": 4.5,
     "review": "This ring has a timeless elegance, and the craftsmanship is impressive. The only reason I'm giving it 4.5 instead of 5 is that the metal is a bit thinner than I expected. Still, it's a stunning ring!",
-    "product_id": "15",
+    "product_id": products[14].product_id,
     "user_id": users[2].user_id
   },
   {

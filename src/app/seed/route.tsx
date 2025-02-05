@@ -1,3 +1,4 @@
+
 import bcrypt from 'bcrypt';
 import { db } from '@vercel/postgres';
 import { sellers, products, users, categories, reviews } from '../lib/placeholder-data';
@@ -15,7 +16,7 @@ async function seedUsers() {
       password TEXT NOT NULL,
       firstname VARCHAR(255) NOT NULL,
       lastname TEXT NOT NULL,
-      type ENUM('User', 'Seller', 'Admin'),
+      type TEXT CHECK (type IN ('User', 'Seller', 'Admin')),
       profile_image_url TEXT NULL
     );
   `;
@@ -41,7 +42,7 @@ async function seedSellers() {
       seller_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
       seller_email TEXT NOT NULL UNIQUE,
       address TEXT NOT NULL,
-      status ENUM('active', 'inactive', 'suspended'),
+      status TEXT CHECK (status IN ('active', 'inactive', 'suspended')),
       introduction TEXT NOT NULL,
       user_id UUID NOT NULL REFERENCES users(user_id) ON DELETE CASCADE
     );
@@ -66,7 +67,7 @@ async function seedCategories() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS categories (
       category_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-      category TEXT VARCHAR(255) NULL,
+      category VARCHAR(255) NULL,
       category_url TEXT
     );
   `;
@@ -123,7 +124,7 @@ async function seedReview() {
       rating Numeric(2,1) NOT NULL,
       review TEXT NOT NULL,
       product_id UUID NOT NULL REFERENCES products(product_id) ON DELETE CASCADE,
-      user_id UUID NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+      user_id UUID NOT NULL REFERENCES users(user_id) ON DELETE CASCADE
     );
   `;
 
