@@ -7,8 +7,8 @@ const users = [
     password: '123456',
     firstname: 'Alex',
     lastname: 'Johnson',
-    user_type: 'Seller',
-    // profile_picture: null,
+    user_type: 'User',
+    profile_picture: "/artisans/artisan1.webp",
     // seller_id: '410544b2-4001-4271-9855-fec4b6a6442a',
   },
   {
@@ -20,7 +20,7 @@ const users = [
     firstname: "Jane",
     lastname: "Doe",
     user_type: "User",
-    // profile_picture: null,
+    profile_picture: "/artisans/artisan2.webp",
     // seller_id: "52a8fcbe-1722-41e7-8291-57807e0eae41"
   },
   {
@@ -31,8 +31,8 @@ const users = [
     password: "654321",
     firstname: "Chris",
     lastname: "Smith",
-    user_type: "Admin",
-    // profile_picture: null,
+    user_type: "User",
+    profile_picture: null,
     // seller_id: "eb6725d2-3b87-4b7b-bf24-6d7f971717f1"
   }
 ];
@@ -45,6 +45,24 @@ const sellers = [
     status: 'Active',
     introduction : 'Hello! I\'m Alex Johnson, an experienced seller specializing in premium home goods and unique décor items. With a keen eye for quality and design, I curate a selection of products that blend functionality with style. My commitment is to provide exceptional customer service and ensure a seamless shopping experience. Whether you\'re looking to enhance your living space or find the perfect gift, I\'m here to help you discover something truly special. Let\'s make your home a reflection of your taste and personality!',
     user_id: users[0].user_id,
+  },
+  {
+    seller_id: "5123bcde-1234-5678-9abc-def012345678",
+    seller_email: "artisan@craftmail.com",
+    address: "456 Oak Avenue, Riverdale, Anycity 67890, Canada",
+    status: "Active",
+    introduction:
+      "Hi there! I'm Sophia Williams, a passionate artisan and seller of handmade jewelry and artisan crafts. Each piece I create is designed with love and attention to detail, ensuring a one-of-a-kind experience for my customers. From elegant necklaces to custom-made bracelets, my collection celebrates craftsmanship and individuality. Join me on this journey to bring beauty and creativity to your everyday life!",
+    user_id: users[1].user_id,
+  },
+  {
+    seller_id: "8a126989-a1af-4dc9-9ae6-cb66a10b4625",
+    seller_email: "pottery@clayworks.com",
+    address: "789 Pine Street, Maplewood, Anyprovince 34567, Australia",
+    status: "Active",
+    introduction:
+      "Greetings! I'm Michael Lee, a ceramic artisan dedicated to crafting high-quality pottery and home décor. My pieces blend modern aesthetics with traditional techniques, creating timeless designs that add warmth to any space. Whether you're looking for handcrafted dinnerware or statement vases, my shop offers something unique for every home. Let's bring artistry into your everyday life!",
+    user_id: users[2].user_id,
   },
 ]
 
@@ -196,7 +214,7 @@ const products = [
     category_id: categories[8].category_id, // Refers to "bath & body"
   },
   {
-    // product_id: "4",
+    product_id: "789e0123-c43d-67e8-d890-098765432100",
     name: "Fragrant Stone Diffuser",
     price: 30.00,
     quantity: 40,
@@ -317,7 +335,7 @@ const products = [
     category_id: categories[4].category_id, // Refers to "metal art & jewelry"
   },
   {
-    // product_id: "15",
+    product_id: "123e4567-e89b-12d3-a456-426614174000",
     name: "Antique-Style Engraved Ring",
     price: 30.00,
     quantity: 40,
@@ -416,7 +434,7 @@ const products = [
     category_id: categories[7].category_id, // Refers to "paper & stationery"
   },
   {
-    // product_id: "24",
+    product_id: "564e7890-b32c-56d7-c789-654321098700",
     name: "Kintsugi Ceramic Bowl",
     price: 50.00,
     quantity: 25,
@@ -460,7 +478,7 @@ const products = [
     category_id: categories[2].category_id, // Refers to "textile & fiber arts"
   },
   { 
-    // product_id: "28",
+    product_id: "e21d44a4-fc85-4200-9e3f-d83a5460b5bc",
     name: "Crocheted Star Scarf",
     price: 40.00,
     quantity: 30,
@@ -493,7 +511,7 @@ const products = [
     category_id: categories[1].category_id, // Refers to "woodcraft & carving"
   },
   {
-    // product_id: "31",
+    product_id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
     name: "Engraved Wooden Spoons Set",
     price: 20.00,
     quantity: 50,
@@ -508,40 +526,89 @@ const products = [
 const reviews = [
   {
     review_id: "8bdaee39-7c5b-4b5c-a6b0-0c2c7741e123",
-    title: "Amazing Comfort!",
-    created_at: "2025-01-15",
+    title: "Absolutely stunning!",
+    created_at: "2024-11-20T00:00:00Z",
     rating: 5,
-    review: "This UltraSoft Pillow is fantastic! It provides excellent support and is incredibly soft. I've never slept better!",
-    product_id: "123e4567-e89b-12d3-a456-426614174000",
-    user_id: "a2f50c11-1f14-43d8-8f70-42b54a4b7f28"
+    review:
+      "This ring exceeded my expectations! The engravings are so detailed, and the antique-style design gives it such a timeless charm. It fits perfectly and looks elegant with any outfit. Highly recommend!",
+    product_id: products[14].product_id,
+    user_id: users[1].user_id,
   },
   {
     review_id: "df12b456-7890-4c3d-b9e3-123456789abc",
-    title: "Very Comfortable",
-    created_at: "2025-01-20",
+    title: "Elegant and meaningful",
+    created_at: "2025-02-01T00:00:00Z",
     rating: 4,
-    review: "I really like this UltraSoft Pillow. It's very comfortable and helps me sleep better. Would highly recommend!",
-    product_id: "123e4567-e89b-12d3-a456-426614174000",
-    user_id: "a2f50c11-1f14-43d8-8f70-42b54a4b7f28"
+    review:
+      "This Kintsugi bowl is a stunning piece of art. The golden repairs give it a unique charm and symbolize resilience beautifully. I love using it as a decorative piece. However, I expected it to be a bit heavier and sturdier.",
+    product_id: products[23].product_id,
+    user_id: users[2].user_id,
   },
+  // {
+  //   review_id: "89c837c3-0114-41f7-8efa-83e7c1266ff5",
+  //   title: "Soft and warm!",
+  //   created_at: "2024-11-15T00:00:00Z",
+  //   rating: 4.5,
+  //   review:
+  //     "This scarf is beautifully made and super soft. The star tassels add a unique touch. I love it, but I wish it was slightly longer for better wrapping.",
+  //   product_id: products[27].product_id,
+  //   user_id: users[0].user_id,
+  // },
   {
-    review_id: "4b4e8d6e-8c47-4b3b-a2e3-8b7322c799d2",
-    title: "Best Pillow Ever!",
-    created_at: "2025-01-25",
+    review_id: "369e214c-7bc9-4ff8-a97f-6ea108238d9f",
+    title: "Beautiful craftsmanship",
+    created_at: "2025-01-30T00:00:00Z",
     rating: 5,
-    review: "This pillow is the best I've ever used. It's super soft and provides great support. My neck pain has reduced significantly!",
-    product_id: "123e4567-e89b-12d3-a456-426614174000",
-    user_id: "a2f50c11-1f14-43d8-8f70-42b54a4b7f28"
+    review:
+      "I love these wooden spoons! The engravings are beautifully done, and the wood feels very sturdy. Perfect for cooking and serving.",
+    product_id: products[30].product_id,
+    user_id: users[1].user_id,
   },
   {
-    review_id: "4c3f2b45-1a2b-4c7d-8e4a-12345678abcd",
-    title: "Good but not perfect",
-    created_at: "2025-01-30",
-    rating: 3,
-    review: "The pillow is soft and comfortable, but I expected a bit more firmness. It’s good, but not perfect for my preference.",
-    product_id: "123e4567-e89b-12d3-a456-426614174000",
-    user_id: "3958dc9e-712f-4377-85e9-fec4b6a6442a"
+    review_id: "ecb7d41e-9561-479f-92e7-82584353e714",
+    title: "Beautiful but slightly smaller than expected",
+    created_at: "2024-11-25T00:00:00Z",
+    rating: 4,
+    review: "The ring is beautifully designed, and the engravings are exquisite. However, it runs slightly smaller than expected, so make sure to check the sizing carefully. Still a great piece!",
+    product_id: products[14].product_id,
+    user_id: users[0].user_id
   },
+  // {
+  //   review_id: "82edf010-1d56-4a0f-8820-1e8a9cfc1d75",
+  //   title: "Elegant and well-crafted",
+  //   created_at: "2024-12-05T00:00:00Z",
+  //   rating: 4.5,
+  //   review: "This ring has a timeless elegance, and the craftsmanship is impressive. The only reason I'm giving it 4.5 instead of 5 is that the metal is a bit thinner than I expected. Still, it's a stunning ring!",
+  //   product_id: products[14].product_id,
+  //   user_id: users[2].user_id
+  // },
+  {
+    review_id: "b9ab5edc-82a2-47d7-b3f1-a22c4423832d",
+    title: "Decent but not very strong",
+    created_at: "2024-10-20T00:00:00Z",
+    rating: 3,
+    review: "The design is lovely, and I love the handcrafted details. However, the scent doesn’t last as long as I expected, and I have to reapply the essential oil frequently.",
+    product_id: products[3].product_id,
+    user_id: users[0].user_id
+  },
+  {
+    review_id: "ecd8a8e9-3b4a-4e4e-84a0-5d9651983004",
+    title: "Absolutely love this!",
+    created_at: "2024-11-05T00:00:00Z",
+    rating: 5,
+    review: "This diffuser is perfect! The scent spreads beautifully, and the design adds such a cozy touch to my space. I highly recommend it to anyone who loves home decor and relaxing aromas.",
+    product_id: products[3].product_id,
+    user_id: users[1].user_id
+  },
+  // {
+  //   review_id: "d8ba327b-bf7a-4231-ab38-13e318b33c65",
+  //   title: "Great product with a minor flaw",
+  //   created_at: "2024-11-15T00:00:00Z",
+  //   rating: 4.5,
+  //   review: "I really enjoy this diffuser. The stones and details make it a beautiful decorative piece, and it works well with my essential oils. I just wish the scent diffusion lasted a bit longer without needing to refresh it.",
+  //   product_id: products[3].product_id,
+  //   user_id: users[2].user_id
+  // }  
 ]
   
   
