@@ -1,11 +1,11 @@
-import { HeroSection } from "./ui/hero-section";
-import { ArtistStory } from "./ui/artist-story";
-import { 
+import HeroSection from "./ui/landing/hero-section";
+import ArtisanStory from "./ui/landing/artisan-story";
+import {
   Heading,
   ArrivalCard,
-  NewPopularCard
-} from "@/app/ui/home/PromotionComponents";
-import Footer from "./ui/home/footer"
+  NewPopularCard,
+} from "@/app/ui/landing/PromotionComponents";
+import Footer from "./ui/landing/footer";
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
           <ArrivalCard />
         </div>
       </div>
-      <ArtistStory />
+      <ArtisanStory />
       <div className="bg-white p-5 md:flex justify-evenly">
         <NewPopularCard />
         <NewPopularCard />

@@ -28,7 +28,7 @@ export type User = {
     firstname: string;
     lastname: string;
     type: string;
-    profile_picture: string;
+    profile_image_url: string;
   };
   
 export type Category = {
@@ -46,4 +46,62 @@ export type Rating = {
 }
 
 
-  
+export type ProductProps = {
+  product_id: string;
+  name: string;
+  image_url: string;
+  price: number;
+  averageRate: number;
+}
+
+export type PromotionWrapperProps = {
+  products: ProductProps[];
+  title: string;
+}
+
+export type ProductWrapperProps = {
+  products: ProductProps[]
+}
+
+export type ArtisanCardProps = {
+  seller_id: string;
+  profile_image_url: string | null;
+  firstname: string;
+  lastname: string;
+  seller_email: string;
+  address: string;
+  introduction: string;
+}
+
+export type ArtisanWrapperProps = {
+  sellers: ArtisanCardProps[]
+}
+
+export type ReviewProps = {
+  review_id: string,
+  product_id: string,
+  image_url: string,
+  username: string,
+  rating: number,
+  created_at: string,
+  product_name: string
+  review: string
+}
+
+export type ReviewWrapperProps = {
+  reviewData: ReviewProps[]
+}
+
+export type SideMenuProps = {
+  toggleOpen: () => void;
+}
+
+export type CategoryCardProps = {
+  category_id: string;
+  category: string;
+  category_url: string
+}
+
+export type CategoryNavProps = {
+  categories: CategoryCardProps[]
+}

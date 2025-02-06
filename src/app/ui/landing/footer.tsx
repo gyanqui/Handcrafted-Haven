@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-col">
           <h3 className="font-semibold mb-2">Quick Link</h3>
-          <Link href="/location"><p>Artists</p></Link>
+          <Link href="/location"><p>Artisans</p></Link>
           <Link href="/orders"><p>Products</p></Link>
           <Link href="/size-guide"><p>Reviews</p></Link>
         </div>
