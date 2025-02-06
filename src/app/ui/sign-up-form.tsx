@@ -11,13 +11,14 @@ import {
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
 import { useActionState } from 'react';
-import { authenticate } from '@/app/lib/actions';
+import { createUser, State } from '@/app/lib/actions';
 // import Link from 'next/ink';
 
 export default function SignUpForm() {
-  const [errorMessage, formAction, isPending] = useActionState(
-    authenticate,
-    undefined,
+  const initialState: State = {message: null, errors: {}};
+  const [state, formAction] = useActionState(
+    createUser,
+    initialState,
   );
   return (
     <form action={formAction} className="space-y-3">
@@ -121,14 +122,14 @@ export default function SignUpForm() {
             </div>
           </div>
         </div>
-        <Button className="mt-4 w-full" aria-disabled={isPending}>
+        <Button className="mt-4 w-full" type='submit'>
           Sign Up <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
         <div className="flex h-8 items-end space-x-1" aria-live='polite' aria-atomic='true'>
-          {errorMessage && (
+          {state && (
             <>
               <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-              <p className="text-sm text-red-500">{errorMessage}</p>
+              <p className="text-sm text-red-500">{state.message}</p>
             </>
           )}
         </div>
