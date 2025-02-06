@@ -90,14 +90,12 @@ export default function TopNav() {
           </button>
         </Link>
       </div>
+
       {/* management dashboard */}
       <div className="hidden lg:block">
         <div className="flex flex-row gap-4 px-2">
           <Link href="/home/dashboard">
             <RxAvatar className="inline text-2xl" />
-          </Link>
-          <Link href="/home/shopping-cart">
-            <BsCart className="inline text-2xl" />
           </Link>
         </div>
       </div>

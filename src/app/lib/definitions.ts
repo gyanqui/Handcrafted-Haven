@@ -97,7 +97,11 @@ export type SideMenuProps = {
 }
 
 export type CategoryCardProps = {
-  name: string;
-  url: string;
-  id: string
+  category_id: string;
+  category: string;
+  category_url: string
+}
+
+export type CategoryNavProps = {
+  categories: CategoryCardProps[]
 }
