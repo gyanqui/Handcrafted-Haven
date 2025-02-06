@@ -36,7 +36,7 @@ export function HeroSection() {
 
             {/* nav bar */}
             <ul
-              className={`${poppins.className} text-lg flex flex-row flex-grow justify-evenly items-center py-4 lg:py-0 text-black`}
+              className={`${poppins.className} text-lg flex flex-row flex-grow justify-evenly items-center py-4 lg:py-0`}
             >
               <li className="hover:underline">Artists</li>
               <li className="hover:underline">Products</li>
