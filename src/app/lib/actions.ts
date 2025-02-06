@@ -5,18 +5,14 @@ import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from "next/navigation";
 export type State = {
-    errors?: {
-      user_id?: string[];
-      username?: string[];
-      email?: string[];
-      created_at?: Date;
-      password?: string[];
-      firstname?: string[];
-      lastname?: string[];
-      type: string[];
-      profile_image_url?: string[] | null;
-    };
-    message?: string | null;
+  errors?: {
+    username?: string[] | undefined; 
+    email?: string[] | undefined; 
+    password?: string[] | undefined; 
+    firstname?: string[] | undefined; 
+    lastname?: string[] | undefined; 
+  };
+  message?: string | null;
 };
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
@@ -59,14 +55,14 @@ export async function createUser(prevState: State, formData: FormData) {
     try {
         await sql`
             INSERT INTO users (username, created_at, email, password, firstname, lastname, type )
-            VALUES (${username}, ${created_at}, ${email}, ${hashedPassword}, ${firstname}, ${lastname}, "User" )
+            VALUES (${username}, ${created_at}, ${email}, ${hashedPassword}, ${firstname}, ${lastname}, 'User' )
         `;
     } catch (error) {
         console.error('Error creating new user:', error);
     }
 
     revalidatePath('/sign-up');
-    redirect('/');
+    redirect('/profile');
     
 }
 
