@@ -7,7 +7,6 @@ import { LuUsersRound } from "react-icons/lu";
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
-import { BsCart } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import SideMenu from "./SideMenu";

@@ -13,7 +13,7 @@ export default function SideMenu({ toggleOpen }: SideMenuProps) {
       {/* logo */}
       <div>
         <Link href="/home" onClick={toggleOpen}>
-          <h1 className="font-extrabold text-4xl">Handcrafted Haven</h1>
+          <h1 className="font-extrabold text-4xl text-center">Handcrafted Haven</h1>
         </Link>
       </div>
 

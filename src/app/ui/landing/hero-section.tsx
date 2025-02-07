@@ -38,34 +38,42 @@ export default function HeroSection() {
             <ul
               className={`${poppins.className} text-lg flex flex-row flex-grow justify-evenly items-center py-4 lg:py-0`}
             >
-              <Link href='/home/artisans' className="hover:underline"><li>Artisans</li></Link>
-              <Link href='/home/products' className="hover:underline"><li>Products</li></Link>
-              <Link href='/home/reviews' className="hover:underline"><li >Reviews</li></Link>
+              <Link href="/home/artisans" className="hover:underline">
+                <li>Artisans</li>
+              </Link>
+              <Link href="/home/products" className="hover:underline">
+                <li>Products</li>
+              </Link>
+              <Link href="/home/reviews" className="hover:underline">
+                <li>Reviews</li>
+              </Link>
             </ul>
           </div>
           <div className="flex flex-row">
             {/* search bar */}
             <div className="relative flex flex-grow items-center px-2 w-fit">
-              <label htmlFor="search" className="sr-only">
-                Search
-              </label>
-              <input
-                type="text"
-                className="border border-gray-400 rounded-3xl px-2 text-lg w-full"
-                placeholder="Search"
-                onChange={(e) => handleSearch(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="absolute top-2 right-3 lg:top-2 lg:right-3 transform translate-y-0.5 p-1 bg-custom-yellow rounded-full"
-              >
-                <FaSearch />
-              </button>
+              <form>
+                <label htmlFor="search" className="sr-only">
+                  Search
+                </label>
+                <input
+                  type="text"
+                  className="border border-gray-400 rounded-3xl px-2 text-lg w-full"
+                  placeholder="Search"
+                  onChange={(e) => handleSearch(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="absolute top-2 right-3 lg:top-2 lg:right-3 transform translate-y-0.5 p-1 bg-custom-yellow rounded-full"
+                >
+                  <FaSearch />
+                </button>
+              </form>
             </div>
             {/* login button */}
             <div>
               <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
-                <Link href='/home/login'>Log In</Link>
+                <Link href="/home/login">Log In</Link>
               </button>
             </div>
           </div>
