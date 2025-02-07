@@ -1,7 +1,6 @@
-"use client";
+'use client'
 
 import Image from "next/image";
-import { useDebouncedCallback } from "use-debounce";
 import { poppins } from "../font";
 import { LuUsersRound } from "react-icons/lu";
 import { AiOutlineProduct } from "react-icons/ai";
@@ -13,15 +12,13 @@ import SideMenu from "./SideMenu";
 import { Drawer } from "antd";
 import { useState } from "react";
 import Link from "next/link";
+import Form from 'next/form'
 
 export default function TopNav() {
   const [isOpen, setIsOpen] = useState(false); // side menu open status
+  
+  const toggleOpen = () => setIsOpen((current) => !current); // toggle side menu
 
-  const toggleOpen = () => setIsOpen((current) => !current);
-
-  const handleSearch = useDebouncedCallback((term: string) => {
-    console.log(term);
-  }, 300);
   return (
     <div className="min-w-[390px] flex flex-row justify-between items-center bg-custom-yellow h-12 p-1 md:p-2 lg:px-8">
       {/* responsive menu */}
@@ -70,25 +67,25 @@ export default function TopNav() {
       </div>
 
       {/* search bar */}
-      <div className="relative flex flex-grow items-center px-2 w-fit">
+      <Form action='/home/search'
+        className="relative flex flex-grow items-center px-2 w-fit"
+      >
         <label htmlFor="search" className="sr-only">
           Search
         </label>
         <input
           type="text"
+          name="query"
           className="border border-gray-400 rounded-3xl px-2 text-lg w-full"
           placeholder="Search"
-          onChange={(e) => handleSearch(e.target.value)}
         />
-        <Link href='/home/search'>
-          <button
-            type="submit"
-            className="absolute top-1 right-3 lg:top-1 lg:right-3 transform p-1 bg-custom-yellow rounded-full"
-          >
-            <FaSearch />
-          </button>
-        </Link>
-      </div>
+        <button
+          type="submit"
+          className="absolute top-1 right-3 lg:top-1 lg:right-3 transform p-1 bg-custom-yellow rounded-full"
+        >
+          <FaSearch />
+        </button>
+      </Form>
 
       {/* management dashboard */}
       <div className="hidden lg:block">
@@ -98,12 +95,15 @@ export default function TopNav() {
           </Link>
         </div>
       </div>
+
       {/* sign out  */}
       <div className="hidden lg:block">
         <button className="bg-black text-white rounded-md px-2 py-1">
           Log Out
         </button>
       </div>
+
+      {/* side menu */}
       <Drawer
         placement="left"
         open={isOpen}

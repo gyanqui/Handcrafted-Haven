@@ -5,11 +5,24 @@ import { poppins } from "../font";
 import { FaSearch } from "react-icons/fa";
 import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
+
   const handleSearch = useDebouncedCallback((term: string) => {
-    console.log(term);
+    setSearchTerm(term);
   }, 300);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!searchTerm) return;
+    router.push(`/home/search?query=${encodeURIComponent(searchTerm)}`);
+  };
+
   return (
     <div className="bg-custom-yellow md:p-12 lg:p-24">
       <div className="bg-white md:rounded-t-3xl p-2 md:p-4 lg:p-6 flex flex-col gap-4">
@@ -51,25 +64,27 @@ export default function HeroSection() {
           </div>
           <div className="flex flex-row">
             {/* search bar */}
-            <div className="relative flex flex-grow items-center px-2 w-fit">
-              <form>
-                <label htmlFor="search" className="sr-only">
-                  Search
-                </label>
-                <input
-                  type="text"
-                  className="border border-gray-400 rounded-3xl px-2 text-lg w-full"
-                  placeholder="Search"
-                  onChange={(e) => handleSearch(e.target.value)}
-                />
-                <button
-                  type="submit"
-                  className="absolute top-2 right-3 lg:top-2 lg:right-3 transform translate-y-0.5 p-1 bg-custom-yellow rounded-full"
-                >
-                  <FaSearch />
-                </button>
-              </form>
-            </div>
+            <form
+              onSubmit={handleSubmit}
+              className="relative flex flex-grow items-center px-2 w-fit"
+            >
+              <label htmlFor="search" className="sr-only">
+                Search
+              </label>
+              <input
+                type="text"
+                className="border border-gray-400 rounded-3xl px-2 text-lg w-full"
+                placeholder="Search"
+                onChange={(e) => handleSearch(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="absolute top-2 right-3 lg:top-2 lg:right-3 transform translate-y-0.5 p-1 bg-custom-yellow rounded-full"
+              >
+                <FaSearch />
+              </button>
+            </form>
+
             {/* login button */}
             <div>
               <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">

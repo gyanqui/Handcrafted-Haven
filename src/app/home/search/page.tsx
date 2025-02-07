@@ -1,30 +1,20 @@
 import ProductWrapper from "@/app/ui/home/ProductWrapper";
 import ArtisanWrapper from "@/app/ui/home/ArtisanWrapper";
 import ReviewWrapper from "@/app/ui/home/ReviewWrapper";
-export default function Search() {
-  const productResult = [
-    {
-      product_id: "1",
-      name: "Luxury Bath Soap Set",
-      price: 25.0,
-      image_url: "/products/bath-bath-set.webp",
-      averageRate: 4.5,
-    },
-    {
-      product_id: "2",
-      name: "Aromatic Bath Bomb Set",
-      price: 15.0,
-      image_url: "/products/bath-bathball.webp",
-      averageRate: 5,
-    },
-    {
-      product_id: "3",
-      name: "Herbal Lightening Cream",
-      price: 18.0,
-      image_url: "/products/bath-lightening-cream.webp",
-      averageRate: 4,
-    },
-  ];
+import { searchProducts } from "@/app/lib/data";
+import { FaExclamationTriangle } from "react-icons/fa";
+
+
+export default async function Search(props: {
+  searchParams?: Promise<{
+    query?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || "";
+
+  const productResult = await searchProducts(query);
+
   const artisanResult = [
     {
       seller_id: "410544b2-4001-4271-9855-fec4b6a6442a",
@@ -105,7 +95,21 @@ export default function Search() {
           Products Result
         </h1>
         <div>
-          <ProductWrapper products={productResult} />
+          {productResult.length > 0 ? (
+            <ProductWrapper
+              products={productResult.map((product) => ({
+                product_id: product.product_id,
+                name: product.name,
+                price: product.price,
+                image_url: product.image_url,
+                averageRate: product.averageRate,
+              }))}
+            />
+          ) : (
+            <div className="text-xl text-center">
+              <FaExclamationTriangle className="inline text-custom-yellow mx-2"/>
+              No data related to {query} found in our products</div>
+          )}
         </div>
       </div>
 
