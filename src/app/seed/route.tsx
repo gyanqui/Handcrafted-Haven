@@ -130,25 +130,25 @@ async function seedSellers() {
 
 async function seedCategories() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-
   await client.sql`
     CREATE TABLE IF NOT EXISTS categories (
-      category_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-      category TEXT NOT NULL
-    );
+    category_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    category TEXT NOT NULL,
+    category_url TEXT NOT NULL
+    )  
   `;
+
 
   const insertedCategories = await Promise.all(
     categories.map(
       (category) => client.sql`
-        INSERT INTO categories (category_id, category)
-        VALUES (${category.category_id}, ${category.category})
-        ON CONFLICT (id) DO NOTHING;
-      `,
-    ),
-  );
-
-  return insertedCategories;
+        INSERT INTO categories (category_id, category, category_url)
+        VALUES (${category.category_id}, ${category.category}, ${category.category_url})
+        ON CONFLICT (category_id) DO NOTHING;
+      `
+    )
+  )
+  return insertedCategories
 }
 
 async function seedProducts() {
@@ -227,5 +227,3 @@ export async function GET() {
     }
   }
  
-
-
