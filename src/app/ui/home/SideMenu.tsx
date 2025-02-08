@@ -26,12 +26,6 @@ export default function SideMenu({ toggleOpen }: SideMenuProps) {
           </Link>
         </div>
         <div>
-          <Link href='/home/shopping-cart' onClick={toggleOpen}>
-          <BsCart className="inline m-4" />
-          Shopping Cart
-          </Link>
-        </div>
-        <div>
           <Link href='/home/artisans' onClick={toggleOpen}>
           <LuUsersRound className="inline m-4" />
           Artisans

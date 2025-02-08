@@ -4,6 +4,7 @@ import ArtisanWrapper from "@/app/ui/home/ArtisanWrapper";
 import ReviewWrapper from "@/app/ui/home/ReviewWrapper";
 import { searchArtisans, searchProducts, searchReviews } from "@/app/lib/data";
 import { FaExclamationTriangle } from "react-icons/fa";
+import Image from "next/image";
 
 export default async function Search(props: {
   searchParams?: Promise<{
@@ -19,44 +20,8 @@ export default async function Search(props: {
 
   const reviewResult = await searchReviews(query);
 
-  // const reviewResult = [
-  //   {
-  //     review_id: "8bdaee39-7c5b-4b5c-a6b0-0c2c7741e123",
-  //     product_id: "1",
-  //     image_url: "/products/bath-bath-set.webp",
-  //     username: "Seller1",
-  //     product_name: "Luxury Bath Soap Set",
-  //     created_at: "2025-01-15",
-  //     rating: 5,
-  //     review:
-  //       "This UltraSoft Pillow is fantastic! It provides excellent support and is incredibly soft. I've never slept better!",
-  //   },
-  //   {
-  //     review_id: "df12b456-7890-4c3d-b9e3-123456789abc",
-  //     product_id: "2",
-  //     image_url: "/products/bath-bathball.webp",
-  //     username: "User1",
-  //     rating: 4,
-  //     created_at: "2025-01-20",
-  //     product_name: "Aromatic Bath Bomb Set",
-  //     review:
-  //       "I really like this UltraSoft Pillow. It's very comfortable and helps me sleep better. Would highly recommend!",
-  //   },
-  //   {
-  //     review_id: "e67a9d32-4c1b-47d9-8f6c-987654321efg",
-  //     product_id: "3",
-  //     image_url: "/products/bath-lightening-cream.webp",
-  //     username: "Admin1",
-  //     rating: 5,
-  //     created_at: "2025-01-25",
-  //     product_name: "Herbal Lightening Cream",
-  //     review:
-  //       "This pillow is the best I've ever used. It's super soft and provides great support. My neck pain has reduced significantly!",
-  //   },
-  // ];
-
   return (
-    <>
+    <div className="w-full flex flex-col">
       {query ? (
       <div className="flex flex-col pb-4">
       {/* product result */}
@@ -139,11 +104,12 @@ export default async function Search(props: {
       </div>
     </div>
     ) : (
-      <div className="flex flex-col items-center">
-        <p className="text-3xl m-4">Please use the search bar above to find the products, artisans or reviews.</p>
+      <div className="flex flex-row">
+        <div className="min-w-24 mr-2 md:mr-4 lg:mr-6"><Image src='/search.webp' alt='search picture' width={291} height={206} /></div>
+        <div className="flex justify-center items-center md:text-2xl lg:text-4xl">Please use the search bar above to find the products, artisans or reviews.</div>
       </div>
     )}
-    </>
+    </div>
     
     
   );
