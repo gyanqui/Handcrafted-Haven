@@ -60,6 +60,7 @@ export async function searchArtisans(query: string) {
       OR u.lastname ILIKE ${sqlQuery}
       OR s.address ILIKE ${sqlQuery}
     `;
+    console.log('data: ', data)
     return data.rows;
   } catch (error) {
     console.error("Failed to search artisans: ", error);

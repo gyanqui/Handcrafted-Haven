@@ -4,7 +4,6 @@ import ReviewWrapper from "@/app/ui/home/ReviewWrapper";
 import { searchArtisans, searchProducts } from "@/app/lib/data";
 import { FaExclamationTriangle } from "react-icons/fa";
 
-
 export default async function Search(props: {
   searchParams?: Promise<{
     query?: string;
@@ -108,8 +107,9 @@ export default async function Search(props: {
             />
           ) : (
             <div className="text-xl text-center">
-              <FaExclamationTriangle className="inline text-custom-yellow mx-2"/>
-              No data related to &quot;{query}&quot; found in our products</div>
+              <FaExclamationTriangle className="inline text-custom-yellow mx-2" />
+              No data related to &quot;{query}&quot; found in our products
+            </div>
           )}
         </div>
       </div>
@@ -120,7 +120,24 @@ export default async function Search(props: {
           Artisan Result
         </h1>
         <div>
-          <ArtisanWrapper sellers={artisanResult} />
+          {artisanResult.length > 0 ? (
+            <ArtisanWrapper 
+              sellers={artisanResult.map((artisan) => ({
+                seller_id: artisan.seller_id,
+                seller_email: artisan.seller_email,
+                introduction: artisan.introduction,
+                username: artisan.username,
+                firstname: artisan.firstname,
+                lastname: artisan.lastname,
+                profile_image_url: artisan.profile_image_url,
+                address: artisan.address
+              }))} />
+          ) : (
+            <div className="text-xl text-center">
+              <FaExclamationTriangle className="inline text-custom-yellow mx-2" />
+              No data related to &quot;{query}&quot; found in our products
+            </div>
+          )}
         </div>
       </div>
 
