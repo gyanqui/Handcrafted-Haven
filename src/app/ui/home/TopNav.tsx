@@ -14,6 +14,8 @@ import SideMenu from "./SideMenu";
 import { Drawer } from "antd";
 import { useState } from "react";
 import Link from "next/link";
+import { SessionProvider } from "next-auth/react";
+import { ComponentLogIn } from "./SignOutButton";
 
 export default function TopNav() {
   const [isOpen, setIsOpen] = useState(false); // side menu open status
@@ -100,11 +102,14 @@ export default function TopNav() {
         </div>
       </div>
       {/* sign out  */}
-      <div className="hidden lg:block">
+      <SessionProvider>
+        <ComponentLogIn />
+      </SessionProvider>
+      {/* <div className="hidden lg:block">
         <button className="bg-black text-white rounded-md px-2 py-1">
           Log Out
         </button>
-      </div>
+      </div> */}
       <Drawer
         placement="left"
         open={isOpen}

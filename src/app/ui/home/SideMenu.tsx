@@ -6,6 +6,8 @@ import { AiOutlineProduct } from "react-icons/ai";
 import { SlLogout } from "react-icons/sl";
 import Link from "next/link";
 import { SideMenuProps } from "@/app/lib/definitions";
+import { SessionProvider } from "next-auth/react";
+import { ComponentLogIn } from "./SignOutButton";
 
 export default function SideMenu({ toggleOpen }: SideMenuProps) {
   return (
@@ -43,10 +45,13 @@ export default function SideMenu({ toggleOpen }: SideMenuProps) {
           Products
           </Link>
         </div>
-        <div>
+        <SessionProvider>
+          <ComponentLogIn />
+        </SessionProvider>
+        {/* <div>
           <SlLogout className="inline m-4" />
           Log Out
-        </div>
+        </div> */}
       </div>
 
       {/* close button */}

@@ -5,8 +5,24 @@ import { poppins } from "../font";
 import { FaSearch } from "react-icons/fa";
 import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
+// import { SignOutButton, SignInButton } from "@/app/ui/home/SignOutButton";
+import { ComponentLogIn } from "@/app/ui/home/SignOutButton";
+import { SessionProvider } from "next-auth/react";
+// import { signOut, signIn, useSession } from 'next-auth/react';
 
 export default function HeroSection() {
+  // const { data: session } = useSession();
+  // if (session) {
+  //   const ComponentLogIn = () => {
+  //     <div>
+  //       <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
+  //         <Link href='/login'>Log In</Link>
+  //       </button>
+  //     </div>
+  //   }
+  // }
+
+
   const handleSearch = useDebouncedCallback((term: string) => {
     console.log(term);
   }, 300);
@@ -64,9 +80,12 @@ export default function HeroSection() {
             </div>
             {/* login button */}
             <div>
-              <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
+              {/* <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
                 <Link href='/login'>Log In</Link>
-              </button>
+              </button> */}
+              <SessionProvider>
+                <ComponentLogIn />
+              </SessionProvider>
             </div>
           </div>
         </div>
