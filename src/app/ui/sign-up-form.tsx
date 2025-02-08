@@ -30,15 +30,15 @@ export default function SignUpForm() {
           <div>
             <label
               className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-              htmlFor="first-name"
+              htmlFor="firstname"
             >
               First name
             </label>
             <div className="relative">
               <input
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-                id="first-name"
-                name="first-name"
+                id="firstname"
+                name="firstname"
                 placeholder="First name"
                 required
               />
@@ -48,15 +48,15 @@ export default function SignUpForm() {
           <div>
             <label
               className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-              htmlFor="last-name"
+              htmlFor="lastname"
             >
               Last name
             </label>
             <div className="relative">
               <input
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-                id="last-name"
-                name="last-name"
+                id="lastname"
+                name="lastname"
                 placeholder="Last name"
                 required
               />
@@ -126,7 +126,7 @@ export default function SignUpForm() {
           Sign Up <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
         <div className="flex h-8 items-end space-x-1" aria-live='polite' aria-atomic='true'>
-          {state && (
+          {state?.message && (
             <>
               <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
               <p className="text-sm text-red-500">{state.message}</p>

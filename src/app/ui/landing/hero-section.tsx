@@ -65,7 +65,7 @@ export default function HeroSection() {
             {/* login button */}
             <div>
               <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
-                <Link href='/home/login'>Log In</Link>
+                <Link href='/login'>Log In</Link>
               </button>
             </div>
           </div>
