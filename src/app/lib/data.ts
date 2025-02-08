@@ -46,6 +46,8 @@ export async function searchProducts(query: string) {
 
 export async function searchArtisans(query: string) {
   try {
+    if (!query) return []
+
     const sqlQuery = `%${query}%`;
 
     const data = await sql`
@@ -60,10 +62,34 @@ export async function searchArtisans(query: string) {
       OR u.lastname ILIKE ${sqlQuery}
       OR s.address ILIKE ${sqlQuery}
     `;
-    console.log('data: ', data)
+    
     return data.rows;
   } catch (error) {
-    console.error("Failed to search artisans: ", error);
+    console.error("Failed to get artisans search result: ", error);
     return [];
+  }
+}
+
+export async function searchReviews(query: string) {
+  try {
+    if (!query) return []
+
+    const sqlQuery = `%${query}%`
+
+    const data = await sql`
+      SELECT r.review_id, r.product_id, p.image_url, u.username, p.name AS product_name, r.created_at, r.rating, r.review
+      FROM reviews r
+      JOIN products p ON r.product_id = p.product_id
+      JOIN sellers s ON p.seller_id = s.seller_id
+      JOIN users u ON s.user_id = u.user_id
+
+      WHERE r.title ILIKE ${sqlQuery}
+      OR r.review ILIKE ${sqlQuery}
+      OR p.name ILIKE ${sqlQuery}
+    `
+    return data.rows;
+  } catch (error) {
+    console.error('Failed to get reviews search result: ', error)
+    return []
   }
 }

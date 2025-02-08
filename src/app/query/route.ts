@@ -2,8 +2,7 @@ import { sql } from "@vercel/postgres";
 async function listData() {
     const data = await sql`
         SELECT *
-        FROM sellers
-        JOIN users ON sellers.user_id = users.user_id
+        FROM reviews
     `;
     return data.rows
 }
