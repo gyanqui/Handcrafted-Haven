@@ -14,11 +14,13 @@ export default async function Search(props: {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || "";
 
-  const productResult = await searchProducts(query);
+  const [productResult, artisanResult, reviewResult] = await Promise.all([
+    searchProducts(query), searchArtisans(query), searchReviews(query)
+  ])
 
-  const artisanResult = await searchArtisans(query);
-
-  const reviewResult = await searchReviews(query);
+  // const productResult = await searchProducts(query);
+  // const artisanResult = await searchArtisans(query);
+  // const reviewResult = await searchReviews(query);
 
   return (
     <div className="w-full flex flex-col">
