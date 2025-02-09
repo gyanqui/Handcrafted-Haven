@@ -574,15 +574,16 @@ const reviews = [
     "product_id": products[3].product_id,
     "user_id": users[1].user_id
   },
-  {
-    "review_id": "d8ba327b-bf7a-4231-ab38-13e318b33c65",
-    "title": "Great product with a minor flaw",
-    "created_at": "2024-11-15T00:00:00Z",
-    "rating": 4.5,
-    "review": "I really enjoy this diffuser. The stones and details make it a beautiful decorative piece, and it works well with my essential oils. I just wish the scent diffusion lasted a bit longer without needing to refresh it.",
-    "product_id": products[3].product_id,
-    "user_id": users[2].user_id
-  }  
-];
-
-export { sellers, products, users, reviews, categories };
+  // {
+  //   review_id: "d8ba327b-bf7a-4231-ab38-13e318b33c65",
+  //   title: "Great product with a minor flaw",
+  //   created_at: "2024-11-15T00:00:00Z",
+  //   rating: 4.5,
+  //   review: "I really enjoy this diffuser. The stones and details make it a beautiful decorative piece, and it works well with my essential oils. I just wish the scent diffusion lasted a bit longer without needing to refresh it.",
+  //   product_id: products[3].product_id,
+  //   user_id: users[2].user_id
+  // }  
+]
+  
+  
+export { sellers, products, users, reviews, categories};
