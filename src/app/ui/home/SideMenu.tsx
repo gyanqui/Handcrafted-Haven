@@ -13,7 +13,7 @@ export default function SideMenu({ toggleOpen }: SideMenuProps) {
       {/* logo */}
       <div>
         <Link href="/home" onClick={toggleOpen}>
-          <h1 className="font-extrabold text-4xl">Handcrafted Haven</h1>
+          <h1 className="font-extrabold text-4xl text-center">Handcrafted Haven</h1>
         </Link>
       </div>
 
@@ -23,12 +23,6 @@ export default function SideMenu({ toggleOpen }: SideMenuProps) {
           <Link href="/home/dashboard" onClick={toggleOpen}>
             <RxAvatar className="inline m-4" />
             Dashboard
-          </Link>
-        </div>
-        <div>
-          <Link href='/home/shopping-cart' onClick={toggleOpen}>
-          <BsCart className="inline m-4" />
-          Shopping Cart
           </Link>
         </div>
         <div>
