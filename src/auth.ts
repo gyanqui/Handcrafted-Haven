@@ -19,7 +19,8 @@ async function getUser(email: string): Promise<User | undefined> {
     }
   }
 
-export const { auth, signIn, signOut } = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
+// export const authOptions = {
   ...authConfig,
   providers: [
     Credentials({
@@ -42,3 +43,21 @@ export const { auth, signIn, signOut } = NextAuth({
       }),
 	],
 });
+
+
+
+// export const handler = NextAuth(authOptions);
+
+export { handlers as GET, handlers as POST };
+
+// function AuthButton() {
+//   const { data: session } = useSession();
+
+//   return (
+//     <>
+//     <button onClick={session ? signOut : signIn}>
+//       {session ? 'Sign Out' : 'Sign In'}
+//     </button>
+//     </>
+//   );
+// }

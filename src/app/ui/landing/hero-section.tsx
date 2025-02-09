@@ -5,6 +5,8 @@ import { poppins } from "../font";
 import { FaSearch } from "react-icons/fa";
 import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
+import { UserButton } from "../home/SignOutButton";
+import SessionProvider  from "@/app/components/SessionProviders";
 
 export default function HeroSection() {
   const handleSearch = useDebouncedCallback((term: string) => {
@@ -63,11 +65,14 @@ export default function HeroSection() {
               </button>
             </div>
             {/* login button */}
-            <div>
+            <SessionProvider >
+              <UserButton/>
+            </SessionProvider>
+            {/* <div>
               <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
                 <Link href='/login'>Log In</Link>
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         {/* header section(end) */}

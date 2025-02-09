@@ -6,7 +6,7 @@ import { poppins } from "../font";
 import { LuUsersRound } from "react-icons/lu";
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
-import { RxAvatar } from "react-icons/rx";
+// import { RxAvatar } from "react-icons/rx";
 import { BsCart } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
@@ -14,8 +14,37 @@ import SideMenu from "./SideMenu";
 import { Drawer } from "antd";
 import { useState } from "react";
 import Link from "next/link";
+// import { signIn, signOut, useSession } from "next-auth/react";
+import { UserButton } from "./SignOutButton";
+import { getSession } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
+import { signOut } from "next-auth/react";
+
+// function AuthButton() {
+//   const {data: session, status} = useSession();
+//   // const { data: session } = useSession();
+//   if (session) {
+//     return (
+//       <>
+//       {session?.user?.name} <br/>
+//       <button onClick={() => signOut()} className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">Sign Out</button>
+//       </>
+//     )
+//   }
+//   return (
+//     <>
+//     <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
+//       <Link href='/login'>Log In</Link>
+//     </button>
+  
+//     </>
+//   );
+// }
 
 export default function TopNav() {
+  // const {data: session, status} = useSession();
+  const session = getSession();
+
   const [isOpen, setIsOpen] = useState(false); // side menu open status
 
   const toggleOpen = () => setIsOpen((current) => !current);
@@ -92,19 +121,19 @@ export default function TopNav() {
       </div>
 
       {/* management dashboard */}
-      <div className="hidden lg:block">
+      {/* <div className="hidden lg:block">
         <div className="flex flex-row gap-4 px-2">
           <Link href="/home/dashboard">
             <RxAvatar className="inline text-2xl" />
           </Link>
         </div>
-      </div>
+      </div> */}
       {/* sign out  */}
-      <div className="hidden lg:block">
-        <button className="bg-black text-white rounded-md px-2 py-1">
-          Log Out
-        </button>
-      </div>
+      {/* <div className="hidden lg:block"> */}
+        <SessionProvider >
+          <UserButton/>
+        </SessionProvider>
+      {/* </div> */}
       <Drawer
         placement="left"
         open={isOpen}
