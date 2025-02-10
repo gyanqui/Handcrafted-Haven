@@ -7,7 +7,7 @@ export default function ArtisanList({
   query,
 }: ArtisanListProps) {
   return (
-    <div>
+    <div  className="px-1 md:px-2 lg:px-8">
       {artisanResult.length > 0 ? (
         <ArtisanWrapper
           sellers={artisanResult.map((artisan) => ({

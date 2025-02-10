@@ -29,7 +29,7 @@ export default function ArtisanCard({
           />
         </Link>
       </div>
-      <div className="px-4 w-[300px] overflow-hidden relative">
+      <div className="flex-shrink px-4 w-[300px] max-w-[300px] overflow-hidden relative">
         <p className="text-center">
           <span className="font-extrabold text-2xl">
             {firstname} {lastname}

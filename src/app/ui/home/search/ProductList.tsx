@@ -48,8 +48,8 @@ export default function ProductList({
   });
 
   return (
-    <div>
-      <div className="flex justify-end px-6 pb-2">
+    <div className="px-1 md:px-2 lg:px-8">
+      <div className="flex justify-end pb-2">
         <Dropdown menu={{ items: productFilter }}>
           <button className="flex flex-row font-normal text-base">
             Filtered By

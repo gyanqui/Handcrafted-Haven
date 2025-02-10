@@ -46,7 +46,7 @@ export default function ReviewList({ reviewResult, query }: ReviewListProps) {
   })
 
   return (
-    <div>
+    <div className="px-1 md:px-2 lg:px-8">
       <div className="flex justify-end px-6 pb-2">
         <Dropdown menu={{ items: reviewFilter }}>
           <button className="flex flex-row font-normal text-base">

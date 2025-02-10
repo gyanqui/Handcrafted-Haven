@@ -5,9 +5,9 @@ import { ReviewProps } from "@/app/lib/definitions";
 
 export default function ReviewCard({product_id, image_url, username, rating, created_at, product_name, review }: ReviewProps) {
   return (
-    <div className="flex flex-row border border-custom-yellow rounded-2xl w-fit">
+    <div className="flex flex-row border border-custom-yellow rounded-2xl min-w-[390px]">
       {/* product image container */}
-      <div className="w-[150px]">
+      <div className="w-[150px] min-w-[150px]">
         <Link href={`/home/products/${product_id}`}>
             <Image
             src={image_url}
@@ -20,7 +20,7 @@ export default function ReviewCard({product_id, image_url, username, rating, cre
       </div>
 
       {/* review data */}
-      <div className="flex flex-col w-[250px] h-[150px] overflow-hidden p-1">
+      <div className="flex flex-col flex-shrink w-[250px] h-[150px] overflow-hidden p-1">
         <div>
             <span className="font-bold">{username}</span>
             <span className="text-xs px-2">{created_at}</span>
