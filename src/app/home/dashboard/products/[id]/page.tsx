@@ -1,9 +1,7 @@
-'use client'
-import { useParams } from "next/navigation"
+import { Params } from "next/dist/server/request/params";
 
-export default function Page() {
-    const { id } = useParams();
+export default function Page({params}: {params: Params}) {
     return (
-        <>User ID {id} products</>
+        <>User ID {params.id} products</>
     )
 }

@@ -1,10 +1,9 @@
-'use client'
+interface Params {
+    id: string;
+}
 
-import { useParams } from "next/navigation"
-
-export default function Page() {
-    const { id } = useParams()
+export default function Page({params}: { params: Params }) {
     return (
-        <>User ID: {id}  reviews</>
+        <>User ID: {params.id}  reviews</>
     )
 }
