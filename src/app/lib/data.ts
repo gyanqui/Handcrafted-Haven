@@ -93,3 +93,17 @@ export async function searchReviews(query: string) {
     return []
   }
 }
+
+export async function getNameByUserId(user_id: string) {
+  try {
+    const data = await sql`
+      SELECT u.username
+      FROM users u
+      WHERE u.user_id = ${user_id}
+    `
+    return data.rows[0];
+  } catch (error) {
+    console.error('Failed to get username by user ID: ', error)
+    return []
+  }
+}
