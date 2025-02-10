@@ -1,11 +1,8 @@
-import dayjs from "dayjs";
-import ArtisanWrapper from "@/app/ui/home/ArtisanWrapper";
-import ReviewWrapper from "@/app/ui/home/ReviewWrapper";
 import ProductList from "@/app/ui/home/search/ProductList";
+import ArtisanList from "@/app/ui/home/search/ArtisanList";
+import ReviewList from "@/app/ui/home/search/ReviewList";
 import { searchArtisans, searchProducts, searchReviews } from "@/app/lib/data";
 import Image from "next/image";
-
-import { FaExclamationTriangle } from "react-icons/fa";
 
 export default async function Search(props: {
   searchParams?: Promise<{
@@ -31,16 +28,21 @@ export default async function Search(props: {
               Products Result
             </h1>
             <div>
-              <ProductList productResult={productResult.map((product) => ({
-                product_id: product.product_id,
-                name: product.name,
-                image_url: product.image_url,
-                price: product.price,
-                averageRate: product.averageRate
-              }))} query={query} />
-
+              <ProductList
+                productResult={productResult.map((product) => ({
+                  product_id: product.product_id,
+                  name: product.name,
+                  image_url: product.image_url,
+                  price: product.price,
+                  averageRate: product.averageRate,
+                }))}
+                query={query}
+              />
             </div>
           </div>
+
+          {/* dividing line */}
+          <div className="h-[2px] w-[350px] md:w-[600px] xl:w-[1200px] my-4 bg-custom-yellow mx-auto"></div>
 
           {/* artisan result */}
           <div>
@@ -48,27 +50,24 @@ export default async function Search(props: {
               Artisan Result
             </h1>
             <div>
-              {artisanResult.length > 0 ? (
-                <ArtisanWrapper
-                  sellers={artisanResult.map((artisan) => ({
-                    seller_id: artisan.seller_id,
-                    seller_email: artisan.seller_email,
-                    introduction: artisan.introduction,
-                    username: artisan.username,
-                    firstname: artisan.firstname,
-                    lastname: artisan.lastname,
-                    profile_image_url: artisan.profile_image_url,
-                    address: artisan.address,
-                  }))}
-                />
-              ) : (
-                <div className="text-xl text-center">
-                  <FaExclamationTriangle className="inline text-custom-yellow mx-2" />
-                  No data related to &quot;{query}&quot; found in our artisans
-                </div>
-              )}
+              <ArtisanList
+                artisanResult={artisanResult.map((artisan) => ({
+                  seller_id: artisan.seller_id,
+                  profile_image_url: artisan.profile_image_url,
+                  firstname: artisan.firstname,
+                  lastname: artisan.lastname,
+                  username: artisan.username,
+                  seller_email: artisan.seller_email,
+                  address: artisan.address,
+                  introduction: artisan.introduction,
+                }))}
+                query={query}
+              />
             </div>
           </div>
+
+          {/* dividing line */}
+          <div className="h-[2px] w-[350px] md:w-[600px] xl:w-[1200px] my-4 bg-custom-yellow mx-auto"></div>
 
           {/* review result */}
           <div>
@@ -76,25 +75,16 @@ export default async function Search(props: {
               Review Result
             </h1>
             <div>
-              {reviewResult.length > 0 ? (
-                <ReviewWrapper
-                  reviewData={reviewResult.map((r) => ({
-                    review_id: r.review_id,
-                    product_id: r.product_id,
-                    image_url: r.image_url,
-                    username: r.username,
-                    product_name: r.product_name,
-                    created_at: dayjs(r.created_at).format("YYYY-MM-DD"),
-                    rating: r.rating,
-                    review: r.review,
-                  }))}
-                />
-              ) : (
-                <div className="text-xl text-center">
-                  <FaExclamationTriangle className="inline text-custom-yellow mx-2" />
-                  No data related to &quot;{query}&quot; found in our reviews
-                </div>
-              )}
+              <ReviewList reviewResult={reviewResult.map((review) => ({
+                review_id: review.review_id,
+                product_id: review.product_id,
+                image_url: review.image_url,
+                username: review.username,
+                rating: review.rating,
+                created_at: review.created_at,
+                product_name: review.product_name,
+                review: review.review
+              }))} query={query} />
             </div>
           </div>
         </div>

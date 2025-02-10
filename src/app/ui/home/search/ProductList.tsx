@@ -10,7 +10,7 @@ import {
 import ProductWrapper from "../ProductWrapper";
 import type { MenuProps } from "antd";
 import { FaExclamationTriangle } from "react-icons/fa";
-import { ProductListProps, ProductProps } from "@/app/lib/definitions";
+import { ProductListProps } from "@/app/lib/definitions";
 import { useState } from "react";
 
 export default function ProductList({
@@ -41,11 +41,11 @@ export default function ProductList({
     },
   ];
 
-  const sortedProduct = [...productResult].sort((a, b) => {
+  const sortedProducts = [...productResult].sort((a, b) => {
     if (sortOrder === "asc") return a.price - b.price;
     if (sortOrder === "desc") return b.price - a.price;
-    return 0  // default order
-  })
+    return 0; // default order
+  });
 
   return (
     <div>
@@ -58,9 +58,9 @@ export default function ProductList({
         </Dropdown>
       </div>
       <div>
-        {productResult.length > 0 ? (
+        {sortedProducts.length > 0 ? (
           <ProductWrapper
-            products={sortedProduct.map((product) => ({
+            products={sortedProducts.map((product) => ({
               product_id: product.product_id,
               name: product.name,
               price: product.price,

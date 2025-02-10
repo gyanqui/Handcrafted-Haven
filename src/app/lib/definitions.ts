@@ -111,3 +111,13 @@ export type ProductListProps = {
   productResult: ProductProps[];
   query: string;
 }
+
+export type ArtisanListProps = {
+  artisanResult: ArtisanCardProps[];
+  query: string
+}
+
+export type ReviewListProps = {
+  reviewResult: ReviewProps[];
+  query: string
+}
