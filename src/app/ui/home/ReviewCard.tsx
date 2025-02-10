@@ -5,7 +5,7 @@ import { ReviewProps } from "@/app/lib/definitions";
 
 export default function ReviewCard({product_id, image_url, username, rating, created_at, product_name, review }: ReviewProps) {
   return (
-    <div className="flex flex-row border border-custom-yellow rounded-2xl min-w-[390px]">
+    <div className="flex flex-row border border-custom-yellow rounded-2xl min-w-[380px]">
       {/* product image container */}
       <div className="w-[150px] min-w-[150px]">
         <Link href={`/home/products/${product_id}`}>

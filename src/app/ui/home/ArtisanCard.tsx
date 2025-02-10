@@ -15,7 +15,7 @@ export default function ArtisanCard({
 }: ArtisanCardProps) {
   return (
     <div
-      className="flex flex-row w-fit border border-black rounded-xl min-w-[390px] mx-2"
+      className="flex flex-row border border-custom-yellow rounded-xl min-w-[380px] mx-2"
       key={seller_id}
     >
       <div className="min-w-[150px] w-[150px] min-h-[200px] h-[200px] ">
@@ -29,7 +29,7 @@ export default function ArtisanCard({
           />
         </Link>
       </div>
-      <div className="flex-shrink px-4 w-[300px] max-w-[300px] overflow-hidden relative">
+      <div className="flex-shrink px-4 w-[280px] max-w-[280px] overflow-hidden relative">
         <p className="text-center">
           <span className="font-extrabold text-2xl">
             {firstname} {lastname}
