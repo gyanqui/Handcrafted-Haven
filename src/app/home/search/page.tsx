@@ -1,13 +1,11 @@
 import dayjs from "dayjs";
-import ProductWrapper from "@/app/ui/home/ProductWrapper";
 import ArtisanWrapper from "@/app/ui/home/ArtisanWrapper";
 import ReviewWrapper from "@/app/ui/home/ReviewWrapper";
+import ProductList from "@/app/ui/home/search/ProductList";
 import { searchArtisans, searchProducts, searchReviews } from "@/app/lib/data";
-import { FaExclamationTriangle } from "react-icons/fa";
 import Image from "next/image";
-import { Dropdown } from "antd";
-import { DownOutlined, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
+
+import { FaExclamationTriangle } from "react-icons/fa";
 
 export default async function Search(props: {
   searchParams?: Promise<{
@@ -16,10 +14,6 @@ export default async function Search(props: {
 }) {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || ""; // get the search keyword
-  const productFilter: MenuProps["items"] = [
-    { key: "1", label: "price", icon: <ArrowDownOutlined />},
-    { key: "2", label: "price", icon: <ArrowUpOutlined /> },
-  ];
 
   const [productResult, artisanResult, reviewResult] = await Promise.all([
     searchProducts(query),
@@ -36,31 +30,15 @@ export default async function Search(props: {
             <h1 className="relative text-center text-2xl font-extrabold m-4">
               Products Result
             </h1>
-            <div className="flex justify-end px-6 py-2">
-              <Dropdown menu={{ items: productFilter }}>
-                <button className="flex flex-row font-normal text-base">
-                  Filtered by
-                  <DownOutlined />
-                </button>
-              </Dropdown>
-            </div>
             <div>
-              {productResult.length > 0 ? (
-                <ProductWrapper
-                  products={productResult.map((product) => ({
-                    product_id: product.product_id,
-                    name: product.name,
-                    price: product.price,
-                    image_url: product.image_url,
-                    averageRate: product.averageRate,
-                  }))}
-                />
-              ) : (
-                <div className="text-xl text-center">
-                  <FaExclamationTriangle className="inline text-custom-yellow mx-2" />
-                  No data related to &quot;{query}&quot; found in our products
-                </div>
-              )}
+              <ProductList productResult={productResult.map((product) => ({
+                product_id: product.product_id,
+                name: product.name,
+                image_url: product.image_url,
+                price: product.price,
+                averageRate: product.averageRate
+              }))} query={query} />
+
             </div>
           </div>
 

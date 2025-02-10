@@ -39,7 +39,7 @@ export type Rating = {
   rating_id: string;
   title: string;
   created_at: Date;
-  rating: string;
+  rating: number;
   review: string;
   product_id: string;
   user_id: string;
@@ -68,6 +68,7 @@ export type ArtisanCardProps = {
   profile_image_url: string | null;
   firstname: string;
   lastname: string;
+  username: string;
   seller_email: string;
   address: string;
   introduction: string;
@@ -104,4 +105,9 @@ export type CategoryCardProps = {
 
 export type CategoryNavProps = {
   categories: CategoryCardProps[]
+}
+
+export type ProductListProps = {
+  productResult: ProductProps[];
+  query: string;
 }
