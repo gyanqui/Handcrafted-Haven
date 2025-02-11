@@ -1,4 +1,4 @@
-interface Params {
+type Params = {
     id: string;
 }
 

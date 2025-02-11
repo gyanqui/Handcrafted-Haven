@@ -2,6 +2,8 @@ import { getNameByUserId } from "@/app/lib/data"
 import Link from "next/link"
 import { ProductOutlined } from "@ant-design/icons"
 import { TfiCommentAlt } from "react-icons/tfi";
+import { HiOutlineIdentification } from "react-icons/hi";
+
 
 
 export default async function Layout({children}: {children: React.ReactNode}) {
@@ -20,13 +22,18 @@ export default async function Layout({children}: {children: React.ReactNode}) {
                 {/* managements */}
                 <div className="flex-grow flex flex-col gap-8 py-4 border border-custom-yellow m-1 px-4 rounded-lg md:text-xl">
                     <div>
-                        <Link href={`/home/dashboard/products/${user_id}`}>
-                        <ProductOutlined className="inline mr-2" />Products
+                        <Link href={`/home/dashboard/profile/${user_id}`}>
+                            <HiOutlineIdentification className="inline mr-2"/>Profile
                         </Link>
                     </div>
                     <div>
-                        <Link href={`/home/dashboard/reviews/${user_id}}`}>
-                        <TfiCommentAlt className="inline mr-2"/>Reviews
+                        <Link href={`/home/dashboard/products/${user_id}`}>
+                            <ProductOutlined className="inline mr-2" />Products
+                        </Link>
+                    </div>
+                    <div>
+                        <Link href={`/home/dashboard/reviews/${user_id}`}>
+                            <TfiCommentAlt className="inline mr-2"/>Reviews
                         </Link>
                     </div>
                 </div>
