@@ -151,3 +151,19 @@ export async function getUserBasicData(user_id: string) {
     return null
   }
 }
+
+export async function getSellerIdByUserId(user_id: string) {
+  try {
+    const data = await sql`
+          SELECT s.seller_id
+          FROM sellers s
+          JOIN users u ON s.user_id = u.user_id
+    
+          WHERE u.user_id = ${user_id}
+        `;
+      return data.rows[0];
+  } catch (error) {
+    console.error('Failed to get seller ID by user ID: ', error)
+    return null
+  }
+}

@@ -8,7 +8,7 @@ export type Seller = {
     introduction: string;
   };
 
-export type Products = {
+export type Product = {
     product_id: string;
     name: string;
     price: number;
@@ -120,4 +120,20 @@ export type ArtisanListProps = {
 export type ReviewListProps = {
   reviewResult: ReviewProps[];
   query: string
+}
+
+export type AddProductFormProps = {
+  categories: Category[];
+  seller_id: string | null
+}
+
+export type ProductFormValues = {
+  seller_id: string;
+  created_at: string;
+  name: string;
+  price: string;
+  quantity: string;
+  description: string;
+  image_url?: string;
+  category_id: string;
 }
