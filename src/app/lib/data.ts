@@ -46,7 +46,7 @@ export async function searchProducts(query: string) {
 
 export async function searchArtisans(query: string) {
   try {
-    if (!query) return []
+    if (!query) return [];
 
     const sqlQuery = `%${query}%`;
 
@@ -62,7 +62,7 @@ export async function searchArtisans(query: string) {
       OR u.lastname ILIKE ${sqlQuery}
       OR s.address ILIKE ${sqlQuery}
     `;
-    
+
     return data.rows;
   } catch (error) {
     console.error("Failed to get artisans search result: ", error);
@@ -72,9 +72,9 @@ export async function searchArtisans(query: string) {
 
 export async function searchReviews(query: string) {
   try {
-    if (!query) return []
+    if (!query) return [];
 
-    const sqlQuery = `%${query}%`
+    const sqlQuery = `%${query}%`;
 
     const data = await sql`
       SELECT r.review_id, r.product_id, p.image_url, u.username, p.name AS product_name, r.created_at, r.rating, r.review
@@ -86,11 +86,11 @@ export async function searchReviews(query: string) {
       WHERE r.title ILIKE ${sqlQuery}
       OR r.review ILIKE ${sqlQuery}
       OR p.name ILIKE ${sqlQuery}
-    `
+    `;
     return data.rows;
   } catch (error) {
-    console.error('Failed to get reviews search result: ', error)
-    return []
+    console.error("Failed to get reviews search result: ", error);
+    return [];
   }
 }
 
@@ -100,10 +100,30 @@ export async function getNameByUserId(user_id: string) {
       SELECT u.username
       FROM users u
       WHERE u.user_id = ${user_id}
-    `
+    `;
     return data.rows[0];
   } catch (error) {
-    console.error('Failed to get username by user ID: ', error)
-    return []
+    console.error("Failed to get username by user ID: ", error);
+    return [];
+  }
+}
+
+export async function getUserProducts(user_id: string) {
+  try {
+    const data = await sql`
+      SELECT p.product_id, p.name, p.image_url, p.price, ROUND(COALESCE(AVG(r.rating), 0), 1) AS averageRate
+      FROM users u
+      LEFT JOIN sellers s ON s.user_id = u.user_id
+      JOIN products p ON p.seller_id = s.seller_id
+      LEFT JOIN reviews r ON r.product_id = p.product_id
+      
+      WHERE u.user_id = ${user_id}
+      
+      GROUP BY p.product_id
+    `;
+    return data.rows;
+  } catch (error) {
+    console.error(`Failed to get the user's product listing: `, error);
+    return [];
   }
 }
