@@ -1,17 +1,21 @@
 import { sql } from "@vercel/postgres";
+const user_id = "3958dc9e-712f-4377-85e9-fec4b6a6442a";
 async function listData() {
   const data = await sql`
-        SELECT p.product_id, p.name, p.image_url, p.price, ROUND(COALESCE(AVG(r.rating), 0), 1) AS averageRate
-        FROM users u
-        LEFT JOIN sellers s ON s.user_id = u.user_id
-        JOIN products p ON p.seller_id = s.seller_id
-        LEFT JOIN reviews r ON r.product_id = p.product_id
-        
-        WHERE u.user_id = '3958dc9e-712f-4377-85e9-fec4b6a6442a'
-        
-        GROUP BY p.product_id
+      SELECT u.username, 
+      u.email, 
+      u.firstname, 
+      u.lastname, 
+      u.profile_image_url, 
+      COALESCE(s.seller_email, 'Unknown') AS seller_email, 
+      COALESCE(s.address, 'Unknown') AS address, 
+      COALESCE(s.introduction, 'Unknown') AS introduction
+      FROM users u
+      LEFT JOIN sellers s ON u.user_id = s.user_id
+
+      WHERE u.user_id = ${user_id}
     `;
-  return data.rows;
+  return data.rows[0];
 }
 
 export async function GET() {

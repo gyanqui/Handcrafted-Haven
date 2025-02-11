@@ -1,18 +1,26 @@
 import ProductWrapper from "@/app/ui/home/ProductWrapper";
 import EmptyProductCard from "@/app/ui/home/dashboard/EmptyProductCard";
-import { getUserProducts } from "@/app/lib/data";
+import { getUserProducts, getUserBasicData } from "@/app/lib/data";
+import Link from "next/link";
 
 type Params = {
   id: string;
 };
 
 export default async function Page({ params }: { params: Params }) {
-    const userProducts = await getUserProducts(params.id)
+    const [userBasicData, userProducts] = await Promise.all([
+        getUserBasicData(params.id), getUserProducts(params.id)
+    ])
+    
   return (
     <div>
-      <p>User ID {params.id} products</p>
+      {userBasicData && 
+        <p className="text-center text-2xl p-4">{userBasicData.username}&apos;s Product Listing</p>}
+        <div className="h-[2px] w-[350px] bg-custom-yellow mx-auto"></div>
       <div className="flex justify-center py-4">
-        <EmptyProductCard />
+        <Link href={`/home/dashboard/products/${params.id}/add`}>
+            <EmptyProductCard />
+        </Link>
       </div>
 
       {/* product listing */}
