@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import '@ant-design/v5-patch-for-react-19';
 import "./globals.css";
 import { 
   poppins
@@ -20,7 +22,9 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased`}
       >
-        {children}
+        <AntdRegistry>
+          {children}
+        </AntdRegistry>
       </body>
     </html>
   );

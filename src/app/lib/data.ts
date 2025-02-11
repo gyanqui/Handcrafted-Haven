@@ -1,6 +1,7 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
+import { v4 as uuidv4 } from "uuid";
 
 export async function listCategories() {
   try {
@@ -130,7 +131,7 @@ export async function getUserProducts(user_id: string) {
 
 export async function getUserBasicData(user_id: string) {
   try {
-    if (!user_id) return
+    if (!user_id) return;
     const data = await sql`
       SELECT u.username, 
       u.email, 
@@ -145,10 +146,10 @@ export async function getUserBasicData(user_id: string) {
 
       WHERE u.user_id = ${user_id}
     `;
-  return data.rows[0];
+    return data.rows[0];
   } catch (error) {
-    console.error("Failed to get the user's basic data: ", error)
-    return null
+    console.error("Failed to get the user's basic data: ", error);
+    return null;
   }
 }
 
@@ -161,9 +162,40 @@ export async function getSellerIdByUserId(user_id: string) {
     
           WHERE u.user_id = ${user_id}
         `;
-      return data.rows[0];
+    return data.rows[0];
   } catch (error) {
-    console.error('Failed to get seller ID by user ID: ', error)
-    return null
+    console.error("Failed to get seller ID by user ID: ", error);
+    return null;
+  }
+}
+
+export async function addProduct(formData) {
+  const {
+    name,
+    price,
+    quantity,
+    description,
+    image_url,
+    category_id,
+    seller_id,
+    created_at,
+  } = formData;
+  try {
+    await sql`
+      INSERT INTO products (product_id, name, price, quantity, description, image_url, category_id, seller_id, created_at)
+      VALUES (
+        ${uuidv4()},
+        ${name},
+        ${Number(price)},
+        ${Number(quantity)},
+        ${description},
+        ${image_url || null},
+        ${category_id},
+        ${seller_id},
+        ${created_at}
+      )
+    `;
+  } catch (error) {
+    console.error("Failed to add a product: ", error);
   }
 }

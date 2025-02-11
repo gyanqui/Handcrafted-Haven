@@ -39,8 +39,9 @@ export default async function Layout({children}: {children: React.ReactNode}) {
                 </div>
 
             </div>
+
             {/* main content */}
-            <div>
+            <div className="flex-grow">
                 {children}
             </div>
         

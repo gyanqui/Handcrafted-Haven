@@ -125,6 +125,7 @@ export type ReviewListProps = {
 export type AddProductFormProps = {
   categories: Category[];
   seller_id: string | null
+  user_id: string | null
 }
 
 export type ProductFormValues = {

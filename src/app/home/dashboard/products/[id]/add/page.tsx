@@ -18,8 +18,7 @@ export default async function Page({params}: {params: Params}) {
     
     return (
         <div>
-            
-            {seller && <AddProductForm categories={categories} seller_id={seller.seller_id}/>}
+            {seller && <AddProductForm categories={categories} seller_id={seller.seller_id} user_id={user_id}/>}
         </div>
     )
 }

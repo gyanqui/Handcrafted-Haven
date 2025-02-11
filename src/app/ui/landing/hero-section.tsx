@@ -99,6 +99,7 @@ export default function HeroSection() {
         <div className="flex justify-center relative">
           <Image
             src="/hero-image.webp"
+            priority={true}
             width={1000}
             height={700}
             alt="image of a variety of handcrafted items"
