@@ -2,6 +2,7 @@
 
 import { sql } from "@vercel/postgres";
 import { v4 as uuidv4 } from "uuid";
+import { ProductFormValues } from "./definitions";
 
 export async function listCategories() {
   try {
@@ -146,7 +147,7 @@ export async function getUserBasicData(user_id: string) {
 
       WHERE u.user_id = ${user_id}
     `;
-    return data.rows[0];
+    return data.rows[0]
   } catch (error) {
     console.error("Failed to get the user's basic data: ", error);
     return null;
@@ -169,7 +170,7 @@ export async function getSellerIdByUserId(user_id: string) {
   }
 }
 
-export async function addProduct(formData) {
+export async function addProduct(formData: ProductFormValues) {
   const {
     name,
     price,
@@ -197,5 +198,21 @@ export async function addProduct(formData) {
     `;
   } catch (error) {
     console.error("Failed to add a product: ", error);
+  }
+}
+
+export async function getArtisanStory() {
+  try {
+    const data = await sql`
+    SELECT s.seller_id, s.introduction, u.firstname, u.lastname, u.profile_image_url
+    FROM sellers s
+    JOIN users u ON s.user_id = u.user_id
+
+    ORDER BY RANDOM()
+    LIMIT 1`;
+    return data.rows[0];
+  } catch (error) {
+    console.error("Failed to get artist story: ", error);
+    return null;
   }
 }

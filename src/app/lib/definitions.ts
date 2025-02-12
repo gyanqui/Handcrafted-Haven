@@ -1,36 +1,36 @@
 // This file contains type definitions for your data.
 // It describes the shape of the data, and what data type each property should accept.
 export type Seller = {
-    seller_id: string;
-    seller_email: string;
-    address: string;
-    status: string;
-    introduction: string;
-  };
+  seller_id: string;
+  seller_email: string;
+  address: string;
+  status: string;
+  introduction: string;
+};
 
 export type Product = {
-    product_id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    description: string;
-    image_url: string;
-    seller_id:string;
-    category_id: string;
-}
+  product_id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  description: string;
+  image_url: string;
+  seller_id: string;
+  category_id: string;
+};
 
 export type User = {
-    user_id: string;
-    username: string;
-    email: string;
-    registration_date: Date;
-    password: string;
-    firstname: string;
-    lastname: string;
-    type: string;
-    profile_image_url: string;
-  };
-  
+  user_id: string;
+  username: string;
+  email: string;
+  registration_date: Date;
+  password: string;
+  firstname: string;
+  lastname: string;
+  type: string;
+  profile_image_url: string;
+};
+
 export type Category = {
   category_id: string;
   name: string;
@@ -43,8 +43,7 @@ export type Rating = {
   review: string;
   product_id: string;
   user_id: string;
-}
-
+};
 
 export type ProductProps = {
   product_id: string;
@@ -52,16 +51,16 @@ export type ProductProps = {
   image_url: string;
   price: number;
   averageRate: number;
-}
+};
 
 export type PromotionWrapperProps = {
   products: ProductProps[];
   title: string;
-}
+};
 
 export type ProductWrapperProps = {
-  products: ProductProps[]
-}
+  products: ProductProps[];
+};
 
 export type ArtisanCardProps = {
   seller_id: string;
@@ -72,61 +71,61 @@ export type ArtisanCardProps = {
   seller_email: string;
   address: string;
   introduction: string;
-}
+};
 
 export type ArtisanWrapperProps = {
-  sellers: ArtisanCardProps[]
-}
+  sellers: ArtisanCardProps[];
+};
 
 export type ReviewProps = {
-  review_id: string,
-  product_id: string,
-  image_url: string,
-  username: string,
-  rating: number,
-  created_at: string,
-  product_name: string
-  review: string
-}
+  review_id: string;
+  product_id: string;
+  image_url: string;
+  username: string;
+  rating: number;
+  created_at: string;
+  product_name: string;
+  review: string;
+};
 
 export type ReviewWrapperProps = {
-  reviewData: ReviewProps[]
-}
+  reviewData: ReviewProps[];
+};
 
 export type SideMenuProps = {
   toggleOpen: () => void;
-}
+};
 
 export type CategoryCardProps = {
   category_id: string;
   category: string;
-  category_url: string
-}
+  category_url: string;
+};
 
 export type CategoryNavProps = {
-  categories: CategoryCardProps[]
-}
+  categories: CategoryCardProps[];
+};
 
 export type ProductListProps = {
   productResult: ProductProps[];
   query: string;
-}
+};
 
 export type ArtisanListProps = {
   artisanResult: ArtisanCardProps[];
-  query: string
-}
+  query: string;
+};
 
 export type ReviewListProps = {
   reviewResult: ReviewProps[];
-  query: string
-}
+  query: string;
+};
 
 export type AddProductFormProps = {
   categories: Category[];
-  seller_id: string | null
-  user_id: string | null
-}
+  seller_id: string | null;
+  user_id: string | null;
+};
 
 export type ProductFormValues = {
   seller_id: string;
@@ -137,4 +136,14 @@ export type ProductFormValues = {
   description: string;
   image_url?: string;
   category_id: string;
-}
+};
+
+export type ArtisanStoryProps = {
+  artisan: {
+    seller_id: string | null;
+    introduction: string | null;
+    firstname: string | null;
+    lastname: string | null;
+    profile_image_url : string | null;
+  };
+};

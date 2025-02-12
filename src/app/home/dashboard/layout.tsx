@@ -41,7 +41,7 @@ export default async function Layout({children}: {children: React.ReactNode}) {
             </div>
 
             {/* main content */}
-            <div className="flex-grow">
+            <div className="flex-grow h-[calc(100vh-96px)] overflow-auto">
                 {children}
             </div>
         

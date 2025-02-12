@@ -6,8 +6,10 @@ import {
   NewPopularCard,
 } from "@/app/ui/landing/PromotionComponents";
 import Footer from "./ui/landing/footer";
+import { getArtisanStory } from "./lib/data";
 
-export default function Home() {
+export default async function Home() {
+  const artisan = await getArtisanStory()
   return (
     <>
       <HeroSection />
@@ -19,7 +21,7 @@ export default function Home() {
           <ArrivalCard />
         </div>
       </div>
-      <ArtisanStory />
+      {artisan && <ArtisanStory artisan={artisan}/>}
       <div className="bg-white p-5 md:flex justify-evenly">
         <NewPopularCard />
         <NewPopularCard />

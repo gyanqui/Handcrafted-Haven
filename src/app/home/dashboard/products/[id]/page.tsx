@@ -16,7 +16,7 @@ export default async function Page({ params }: { params: Params }) {
     <div>
       {userBasicData && 
         <p className="text-center text-2xl p-4">{userBasicData.username}&apos;s Product Listing</p>}
-        <div className="h-[2px] w-[350px] bg-custom-yellow mx-auto"></div>
+        <div className="h-[2px] w-[150px] md:w-[350px] bg-custom-yellow mx-auto"></div>
       <div className="flex justify-center py-4">
         <Link href={`/home/dashboard/products/${params.id}/add`}>
             <EmptyProductCard />
