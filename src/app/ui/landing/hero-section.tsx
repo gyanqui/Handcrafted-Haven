@@ -3,26 +3,10 @@
 import Image from "next/image";
 import { poppins } from "../font";
 import { FaSearch } from "react-icons/fa";
-import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Form from "next/form";
 
 export default function HeroSection() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const router = useRouter();
-
-  const handleSearch = useDebouncedCallback((term: string) => {
-    setSearchTerm(term);
-  }, 300);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!searchTerm) return;
-    router.push(`/home/search?query=${encodeURIComponent(searchTerm)}`);
-  };
-
   return (
     <div className="bg-custom-yellow md:p-12 lg:p-24">
       <div className="bg-white md:rounded-t-3xl p-2 md:p-4 lg:p-6 flex flex-col gap-4">
@@ -64,8 +48,7 @@ export default function HeroSection() {
           </div>
           <div className="flex flex-row">
             {/* search bar */}
-            <form
-              onSubmit={handleSubmit}
+            <Form action='/home/search'
               className="relative flex flex-grow items-center px-2 w-fit"
             >
               <label htmlFor="search" className="sr-only">
@@ -73,9 +56,9 @@ export default function HeroSection() {
               </label>
               <input
                 type="text"
+                name="query"
                 className="border border-gray-400 rounded-3xl px-2 text-lg w-full"
                 placeholder="Search"
-                onChange={(e) => handleSearch(e.target.value)}
               />
               <button
                 type="submit"
@@ -83,11 +66,11 @@ export default function HeroSection() {
               >
                 <FaSearch />
               </button>
-            </form>
+            </Form>
 
             {/* login button */}
             <div>
-              <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
+              <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-custom-yellow hover:text-black transition-all duration-300">
                 <Link href='/home/login'>Log In</Link>
               </button>
             </div>
