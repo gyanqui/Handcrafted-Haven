@@ -45,7 +45,9 @@ export default async function Page(props: { params: Promise<{ id: string }>}) {
             </section>
             <section className='bg-gray-200 py-5'>
                 <h3 className='text-2xl font-medium ml-5 mb-3 md:ml-16 lg:ml-24'>Reviews</h3>
-                {reviews && <Reviews reviews={reviews} />}
+                {reviews?.length ? <Reviews reviews={reviews} /> 
+                    : <p className='ml-5 md:ml-16 lg:ml-24'>No reviews yet, be the first to write a review!</p>
+                }
             </section>
         </>
     );
