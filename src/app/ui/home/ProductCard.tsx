@@ -14,7 +14,7 @@ export default function ProductCard({
     <div className="border border-custom-grey rounded-t-3xl w-[200px]">
       <Link href={`/home/products/${product_id}`}>
         <Image
-          src={image_url || "/placeholder/product-placeholder.webp"}
+          src={image_url && (image_url.startsWith('http') || image_url.startsWith('/')) ? image_url : "/placeholder/product-placeholder.webp"}
           alt={`picture of ${name}`}
           width={300}
           height={300}
