@@ -13,6 +13,8 @@ import { Drawer } from "antd";
 import { useState } from "react";
 import Link from "next/link";
 import Form from 'next/form'
+import { SessionProvider } from "next-auth/react";
+import { UserButton } from "./UserButton";
 
 export default function TopNav() {
   const [isOpen, setIsOpen] = useState(false); // side menu open status
@@ -88,20 +90,23 @@ export default function TopNav() {
       </Form>
 
       {/* management dashboard */}
-      <div className="hidden lg:block">
+      {/* <div className="hidden lg:block">
         <div className="flex flex-row gap-4 px-2">
           <Link href="/home/dashboard">
             <RxAvatar className="inline text-2xl" />
           </Link>
         </div>
-      </div>
+      </div> */}
 
       {/* sign out  */}
-      <div className="hidden lg:block">
+      {/* <div className="hidden lg:block">
         <button className="bg-black text-white rounded-md px-2 py-1">
           Log Out
         </button>
-      </div>
+      </div> */}
+      <SessionProvider >
+        <UserButton/>
+      </SessionProvider>
 
       {/* side menu */}
       <Drawer
