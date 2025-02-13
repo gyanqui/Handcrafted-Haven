@@ -5,11 +5,13 @@ import { poppins } from "../font";
 import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import Form from "next/form";
+import { CategoryNav } from "./categoryNav";
+import { CategoryCardProps } from "@/app/lib/definitions";
 
-export default function HeroSection() {
+export default function HeroSection({categories}: {categories: CategoryCardProps[] | []}) {
   return (
-    <div className="bg-custom-yellow md:p-12 lg:p-24">
-      <div className="bg-white md:rounded-t-3xl p-2 md:p-4 lg:p-6 flex flex-col gap-4">
+    <div className="bg-custom-yellow md:px-12 md:pt-12 lg:px-24 lg:pt-24">
+      <div className="bg-white md:rounded-t-3xl px-2 pt-2 md:px-4 md:pt-4 lg:px-6 lg:pt-6 flex flex-col gap-4">
         {/* header section(begin) */}
         <div className="flex flex-col lg:flex-row w-full justify-between">
           <div className="flex flex-col md:flex-row flex-grow">
@@ -97,7 +99,12 @@ export default function HeroSection() {
           </Link>
         </div>
         {/* hero section (end) */}
+
       </div>
+        {/* category nav section (begin) */}
+        <CategoryNav categories={categories}/>
+
+        {/* category nav section (end) */}
     </div>
   );
 }

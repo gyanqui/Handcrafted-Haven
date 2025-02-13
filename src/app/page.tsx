@@ -6,14 +6,17 @@ import {
   NewPopularCard,
 } from "@/app/ui/landing/PromotionComponents";
 import Footer from "./ui/landing/footer";
-import { getArtisanStory } from "./lib/data";
+import { getArtisanStory, listCategories } from "./lib/data";
 import { ArtisanStoryProps } from "./lib/definitions";
+import { CategoryCardProps } from "./lib/definitions";
 
 export default async function Home() {
   const artisan: ArtisanStoryProps | null = await getArtisanStory()
+  const categories: CategoryCardProps[] | [] = await listCategories()
+
   return (
     <>
-      <HeroSection />
+      <HeroSection categories={categories}/>
       <div className="p-5 bg-white md:h-96 lg:h-[450px]">
         <Heading content="New Arrivals" />
         <div className="flex justify-evenly my-5">

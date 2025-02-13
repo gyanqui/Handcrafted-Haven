@@ -2,9 +2,8 @@
 
 import { sql } from "@vercel/postgres";
 import { v4 as uuidv4 } from "uuid";
-import { ProductFormValues } from "./definitions";
+import { CategoryCardProps, ProductFormValues, ArtisanStoryProps, Review, Product } from "./definitions";
 import postgres from 'postgres';
-import { Review, Product } from './definitions';
 
 const query = postgres({ ssl: "require" });
 
@@ -56,9 +55,9 @@ export async function fetchReviewsByProductId(id: string) {
   }
 }
 
-export async function listCategories() {
+export async function listCategories(): Promise<CategoryCardProps[] | []> {
   try {
-    const data = await sql`
+    const data = await sql<CategoryCardProps>`
         SELECT category_id, category, category_url FROM categories
         `;
     return data.rows;
@@ -253,7 +252,6 @@ export async function addProduct(formData: ProductFormValues) {
   }
 }
 
-import { ArtisanStoryProps } from "./definitions";
 export async function getArtisanStory(): Promise<ArtisanStoryProps | null> {
   try {
     const data = await sql<ArtisanStoryProps>`
