@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div>
         <TopNav />
       </div>
-      <div className="flex-grow mx-auto">{children}</div>
+      <div className="flex-grow bg-white">{children}</div>
       <div>
         <Footer />
       </div>
