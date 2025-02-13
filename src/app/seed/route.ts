@@ -1,77 +1,10 @@
 
 import bcrypt from 'bcrypt';
-// import { db } from '@vercel/postgres';
-import postgres from 'postgres';
+import { db } from '@vercel/postgres';
 import { sellers, products, users, categories, reviews } from '../lib/placeholder-data';
-import { v4 as uuidv4 } from 'uuid';
 
-// const client = await db.connect();
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+const client = await db.connect();
 
-async function seedSellers() {
-  try {
-    await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-    // await sql`CREATE TYPE status AS ENUM ('Active', 'Inactive', 'Suspended')`; 
-    await sql`
-      CREATE TABLE IF NOT EXISTS sellers (
-        seller_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        seller_email TEXT NOT NULL UNIQUE,
-        address TEXT NOT NULL,
-        status status NOT NULL,
-        introduction TEXT NOT NULL
-      );
-    `;
-  
-    const insertedSellers = await Promise.all(
-      sellers.map(async (seller) => {
-        return sql`
-          INSERT INTO sellers (seller_id, seller_email, address, status, introduction)
-          VALUES (${seller.seller_id}, ${seller.seller_email}, ${seller.address}, ${seller.status}, ${seller.introduction})
-          ON CONFLICT (seller_id) DO NOTHING;
-        `;
-      }),
-    );
-  
-    return insertedSellers;
-  } catch(error) {
-      console.error("Error seeding sellers:", error);
-      throw error;
-    }
-}
-
-async function seedProducts() {
-  try {
-    await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-    await sql`
-      CREATE TABLE IF NOT EXISTS products (
-        product_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        price NUMERIC NOT NULL,
-        quantity INT NOT NULL,
-        description TEXT NOT NULL,
-        created_at TIMESTAMP NOT NULL,
-        image TEXT NULL,
-        seller_id  TEXT NOT NULL,
-        category_id TEXT NOT NULL
-      );
-    `;
-  
-    const insertedProducts = await Promise.all(
-      products.map(async (product) => {
-        return sql`
-          INSERT INTO products (product_id, created_at, name, price, quantity, description, seller_id, category_id)
-          VALUES (${product.product_id ?? uuidv4()}, ${product.created_at}, ${product.name}, ${product.price}, ${product.quantity}, ${product.description}, ${product.seller_id}, ${product.category_id})
-          ON CONFLICT (product_id) DO NOTHING;
-        `;
-      }),
-    );
-  
-    return insertedProducts;
-  } catch(error) {
-      console.error("Error seeding Products:", error);
-      throw error;
-    }
-}
 async function seedUsers() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
   await client.sql`
@@ -79,11 +12,11 @@ async function seedUsers() {
       user_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
       username TEXT NOT NULL UNIQUE,
       email TEXT NOT NULL UNIQUE,
-      created_at DATE NOT NULL,
-      password TEXT NOT NULL
+      created_at TIMESTAMPTZ NOT NULL,
+      password TEXT NOT NULL,
       firstname VARCHAR(255) NOT NULL,
       lastname TEXT NOT NULL,
-      type ENUM("User", "Seller", "Admin"),
+      type TEXT CHECK (type IN ('User', 'Admin')),
       profile_image_url TEXT NULL
     );
   `;
@@ -92,8 +25,8 @@ async function seedUsers() {
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       return client.sql`
-        INSERT INTO users (user_id, username, email, created_at, password, firstname, lastname, type)
-        VALUES (${user.user_id}, ${user.username}, ${user.email}, ${user.created_at}, ${hashedPassword}, ${user.firstname}, ${user.lastname}, ${user.type})
+        INSERT INTO users (user_id, username, email, created_at, password, firstname, lastname, type, profile_image_url)
+        VALUES (${user.user_id}, ${user.username}, ${user.email}, ${user.created_at}, ${hashedPassword}, ${user.firstname}, ${user.lastname}, ${user.type}, ${user.profile_image_url})
         ON CONFLICT (user_id) DO NOTHING;
       `;
     }),
@@ -134,16 +67,17 @@ async function seedCategories() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS categories (
       category_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-      category TEXT NOT NULL
+      category VARCHAR(255) NULL,
+      category_url TEXT
     );
   `;
 
   const insertedCategories = await Promise.all(
     categories.map(
       (category) => client.sql`
-        INSERT INTO categories (category_id, category)
-        VALUES (${category.category_id}, ${category.category})
-        ON CONFLICT (id) DO NOTHING;
+        INSERT INTO categories (category_id, category, category_url)
+        VALUES (${category.category_id}, ${category.category}, ${category.category_url})
+        ON CONFLICT (category_id) DO NOTHING;
       `,
     ),
   );
@@ -185,47 +119,41 @@ async function seedReview() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS reviews (
       review_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-      title TEXT NOT NULL UNIQUE,
-      created_at DATE NOT NULL,
-      rating ENUM("1", "2", "3", "4", "5") NOT NULL
-      review VARCHAR(MAX) NOT NULL,
-      product_id TEXT NOT NULL,
-      user_id TEXT NOT NULL,
+      title VARCHAR(255) NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL,
+      rating Numeric(2,1) NOT NULL,
+      review TEXT NOT NULL,
+      product_id UUID NOT NULL REFERENCES products(product_id) ON DELETE CASCADE,
+      user_id UUID NOT NULL REFERENCES users(user_id) ON DELETE CASCADE
     );
   `;
 
-  const insertedUsers = await Promise.all(
+  const insertedReviews = await Promise.all(
     reviews.map(async (review) => {
       return client.sql`
-        INSERT INTO reviews (review_id, username, email, created_at, password, firstname, lastname, type)
+        INSERT INTO reviews (review_id, title, created_at, rating, review, product_id, user_id)
         VALUES (${review.review_id}, ${review.title}, ${review.created_at}, ${review.rating}, ${review.review}, ${review.product_id}, ${review.user_id})
         ON CONFLICT (review_id) DO NOTHING;
       `;
     }),
   );
 
-  return insertedUsers;
+  return insertedReviews;
 }
 
 export async function GET() {
-    // return Response.json({
-    //   message:
-    //     'Uncomment this file and remove this line. You can delete this file when you are finished.',
-    // });
     try {
       await client.sql`BEGIN`;
-      await seedSellers();
-      await seedProducts();
       await seedUsers();
+      await seedSellers();
       await seedCategories();
+      await seedProducts();
       await seedReview();
       await client.sql`COMMIT`;
   
       return Response.json({ message: 'Database seeded successfully' });
     } catch (error) {
+      await client.sql`ROLLBACK`;
       return Response.json({ error }, { status: 500 });
     }
   }
- 
-
-

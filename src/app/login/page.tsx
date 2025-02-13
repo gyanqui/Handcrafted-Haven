@@ -2,6 +2,7 @@ import HandCraftedLogo from '@/app/ui/handcrafted-logo';
 import LoginForm from '@/app/ui/login-form';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { Suspense } from 'react';
 // import { revalidatePath } from 'next/cache';
 // import { redirect } from "next/navigation";
 
@@ -18,11 +19,13 @@ export default function LoginPage() {
             <HandCraftedLogo />
           </div>
         </div>
-        <LoginForm />
+        <Suspense>
+          <LoginForm />
+        </Suspense>
         <div >
             <span className='px-4 text-sm' >
                 Not a member yet?&nbsp;
-                <Link href={'/home/sign-up'}>
+                <Link href={'/sign-up'}>
                     <span className='text-blue-400 hover:text-purple-500 underline'>
                         Sign up now!   
                     </span>
