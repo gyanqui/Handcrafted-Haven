@@ -1,5 +1,7 @@
-export default function Page() {
-    return (
-        <>Dashboard page</>
+export default async function Page() {
+    
+    
+    return(
+        <>Children</>
     )
 }

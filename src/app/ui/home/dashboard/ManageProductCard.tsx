@@ -1,17 +1,34 @@
+'use client'
+
 import { Rate } from "antd";
 import Image from "next/image";
 import { ProductProps } from "@/app/lib/definitions";
 import Link from "next/link";
+import { RiDeleteBin5Fill } from "react-icons/ri";
+import { deleteProduct } from "@/app/lib/data";
+import { useRouter } from "next/navigation";
 
-export default function ProductCard({
+export default function ManageProductCard({
   name,
   image_url,
   price,
   averageRate,
   product_id,
 }: ProductProps) {
+    const router = useRouter()
+    const handleDeleteProduct = async () => {
+        try {
+            await deleteProduct(product_id)
+            alert('product deleted successfully') 
+            router.refresh()
+        } catch (error) {
+            console.error("Error deleting product: ", error)
+        }
+    }
+
   return (
-    <div className="border border-custom-grey rounded-t-3xl w-[200px]">
+    <div className="border border-custom-grey rounded-t-3xl w-[200px] relative">
+        <button><RiDeleteBin5Fill className="absolute top-2 right-3 text-2xl" onClick={handleDeleteProduct} /></button>
       <Link href={`/home/products/${product_id}`}>
         <Image
           src={image_url && (image_url.startsWith('http') || image_url.startsWith('/')) ? image_url : "/placeholder/product-placeholder.webp"}
