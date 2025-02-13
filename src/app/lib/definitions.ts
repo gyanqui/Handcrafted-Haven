@@ -1,4 +1,7 @@
 // This file contains type definitions for your data.
+
+import { UUID } from "crypto";
+
 // It describes the shape of the data, and what data type each property should accept.
 export type Seller = {
   seller_id: string;
@@ -51,7 +54,18 @@ export type ProductProps = {
   image_url: string;
   price: number;
   averageRate: number;
-};
+}
+
+export type Product = {
+  product_id: UUID;
+  name: string;
+  price: number;
+  quantity: number;
+  description: string;
+  image_url: string;
+  seller_id: UUID;
+  category_id: UUID;
+}
 
 export type PromotionWrapperProps = {
   products: ProductProps[];
@@ -78,15 +92,15 @@ export type ArtisanWrapperProps = {
 };
 
 export type ReviewProps = {
-  review_id: string;
-  product_id: string;
-  image_url: string;
-  username: string;
-  rating: number;
-  created_at: string;
-  product_name: string;
-  review: string;
-};
+  review_id: string,
+  product_id: string,
+  image_url: string,
+  username: string,
+  rating: number,
+  created_at: string,
+  product_name: string
+  review: string
+}
 
 export type ReviewWrapperProps = {
   reviewData: ReviewProps[];
