@@ -59,12 +59,12 @@ export default async function Page() {
     },
   ];
 
-  const artisan = await getArtisanStory();
+  const artisan: ArtisanStoryProps | null = await getArtisanStory();
 
   return (
     <div className="min-w-[390px]">
       <CategoryNav categories={categories} />
-      <ArtisanStory artisan={artisan}/>
+      {artisan && <ArtisanStory artisan={artisan}/>}
       <PromotionWrapper products={newItems} title="What's New" />
       <PromotionWrapper products={popularItems} title="What's Popular" />
     </div>

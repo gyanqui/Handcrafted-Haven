@@ -253,15 +253,16 @@ export async function addProduct(formData: ProductFormValues) {
   }
 }
 
-export async function getArtisanStory() {
+import { ArtisanStoryProps } from "./definitions";
+export async function getArtisanStory(): Promise<ArtisanStoryProps | null> {
   try {
-    const data = await sql`
-    SELECT s.seller_id, s.introduction, u.firstname, u.lastname, u.profile_image_url
-    FROM sellers s
-    JOIN users u ON s.user_id = u.user_id
+    const data = await sql<ArtisanStoryProps>`
+      SELECT s.seller_id, s.introduction, u.firstname, u.lastname, u.profile_image_url
+      FROM sellers s
+      JOIN users u ON s.user_id = u.user_id
 
-    ORDER BY RANDOM()
-    LIMIT 1`;
+      ORDER BY RANDOM()
+      LIMIT 1`;
     return data.rows[0];
   } catch (error) {
     console.error("Failed to get artist story: ", error);

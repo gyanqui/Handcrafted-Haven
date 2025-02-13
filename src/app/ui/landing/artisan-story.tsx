@@ -3,7 +3,7 @@ import Link from "next/link";
 import { poppins } from "../font";
 import Image from "next/image";
 
-export default function ArtisanStory({artisan}: ArtisanStoryProps) {
+export default function ArtisanStory({artisan}:{artisan: ArtisanStoryProps}) {
   return (
     <div className={`bg-custom-yellow py-8 md:px-12 lg:px-24 md:py-4 lg:py-8`}>
       <h2

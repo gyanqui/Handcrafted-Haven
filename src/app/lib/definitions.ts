@@ -153,11 +153,9 @@ export type ProductFormValues = {
 };
 
 export type ArtisanStoryProps = {
-  artisan: {
-    seller_id: string | null;
-    introduction: string | null;
-    firstname: string | null;
-    lastname: string | null;
-    profile_image_url : string | null;
-  };
+    seller_id: string;
+    introduction: string;
+    firstname: string;
+    lastname: string;
+    profile_image_url : string;
 };

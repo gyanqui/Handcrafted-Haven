@@ -7,9 +7,10 @@ import {
 } from "@/app/ui/landing/PromotionComponents";
 import Footer from "./ui/landing/footer";
 import { getArtisanStory } from "./lib/data";
+import { ArtisanStoryProps } from "./lib/definitions";
 
 export default async function Home() {
-  const artisan = await getArtisanStory()
+  const artisan: ArtisanStoryProps | null = await getArtisanStory()
   return (
     <>
       <HeroSection />
