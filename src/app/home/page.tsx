@@ -3,7 +3,6 @@ import CategoryNav from "../ui/home/CategoryNav";
 import PromotionWrapper from "../ui/home/PromotionWrapper";
 import { listCategories } from "../lib/data";
 import { getArtisanStory } from "../lib/data";
-import { ArtisanStoryProps } from "../lib/definitions";
 
 export default async function Page() {
   const categories = (await listCategories() || []).map(category => ({

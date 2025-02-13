@@ -6,7 +6,13 @@ const nextConfig: NextConfig = {
   ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["picsum.photos"], // Add the hostname here
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        pathname: '/300/300',
+      }
+    ]
   },
 };
 

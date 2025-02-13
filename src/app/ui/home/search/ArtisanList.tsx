@@ -14,7 +14,6 @@ export default function ArtisanList({
             seller_id: artisan.seller_id,
             seller_email: artisan.seller_email,
             introduction: artisan.introduction,
-            username: artisan.username,
             firstname: artisan.firstname,
             lastname: artisan.lastname,
             profile_image_url: artisan.profile_image_url,

@@ -3,9 +3,8 @@
 
 import { sql } from "@vercel/postgres";
 import { v4 as uuidv4 } from "uuid";
-import { ProductFormValues } from "./definitions";
 import postgres from 'postgres';
-import { Seller, Product, Review } from './definitions';
+import { Seller, Product, Review, ProductFormValues, ArtisanStoryProps, ProductProps } from './definitions';
 
 const query = postgres({ ssl: "require" });
 
@@ -256,7 +255,7 @@ export async function addProduct(formData: ProductFormValues) {
 
 export async function getArtisanStory() {
   try {
-    const data = await sql`
+    const data = await sql<ArtisanStoryProps>`
     SELECT s.seller_id, s.introduction, u.firstname, u.lastname, u.profile_image_url
     FROM sellers s
     JOIN users u ON s.user_id = u.user_id
@@ -266,7 +265,7 @@ export async function getArtisanStory() {
     return data.rows[0];
   } catch (error) {
     console.error("Failed to get artist story: ", error);
-    return null;
+    // return null;
   }
 }
 
@@ -284,7 +283,7 @@ export async function deleteProduct(product_id: string) {
 
 export async function listProducts() {
   try {
-    const data = await sql`
+    const data = await sql<ProductProps>`
       SELECT p.product_id, p.name, p.image_url, ROUND(COALESCE(AVG(r.rating), 0), 1) AS averageRate
       FROM products p
       LEFT JOIN reviews r ON p.product_id = r.product_id
