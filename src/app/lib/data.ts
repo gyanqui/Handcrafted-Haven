@@ -1,8 +1,9 @@
+
 "use server";
 
 import { sql } from "@vercel/postgres";
 import postgres from 'postgres';
-import { Review, Product } from './definitions';
+import { Seller, Product, Review } from './definitions';
 
 const query = postgres({ ssl: "require" });
 
@@ -37,13 +38,13 @@ export async function fetchReviewsByProductId(id: string) {
         title,
         rating,
         review,
-		    firstname,
-		    lastname
+        firstname,
+        lastname
       FROM products p
-	    INNER JOIN reviews r
-	    ON p.product_id = r.product_id
-		  INNER JOIN users u
-		  ON u.user_id = r.user_id
+      INNER JOIN reviews r
+      ON p.product_id = r.product_id
+      INNER JOIN users u
+      ON u.user_id = r.user_id
       WHERE p.product_id = ${id};
     `;
     
@@ -143,5 +144,63 @@ export async function searchReviews(query: string) {
   } catch (error) {
     console.error('Failed to get reviews search result: ', error)
     return []
+  }
+}
+
+export async function fetchAllSellers() {
+  try {
+    const data = await sql`
+      SELECT s.seller_id, u.profile_image_url, u.firstname, u.lastname, s.seller_email, s.address, s.introduction
+      FROM sellers s
+      JOIN users u ON s.user_id = u.user_id
+    `;
+    return data.rows;
+  } catch (error) {
+    console.error("Failed to fetch sellers: ", error);
+    return [];
+  }
+}
+
+export async function fetchSellerById(sellerId: string) {
+  try {
+    const data = await query<Seller[]>`
+      SELECT u.user_id, u.firstname, u.lastname, u.email, s.seller_id, s.address, s.seller_email, s.introduction
+      FROM users u
+      JOIN sellers s ON s.user_id = u.user_id
+      WHERE s.seller_id = ${sellerId};
+    `;
+    return data[0]; 
+  } catch (error) {
+    console.error("Failed to fetch seller by ID: ", error);
+    return null;
+  }
+}
+
+export async function fetchProductsBySellerId(sellerId: string) {
+  try {
+    const data = await query<Product[]>`
+      SELECT p.product_id, p.name, p.price, p.quantity, p.description, p.image_url, p.category_id
+      FROM products p
+      WHERE p.seller_id = ${sellerId};
+    `;
+    return data;  
+  } catch (error) {
+    console.error("Failed to fetch products by seller ID: ", error);
+    return [];
+  }
+}
+
+export async function fetchReviewsBySellerId(sellerId: string) {
+  try {
+    const data = await query<Review[]>`
+      SELECT r.review_id, r.title, r.rating, r.review, r.product_id, u.firstname, u.lastname
+      FROM reviews r
+      JOIN products p ON p.product_id = r.product_id
+      WHERE p.seller_id = ${sellerId};
+    `;
+    return data;  
+  } catch (error) {
+    console.error("Failed to fetch reviews by seller ID: ", error);
+    return [];
   }
 }
