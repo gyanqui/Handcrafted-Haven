@@ -16,7 +16,9 @@ export default async function Layout({children}: {children: React.ReactNode}) {
             {/* side menu */}
             <div className="flex flex-col h-[calc(100vh-96px)]">
                 <div className="h-8 md:h-24 w-30 md:w-48 px-2 md:px-4 m-1 bg-black text-white md:font-bold flex justify-center items-center rounded-lg">
-                    <p className="text-base lg:text-xl">Hello, {result.username}</p>
+                    <Link href='/home/dashboard'>
+                        <p className="text-base lg:text-xl">Hello, {result.username}</p>
+                    </Link>
                 </div>
 
                 {/* managements */}
