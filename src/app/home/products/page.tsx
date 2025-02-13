@@ -6,7 +6,9 @@ export default async function Page() {
     return (
         <div className="py-4">
             <h1 className="text-center text-2xl font-extrabold m-4">Product Listing</h1>
-            <ProductWrapper products={products}/>
+            <div className="px-4">
+                <ProductWrapper products={products}/>
+            </div>
         </div>
     )
 }
