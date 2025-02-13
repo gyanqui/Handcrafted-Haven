@@ -216,3 +216,15 @@ export async function getArtisanStory() {
     return null;
   }
 }
+
+export async function deleteProduct(product_id: string) {
+  try {
+    await sql`
+      DELETE FROM products
+      WHERE product_id = ${product_id}
+    `
+  } catch (error) {
+    console.error("Failed to delete product: ", error)
+    throw new Error("Failed to delete product")
+  }
+}

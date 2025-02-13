@@ -1,4 +1,4 @@
-import ProductWrapper from "@/app/ui/home/ProductWrapper";
+import ManageProductWrapper from "@/app/ui/home/dashboard/ManageProductWrapper";
 import EmptyProductCard from "@/app/ui/home/dashboard/EmptyProductCard";
 import { getUserProducts, getUserBasicData } from "@/app/lib/data";
 import Link from "next/link";
@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: Params }) {
       {/* product listing */}
       <div>
         {userProducts.length > 0 ? (
-          <ProductWrapper
+          <ManageProductWrapper
             products={userProducts.map((product) => ({
               product_id: product.product_id,
               name: product.name,
