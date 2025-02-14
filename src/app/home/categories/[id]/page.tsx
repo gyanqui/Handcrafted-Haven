@@ -6,7 +6,7 @@ import ProductWrapper from "@/app/ui/home/ProductWrapper";
 export default async function Page({params}: {params: {id: string}}) {
   const id = params.id
   const categories = await listCategories()
-  const productByCategory = await listProductsByCategoryId(id)
+  const productsByCategory = await listProductsByCategoryId(id)
   const category = categories.find(category => category.category_id === id);
   const categoryName = category ? category.category : 'Unknown Category';
   
@@ -19,7 +19,7 @@ export default async function Page({params}: {params: {id: string}}) {
     <div className="px-8 py-4">
       <Breadcrumb items={breadcrumbItems} />
       <h1 className="text-center text-2xl font-extrabold m-4">{categoryName}</h1>
-      <ProductWrapper products={productByCategory}/>
+      <ProductWrapper products={productsByCategory}/>
     </div>
   );
 }
