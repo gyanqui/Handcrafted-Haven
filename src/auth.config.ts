@@ -10,7 +10,7 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnLogin = nextUrl.pathname.startsWith('/home/login');
+      const isOnLogin = nextUrl.pathname.startsWith('/home');
       if (isOnLogin) {
         if (isLoggedIn) {
           Response.redirect(new URL('/home/dashboard', nextUrl));
@@ -20,6 +20,11 @@ export const authConfig = {
         return Response.redirect(new URL('/home/dashboard', nextUrl));
       }
       return true;
+    },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith('/')) return new URL(url, baseUrl).toString();
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
     // async redirect({ url, baseUrl }) {
     //   // Allows relative callback URLs

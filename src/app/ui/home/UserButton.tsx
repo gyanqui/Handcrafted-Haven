@@ -14,13 +14,17 @@ export function  UserButton() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-  if (!isClient) {
-    return null; // or a loading spinner
-  }
+    if (session) 
+      setIsClient(true);
+  }, [session]);
+  // if (!isClient) {
+  //   return null; // or a loading spinner
+  // }
+  useEffect(() => {
+    console.log(`isClient: ${isClient}, session: ${session}`)
+  }, [isClient, session])
 
-  if (session) {
+  if (session && isClient) {
     return (
       <>
         <div className="flex flex-row gap-4 px-2">
