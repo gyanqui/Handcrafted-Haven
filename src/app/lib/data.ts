@@ -1,10 +1,16 @@
-
 "use server";
 
 import { sql } from "@vercel/postgres";
 import { v4 as uuidv4 } from "uuid";
-import postgres from 'postgres';
-import { Review, Product, ProductFormValues, ArtisanStoryProps, ProductProps } from './definitions';
+import postgres from "postgres";
+import {
+  Review,
+  Product,
+  ProductFormValues,
+  ArtisanStoryProps,
+  ProductProps,
+  CategoryCardProps,
+} from "./definitions";
 
 const query = postgres({ ssl: "require" });
 
@@ -22,11 +28,11 @@ export async function fetchProductById(id: string) {
         category_id
       FROM products
       WHERE product_id = ${id};
-    `
+    `;
     return data[0];
   } catch (error) {
     console.log(error);
-  } 
+  }
 }
 
 export async function fetchReviewsByProductId(id: string) {
@@ -48,9 +54,8 @@ export async function fetchReviewsByProductId(id: string) {
       ON u.user_id = r.user_id
       WHERE p.product_id = ${id};
     `;
-    
-    return data;
 
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -199,7 +204,7 @@ export async function getUserBasicData(user_id: string) {
 
       WHERE u.user_id = ${user_id}
     `;
-    return data.rows[0]
+    return data.rows[0];
   } catch (error) {
     console.error("Failed to get the user's basic data: ", error);
     return null;
@@ -274,10 +279,10 @@ export async function deleteProduct(product_id: string) {
     await sql`
       DELETE FROM products
       WHERE product_id = ${product_id}
-    `
+    `;
   } catch (error) {
-    console.error("Failed to delete product: ", error)
-    throw new Error("Failed to delete product")
+    console.error("Failed to delete product: ", error);
+    throw new Error("Failed to delete product");
   }
 }
 
@@ -289,11 +294,11 @@ export async function listProducts() {
       LEFT JOIN reviews r ON p.product_id = r.product_id
       GROUP BY p.product_id  
       ORDER BY p.created_at DESC
-    `
+    `;
     return data.rows;
   } catch (error) {
-    console.error('Failed to list all products: ', error)
-    throw new Error('Failed to list all products')
+    console.error("Failed to list all products: ", error);
+    throw new Error("Failed to list all products");
   }
 }
 
@@ -319,7 +324,7 @@ export async function fetchSellerById(sellerId: string) {
       JOIN sellers s ON s.user_id = u.user_id
       WHERE s.seller_id = ${sellerId};
     `;
-    return data[0]; 
+    return data[0];
   } catch (error) {
     console.error("Failed to fetch seller by ID: ", error);
     return null;
@@ -333,7 +338,7 @@ export async function fetchProductsBySellerId(sellerId: string) {
       FROM products p
       WHERE p.seller_id = ${sellerId};
     `;
-    return data;  
+    return data;
   } catch (error) {
     console.error("Failed to fetch products by seller ID: ", error);
     return [];
@@ -348,9 +353,34 @@ export async function fetchReviewsBySellerId(sellerId: string) {
       JOIN products p ON p.product_id = r.product_id
       WHERE p.seller_id = ${sellerId};
     `;
-    return data;  
+    return data;
   } catch (error) {
     console.error("Failed to fetch reviews by seller ID: ", error);
     return [];
+  }
+}
+
+export async function listProductsByCategoryId(
+  category_id: string
+) {
+  try {
+    const data = await sql<ProductProps[]>`
+      SELECT 
+        p.product_id, 
+        p.name, 
+        p.image_url, 
+        p.price, 
+        ROUND(COALESCE(AVG(r.rating), 0), 1) AS averageRate
+      FROM products p
+      LEFT JOIN reviews r ON p.product_id = r.product_id
+      JOIN categories c ON c.category_id = p.category_id
+      
+      WHERE p.category_id = ${category_id}
+      GROUP BY p.product_id
+    `;
+    return data.rows;
+  } catch (error) {
+    console.error("Failed to list product by category ID: ", error);
+    throw new Error("Failed to list product by category ID");
   }
 }
