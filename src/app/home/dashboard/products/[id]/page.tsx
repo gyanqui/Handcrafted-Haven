@@ -1,6 +1,6 @@
 import ManageProductWrapper from "@/app/ui/home/dashboard/ManageProductWrapper";
 import EmptyProductCard from "@/app/ui/home/dashboard/EmptyProductCard";
-import { getUserProducts, getUserBasicData } from "@/app/lib/data";
+import { getUserProducts, getUserBasicDataByUserId } from "@/app/lib/data";
 import Link from "next/link";
 
 type Params = {
@@ -9,7 +9,7 @@ type Params = {
 
 export default async function Page({ params }: { params: Params }) {
     const [userBasicData, userProducts] = await Promise.all([
-        getUserBasicData(params.id), getUserProducts(params.id)
+        getUserBasicDataByUserId(params.id), getUserProducts(params.id)
     ])
     
   return (
