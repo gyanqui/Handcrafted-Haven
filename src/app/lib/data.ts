@@ -3,9 +3,8 @@
 
 import { sql } from "@vercel/postgres";
 import { v4 as uuidv4 } from "uuid";
-import { CategoryCardProps, ProductFormValues, ArtisanStoryProps, Review, Product, Seller } from "./definitions";
 import postgres from 'postgres';
-import { Review, Product } from './definitions';
+import { Review, Product, ProductFormValues, ArtisanStoryProps, ProductProps } from './definitions';
 
 const query = postgres({ ssl: "require" });
 
@@ -266,7 +265,7 @@ export async function getArtisanStory(): Promise<ArtisanStoryProps | null> {
     return data.rows[0];
   } catch (error) {
     console.error("Failed to get artist story: ", error);
-    return null;
+    // return null;
   }
 }
 
@@ -284,7 +283,7 @@ export async function deleteProduct(product_id: string) {
 
 export async function listProducts() {
   try {
-    const data = await sql`
+    const data = await sql<ProductProps>`
       SELECT p.product_id, p.name, p.image_url, ROUND(COALESCE(AVG(r.rating), 0), 1) AS averageRate
       FROM products p
       LEFT JOIN reviews r ON p.product_id = r.product_id

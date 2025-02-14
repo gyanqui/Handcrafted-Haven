@@ -12,15 +12,15 @@ export type Seller = {
 };
 
 export type Product = {
-  product_id: string;
+  product_id: UUID;
   name: string;
   price: number;
   quantity: number;
   description: string;
   image_url: string;
-  seller_id: string;
-  category_id: string;
-};
+  seller_id: UUID;
+  category_id: UUID;
+}
 
 export type User = {
   user_id: string;
@@ -56,17 +56,6 @@ export type ProductProps = {
   averageRate: number;
 }
 
-export type Product = {
-  product_id: UUID;
-  name: string;
-  price: number;
-  quantity: number;
-  description: string;
-  image_url: string;
-  seller_id: UUID;
-  category_id: UUID;
-}
-
 export type PromotionWrapperProps = {
   products: ProductProps[];
   title: string;
@@ -81,7 +70,6 @@ export type ArtisanCardProps = {
   profile_image_url: string | null;
   firstname: string;
   lastname: string;
-  username: string;
   seller_email: string;
   address: string;
   introduction: string;
@@ -100,6 +88,17 @@ export type ReviewProps = {
   created_at: string,
   product_name: string
   review: string
+}
+
+export type Review = {
+  product_id: UUID;
+  review_id: UUID;
+  user_id: UUID;
+  title: string;
+  rating: number;
+  review: string;
+	firstname: string;
+	lastname: string;
 }
 
 export type ReviewWrapperProps = {
