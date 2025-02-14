@@ -18,7 +18,7 @@ export default async function Page({params}: {params: {id: string}}) {
   return (
     <div className="px-8 py-4">
       <Breadcrumb items={breadcrumbItems} />
-      <h1 className="font-bold text-xl text-center mb-4">{categoryName}</h1>
+      <h1 className="text-center text-2xl font-extrabold m-4">{categoryName}</h1>
       <ProductWrapper products={productByCategory}/>
     </div>
   );
