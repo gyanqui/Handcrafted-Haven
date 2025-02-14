@@ -16,4 +16,4 @@ declare module "next-auth" {
         profile_image_url: string;
         };
     }
-    }
+}

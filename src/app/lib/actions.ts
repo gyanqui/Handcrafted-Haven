@@ -62,7 +62,7 @@ export async function createUser(prevState: State, formData: FormData) {
     }
 
     revalidatePath('/sign-up');
-    redirect('/home/profile');
+    redirect('/home/login');
     
 }
 

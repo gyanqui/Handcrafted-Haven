@@ -15,6 +15,8 @@ import Link from "next/link";
 import Form from 'next/form'
 import { SessionProvider } from "next-auth/react";
 import { UserButton } from "./UserButton";
+import LoginButton from "./LoginButton";
+// import UserButtonServer from '@/app/ui/SignOut.Server';
 
 export default function TopNav() {
   const [isOpen, setIsOpen] = useState(false); // side menu open status
@@ -107,6 +109,8 @@ export default function TopNav() {
       <SessionProvider >
         <UserButton/>
       </SessionProvider>
+      {/* <LoginButton /> */}
+      {/* <UserButtonServer /> */}
 
       {/* side menu */}
       <Drawer

@@ -4,7 +4,6 @@ import {
   poppins
 
 } from "./ui/font";
-import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,9 +20,7 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased`}
       >
-      {/* <SessionProvider> */}
         {children}
-      {/* </SessionProvider> */}
       </body>
     </html>
   );

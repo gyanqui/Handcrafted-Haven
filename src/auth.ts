@@ -6,7 +6,7 @@ import {z} from 'zod';
 import type { User } from '@/app/lib/definitions';
 import bcrypt from 'bcrypt';
 import postgres from 'postgres';
-import { NextResponse } from 'next/server';
+// import { NextResponse } from 'next/server';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
@@ -49,12 +49,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
 export { handlers as GET, handlers as POST };
 
-export default auth((req) => {
-  const reqUrl = new URL(req.url);
-  if (!req.auth && reqUrl?.pathname !== '/') {
-    return NextResponse.redirect(new URL(`/login?callbackUrl=${encodeURIComponent(reqUrl?.pathname)}`,
-  req.url
-  ));
-  }
-}
-);
+// export default auth((req) => {
+//   const reqUrl = new URL(req.url);
+//   if (!req.auth && reqUrl?.pathname !== '/') {
+//     return NextResponse.redirect(new URL(`/login?callbackUrl=${encodeURIComponent(reqUrl?.pathname)}`,
+//   req.url
+//   ));
+//   }
+// }
+// );

@@ -4,15 +4,17 @@ import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
   pages: {
-    signIn: '/login',
-    newUser: '/sign-up',
+    signIn: '/home/login',
+    newUser: '/home/sign-up',
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnDashboard = nextUrl.pathname.startsWith('/home/dashboard');
-      if (isOnDashboard) {
-        if (isLoggedIn) return true;
+      const isOnLogin = nextUrl.pathname.startsWith('/home/login');
+      if (isOnLogin) {
+        if (isLoggedIn) {
+          Response.redirect(new URL('/home/dashboard', nextUrl));
+          return true};
         return false; // Redirect unauthenticated users to login page
       } else if (isLoggedIn) {
         return Response.redirect(new URL('/home/dashboard', nextUrl));
@@ -33,9 +35,9 @@ export const authConfig = {
       
     },
     async session({ session, token }) {
-      // Attach the user id to the session right after signin
-      session.user = token as any;      
-      // session.user = session. as any;      
+      // Attach the user information to the session right after signin
+      session.user = token as any;
+      // session.user = session. as any;
       return session
     },
   },
