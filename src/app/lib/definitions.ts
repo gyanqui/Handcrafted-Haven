@@ -136,13 +136,13 @@ export type ReviewListProps = {
 };
 
 export type AddProductFormProps = {
-  categories: Category[];
+  categories: CategoryCardProps[];
   seller_id: string | null;
-  user_id: string | null;
+  user_id: string;
 };
 
 export type ProductFormValues = {
-  seller_id: string;
+  seller_id: string | null;
   created_at: string;
   name: string;
   price: string;

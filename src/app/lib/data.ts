@@ -62,7 +62,7 @@ export async function fetchReviewsByProductId(id: string) {
   }
 }
 
-export async function listCategories(): Promise<CategoryCardProps[] | []> {
+export async function listCategories() {
   try {
     const data = await sql<CategoryCardProps>`
         SELECT category_id, category, category_url FROM categories
@@ -239,18 +239,21 @@ export async function addProduct(formData: ProductFormValues) {
     seller_id,
     created_at,
   } = formData;
+
+  const newSellerId = seller_id || uuidv4();
+  const productId = uuidv4()
   try {
     await sql`
       INSERT INTO products (product_id, name, price, quantity, description, image_url, category_id, seller_id, created_at)
       VALUES (
-        ${uuidv4()},
+        ${productId}
         ${name},
         ${Number(price)},
         ${Number(quantity)},
         ${description},
         ${image_url || null},
         ${category_id},
-        ${seller_id},
+        ${newSellerId},
         ${created_at}
       )
     `;

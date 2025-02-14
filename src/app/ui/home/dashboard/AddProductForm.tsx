@@ -172,7 +172,7 @@ export default function AddProductForm({
             </option>
             {categories.map((category) => (
               <option key={category.category_id} value={category.category_id}>
-                {category.name}
+                {category.category}
               </option>
             ))}
           </select>
@@ -184,7 +184,7 @@ export default function AddProductForm({
         </div>
 
         {/* hidden seller_id & created_at */}
-        <input type="hidden" name="seller_id" value={formData.seller_id} />
+        <input type="hidden" name="seller_id" value={formData.seller_id || null} />
         <input type="hidden" name="created_at" value="" />
 
         <button type="submit" className="bg-custom-yellow rounded-md mt-1 p-1">
