@@ -7,19 +7,22 @@ type Params = {
   id: string;
 };
 
-export default async function Page({ params }: { params: Params }) {
-    const [userBasicData, userProducts] = await Promise.all([
-        getUserBasicDataByUserId(params.id), getUserProducts(params.id)
-    ])
-    
+async function AsyncWrapper({ user_id }: { user_id: string }) {
+  const [userBasicData, userProducts] = await Promise.all([
+    getUserBasicDataByUserId(user_id),
+    getUserProducts(user_id),
+  ]);
   return (
     <div>
-      {userBasicData && 
-        <p className="text-center text-2xl p-4">{userBasicData.username}&apos;s Product Listing</p>}
-        <div className="h-[2px] w-[150px] md:w-[350px] bg-custom-yellow mx-auto"></div>
+      {userBasicData && (
+        <p className="text-center text-2xl p-4">
+          {userBasicData.username}&apos;s Product Listing
+        </p>
+      )}
+      <div className="h-[2px] w-[150px] md:w-[350px] bg-custom-yellow mx-auto"></div>
       <div className="flex justify-center py-4">
-        <Link href={`/home/dashboard/products/${params.id}/add`}>
-            <EmptyProductCard />
+        <Link href={`/home/dashboard/products/${user_id}/add`}>
+          <EmptyProductCard />
         </Link>
       </div>
 
@@ -32,7 +35,10 @@ export default async function Page({ params }: { params: Params }) {
               name: product.name,
               price: product.price,
               image_url: product.image_url,
-              averageRate: typeof product.averageRate === "number" ? product.averageRate : parseFloat(product.averageRate),
+              averageRate:
+                typeof product.averageRate === "number"
+                  ? product.averageRate
+                  : parseFloat(product.averageRate),
             }))}
           />
         ) : (
@@ -40,5 +46,12 @@ export default async function Page({ params }: { params: Params }) {
         )}
       </div>
     </div>
+  );
+}
+export default async function Page({ params }: { params: Params }) {
+  const {id: user_id} = await params;
+
+  return (
+    <>{user_id ? <AsyncWrapper user_id={user_id} /> : <p>Loading...</p>}</>
   );
 }

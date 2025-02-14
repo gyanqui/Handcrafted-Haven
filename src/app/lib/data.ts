@@ -214,13 +214,14 @@ export async function getUserBasicDataByUserId(user_id: string) {
 
 export async function getSellerIdByUserId(user_id: string) {
   try {
-    const data = await sql`
+    const data = await sql<{seller_id: string}>`
           SELECT s.seller_id
           FROM sellers s
           JOIN users u ON s.user_id = u.user_id
     
           WHERE u.user_id = ${user_id}
         `;
+        
     return data.rows[0];
   } catch (error) {
     console.error("Failed to get seller ID by user ID: ", error);
@@ -246,7 +247,7 @@ export async function addProduct(formData: ProductFormValues) {
     await sql`
       INSERT INTO products (product_id, name, price, quantity, description, image_url, category_id, seller_id, created_at)
       VALUES (
-        ${productId}
+        ${productId},
         ${name},
         ${Number(price)},
         ${Number(quantity)},

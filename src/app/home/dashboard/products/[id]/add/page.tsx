@@ -5,10 +5,18 @@ type Params = {
   id: string;
 };
 
-export default function Page({ params }: { params: Params }) {
-  const user_id = params.id;
+export default async function Page({ params }: { params: Params }) {
+  const {id: user_id} = await params;
 
-  return <AsyncWrapper user_id={user_id} />;
+  return (
+    <>
+      {user_id ? (
+        <AsyncWrapper user_id={user_id} />
+      ) : (
+        <p>Loading</p>
+      )}
+    </>
+  );
 }
 
 async function AsyncWrapper({ user_id }: { user_id: string }) {
