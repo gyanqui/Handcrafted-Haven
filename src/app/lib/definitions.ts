@@ -107,6 +107,7 @@ export type ReviewWrapperProps = {
 
 export type SideMenuProps = {
   toggleOpen: () => void;
+  session: Session
 };
 
 export type CategoryCardProps = {
@@ -168,4 +169,10 @@ export type UserData = {
   seller_email: string;
   address: string;
   introduction: string;
+}
+
+export type Session = {
+  user: {
+    email: string;
+  } | null
 }

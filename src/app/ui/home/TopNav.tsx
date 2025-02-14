@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import { poppins } from "../font";
@@ -12,11 +12,15 @@ import SideMenu from "./SideMenu";
 import { Drawer } from "antd";
 import { useState } from "react";
 import Link from "next/link";
-import Form from 'next/form'
+import Form from "next/form";
+import { Session } from "@/app/lib/definitions";
 
-export default function TopNav() {
+export default function TopNav({
+  session,
+}: {
+  session: Session;
+}) {
   const [isOpen, setIsOpen] = useState(false); // side menu open status
-  
   const toggleOpen = () => setIsOpen((current) => !current); // toggle side menu
 
   return (
@@ -67,7 +71,8 @@ export default function TopNav() {
       </div>
 
       {/* search bar */}
-      <Form action='/home/search'
+      <Form
+        action="/home/search"
         className="relative flex flex-grow items-center px-2 w-fit"
       >
         <label htmlFor="search" className="sr-only">
@@ -88,20 +93,32 @@ export default function TopNav() {
       </Form>
 
       {/* management dashboard */}
-      <div className="hidden lg:block">
-        <div className="flex flex-row gap-4 px-2">
-          <Link href="/home/dashboard">
-            <RxAvatar className="inline text-2xl" />
-          </Link>
+      {session && (
+        <div className="hidden lg:block">
+          <div className="flex flex-row gap-4 px-2">
+            <Link href="/home/dashboard">
+              <RxAvatar className="inline text-2xl" />
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* sign out  */}
-      <div className="hidden lg:block">
-        <button className="bg-black text-white rounded-md px-2 py-1">
-          Log Out
-        </button>
-      </div>
+      {session ? (
+        <div className="hidden lg:block">
+          <button className="bg-black text-white rounded-md px-2 py-1 w-20">
+            Log Out
+          </button>
+        </div>
+      ) : (
+        <div className="hidden lg:block">
+          <Link href="/home/login">
+            <button className="bg-black text-white rounded-md px-2 py-1 w-20">
+              Log In
+            </button>
+          </Link>
+        </div>
+      )}
 
       {/* side menu */}
       <Drawer
@@ -112,7 +129,7 @@ export default function TopNav() {
         closable={false}
         style={{ backgroundColor: "black", color: "white" }}
       >
-        <SideMenu toggleOpen={toggleOpen} />
+        <SideMenu toggleOpen={toggleOpen} session={session}/>
       </Drawer>
     </div>
   );
