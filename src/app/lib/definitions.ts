@@ -20,7 +20,7 @@ export type Product = {
   image_url: string;
   seller_id: UUID;
   category_id: UUID;
-}
+};
 
 export type User = {
   user_id: string;
@@ -54,7 +54,7 @@ export type ProductProps = {
   image_url: string;
   price: number;
   averageRate: number;
-}
+};
 
 export type PromotionWrapperProps = {
   products: ProductProps[];
@@ -80,15 +80,15 @@ export type ArtisanWrapperProps = {
 };
 
 export type ReviewProps = {
-  review_id: string,
-  product_id: string,
-  image_url: string,
-  username: string,
-  rating: number,
-  created_at: string,
-  product_name: string
-  review: string
-}
+  review_id: string;
+  product_id: string;
+  image_url: string;
+  username: string;
+  rating: number;
+  created_at: string;
+  product_name: string;
+  review: string;
+};
 
 export type Review = {
   product_id: UUID;
@@ -97,9 +97,9 @@ export type Review = {
   title: string;
   rating: number;
   review: string;
-	firstname: string;
-	lastname: string;
-}
+  firstname: string;
+  lastname: string;
+};
 
 export type ReviewWrapperProps = {
   reviewData: ReviewProps[];
@@ -107,8 +107,8 @@ export type ReviewWrapperProps = {
 
 export type SideMenuProps = {
   toggleOpen: () => void;
-  session: Session | null
-}
+  session?: Session;
+};
 
 export type CategoryCardProps = {
   category_id: string;
@@ -136,32 +136,51 @@ export type ReviewListProps = {
 };
 
 export type AddProductFormProps = {
-  categories: Category[];
-  seller_id: string | null;
-  user_id: string | null;
+  categories: CategoryCardProps[];
+  seller_id: string | undefined;
+  user_id: string;
 };
 
 export type ProductFormValues = {
-  seller_id: string;
+  seller_id: string | undefined;
   created_at: string;
   name: string;
-  price: string;
-  quantity: string;
+  price: number;
+  quantity: number;
   description: string;
-  image_url?: string;
+  image_url?: string | undefined;
   category_id: string;
 };
 
 export type ArtisanStoryProps = {
-  seller_id: string | null;
-  introduction: string | null;
-  firstname: string | null;
-  lastname: string | null;
-  profile_image_url : string | null;
+  seller_id: string;
+  introduction: string;
+  firstname: string;
+  lastname: string;
+  profile_image_url : string;
 };
 
 export type Session = {
   user: {
     email: string;
   } | null
+}
+
+export type UserData = {
+  username: string;
+  user_id: string;
+  firstname: string;
+  lastname: string;
+  profile_image_url: string | undefined;
+  seller_email: string | undefined;
+  address: string | undefined;
+  introduction: string | undefined;
+}
+
+export type ProductFormErrors = {
+  name?: string;
+  price?: string | number;
+  quantity?: string | number;
+  description?: string;
+  category_id?: string;
 }

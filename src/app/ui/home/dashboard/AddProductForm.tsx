@@ -2,8 +2,10 @@
 
 import { addProduct } from "@/app/lib/data";
 import { AddProductFormProps } from "@/app/lib/definitions";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ProductFormValues } from "@/app/lib/definitions";
+import { ProductFormErrors } from "@/app/lib/definitions";
 
 export default function AddProductForm({
   categories,
@@ -11,10 +13,10 @@ export default function AddProductForm({
   user_id,
 }: AddProductFormProps) {
   const router = useRouter();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ProductFormValues>({
     name: "",
-    price: "",
-    quantity: "",
+    price: 0,
+    quantity: 0,
     description: "",
     image_url: "",
     category_id: "",
@@ -22,10 +24,11 @@ export default function AddProductForm({
     created_at: "",
   });
 
-  const [errors, setErrors] = useState({});
+
+  const [errors, setErrors] = useState<ProductFormErrors>({});
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: ProductFormErrors = {};
     if (!formData.name) newErrors.name = "Please input a product name";
     if (!formData.price || Number(formData.price) <= 0)
       newErrors.price = "Please input a price";
@@ -38,11 +41,11 @@ export default function AddProductForm({
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0; // true means no errors
   };
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validateForm()) return;
@@ -90,6 +93,7 @@ export default function AddProductForm({
           </label>
           <input
             type="number"
+            min={1}
             name="price"
             value={formData.price}
             onChange={handleChange}
@@ -110,6 +114,7 @@ export default function AddProductForm({
           </label>
           <input
             type="number"
+            min={1}
             name="quantity"
             value={formData.quantity}
             onChange={handleChange}
@@ -172,7 +177,7 @@ export default function AddProductForm({
             </option>
             {categories.map((category) => (
               <option key={category.category_id} value={category.category_id}>
-                {category.name}
+                {category.category}
               </option>
             ))}
           </select>
@@ -184,7 +189,7 @@ export default function AddProductForm({
         </div>
 
         {/* hidden seller_id & created_at */}
-        <input type="hidden" name="seller_id" value={formData.seller_id} />
+        <input type="hidden" name="seller_id" value={formData.seller_id || undefined} />
         <input type="hidden" name="created_at" value="" />
 
         <button type="submit" className="bg-custom-yellow rounded-md mt-1 p-1">

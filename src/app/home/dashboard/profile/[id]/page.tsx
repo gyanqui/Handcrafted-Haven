@@ -2,9 +2,9 @@ type Params = {
     id: string;
 }
 
-export default function Page({params}: {params: Params}) {
-    
+export default async function Page({params}: {params: Promise<Params>}) {
+    const {id} = await params 
     return (
-        <>User ID: {params.id} profile</>
+        <>User ID: {id} profile</>
     )
 }

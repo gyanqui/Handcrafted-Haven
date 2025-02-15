@@ -27,7 +27,7 @@ export function  UserButton() {
   if (session && isClient) {
     return (
       <>
-        <div className="hidden lg:flex flex flex-row gap-4 px-2">
+        <div className="hidden lg:flex flex-row gap-4 px-2">
         <Link href="/home/dashboard" className='content-center'>
           <RxAvatar className="inline text-2xl" />
         </Link>
