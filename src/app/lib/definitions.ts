@@ -165,3 +165,22 @@ export type Session = {
     email: string;
   } | null
 }
+
+export type UserData = {
+  username: string;
+  user_id: string;
+  firstname: string;
+  lastname: string;
+  profile_image_url: string | undefined;
+  seller_email: string | undefined;
+  address: string | undefined;
+  introduction: string | undefined;
+}
+
+export type ProductFormErrors = {
+  name?: string;
+  price?: string | number;
+  quantity?: string | number;
+  description?: string;
+  category_id?: string;
+}
