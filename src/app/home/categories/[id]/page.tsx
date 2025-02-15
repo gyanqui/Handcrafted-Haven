@@ -3,8 +3,12 @@ import Link from "next/link";
 import { listCategories, listProductsByCategoryId } from "@/app/lib/data";
 import ProductWrapper from "@/app/ui/home/ProductWrapper";
 
-export default async function Page({params}: {params: {id: string}}) {
-  const id = params.id
+type Params = {
+  id: string;
+}
+
+export default async function Page({params}: {params: Promise<Params>}) {
+  const {id} = await params
   const categories = await listCategories()
   const productsByCategory = await listProductsByCategoryId(id)
   const category = categories.find(category => category.category_id === id);

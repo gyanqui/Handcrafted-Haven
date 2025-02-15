@@ -10,7 +10,8 @@ import {
   ArtisanStoryProps,
   ProductProps,
   CategoryCardProps,
-  UserData
+  UserData,
+  Seller
 } from "./definitions";
 
 const query = postgres({ ssl: "require" });
@@ -263,7 +264,7 @@ export async function addProduct(formData: ProductFormValues) {
   }
 }
 
-export async function getArtisanStory(): Promise<ArtisanStoryProps | null> {
+export async function getArtisanStory() {
   try {
     const data = await sql<ArtisanStoryProps>`
       SELECT s.seller_id, s.introduction, u.firstname, u.lastname, u.profile_image_url
@@ -369,7 +370,7 @@ export async function listProductsByCategoryId(
   category_id: string
 ) {
   try {
-    const data = await sql<ProductProps[]>`
+    const data = await sql<ProductProps>`
       SELECT 
         p.product_id, 
         p.name, 

@@ -3,10 +3,9 @@ import CategoryNav from "../ui/home/CategoryNav";
 import PromotionWrapper from "../ui/home/PromotionWrapper";
 import { listCategories } from "../lib/data";
 import { getArtisanStory } from "../lib/data";
-import { ArtisanStoryProps, CategoryCardProps } from "../lib/definitions";
 
 export default async function Page() {
-  const categories: CategoryCardProps[] | [] = await listCategories()
+  const categories= await listCategories()
   const newItems = [
     {
       product_id: "1",
@@ -55,7 +54,7 @@ export default async function Page() {
     },
   ];
 
-  const artisan: ArtisanStoryProps | null = await getArtisanStory();
+  const artisan= await getArtisanStory();
 
   return (
     <div className="min-w-[390px]">

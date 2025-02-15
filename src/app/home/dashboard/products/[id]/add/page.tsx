@@ -5,7 +5,7 @@ type Params = {
   id: string;
 };
 
-export default async function Page({ params }: { params: Params }) {
+export default async function Page({ params }: { params: Promise<Params> }) {
   const {id: user_id} = await params;
 
   return (
@@ -29,7 +29,7 @@ async function AsyncWrapper({ user_id }: { user_id: string }) {
       {seller && categories && user_id && (
         <AddProductForm
           categories={categories}
-          seller_id={seller?.seller_id || null}
+          seller_id={seller?.seller_id || undefined}
           user_id={user_id}
         />
       )}

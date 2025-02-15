@@ -15,11 +15,7 @@ import Link from "next/link";
 import Form from "next/form";
 import { Session } from "@/app/lib/definitions";
 
-export default function TopNav({
-  session,
-}: {
-  session: Session;
-}) {
+export default function TopNav({ session }: {session?: Session}) {
   const [isOpen, setIsOpen] = useState(false); // side menu open status
   const toggleOpen = () => setIsOpen((current) => !current); // toggle side menu
 
@@ -93,7 +89,7 @@ export default function TopNav({
       </Form>
 
       {/* management dashboard */}
-      {session && (
+      {session?.user && (
         <div className="hidden lg:block">
           <div className="flex flex-row gap-4 px-2">
             <Link href="/home/dashboard">
@@ -129,7 +125,7 @@ export default function TopNav({
         closable={false}
         style={{ backgroundColor: "black", color: "white" }}
       >
-        <SideMenu toggleOpen={toggleOpen} session={session}/>
+        <SideMenu toggleOpen={toggleOpen} session={session} />
       </Drawer>
     </div>
   );

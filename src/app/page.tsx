@@ -7,11 +7,10 @@ import {
 } from "@/app/ui/landing/PromotionComponents";
 import Footer from "./ui/landing/footer";
 import { getArtisanStory, listCategories } from "./lib/data";
-import { ArtisanStoryProps } from "./lib/definitions";
 import { CategoryCardProps } from "./lib/definitions";
 
 export default async function Home() {
-  const artisan: ArtisanStoryProps | null = await getArtisanStory()
+  const artisan= await getArtisanStory()
   const categories: CategoryCardProps[] | [] = await listCategories()
 
   return (
