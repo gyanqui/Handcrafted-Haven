@@ -111,3 +111,14 @@ export type Session = {
     email: string;
   } | null
 }
+
+export type UserData = {
+  username: string;
+  user_id: string;
+  firstname: string;
+  lastname: string;
+  profile_image_url: string;
+  seller_email: string;
+  address: string;
+  introduction: string;
+}

@@ -16,9 +16,7 @@ import Form from 'next/form'
 import { SessionProvider } from "next-auth/react";
 import { UserButton } from "./UserButton";
 import { Session } from "@/app/lib/definitions";
-// import UserButtonServer from '@/app/ui/SignOut.Server';
 
-// export default function TopNav() {
   export default function TopNav({
     session,
   }: {

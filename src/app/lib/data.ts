@@ -1,6 +1,9 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
+import {
+  UserData
+} from "./definitions";
 
 export async function listCategories() {
   try {
@@ -91,5 +94,28 @@ export async function searchReviews(query: string) {
   } catch (error) {
     console.error('Failed to get reviews search result: ', error)
     return []
+  }
+}
+export async function getUserBasicDataByEmail(email: string) {
+  try {
+    if (!email) return;
+    const data = await sql<UserData>`
+      SELECT u.username, 
+      u.user_id, 
+      u.firstname, 
+      u.lastname, 
+      u.profile_image_url, 
+      COALESCE(s.seller_email, 'Unknown') AS seller_email, 
+      COALESCE(s.address, 'Unknown') AS address, 
+      COALESCE(s.introduction, 'Unknown') AS introduction
+      FROM users u
+      LEFT JOIN sellers s ON u.user_id = s.user_id
+
+      WHERE u.email = ${email}
+    `;
+    return data.rows[0];
+  } catch (error) {
+    console.error("Failed to get the user's basic data: ", error);
+    return null;
   }
 }

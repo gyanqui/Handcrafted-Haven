@@ -10,7 +10,8 @@ export default async function Page() {
             redirect('/home/login')
         )
     }
-    return (
-        <>Dashboard page</>
-    )
+    redirect('dashboard/profile')
+    // return (
+    //     <>Dashboard page</>
+    // )
 }

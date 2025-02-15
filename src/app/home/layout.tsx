@@ -11,7 +11,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
       <div>
         <TopNav session={session ? session : null}/>
       </div>
-      <div className="flex-grow mx-auto">{children}</div>
+      <div className="flex-grow mx-0">{children}</div>
       <div>
         <Footer />
       </div>
