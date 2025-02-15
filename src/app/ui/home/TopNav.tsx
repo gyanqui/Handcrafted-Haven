@@ -14,8 +14,14 @@ import { useState } from "react";
 import Link from "next/link";
 import Form from "next/form";
 import { Session } from "@/app/lib/definitions";
+import { SessionProvider } from "next-auth/react";
+import { UserButton } from "./UserButton";
+// import UserButtonServer from '@/app/ui/SignOut.Server';
 
 export default function TopNav({ session }: {session?: Session}) {
+  
+  
+  // const session = useSession();
   const [isOpen, setIsOpen] = useState(false); // side menu open status
   const toggleOpen = () => setIsOpen((current) => !current); // toggle side menu
 
@@ -88,24 +94,11 @@ export default function TopNav({ session }: {session?: Session}) {
         </button>
       </Form>
 
-      {/* management dashboard */}
-      {session?.user && (
-        <div className="hidden lg:block">
-          <div className="flex flex-row gap-4 px-2">
-            <Link href="/home/dashboard">
-              <RxAvatar className="inline text-2xl" />
-            </Link>
-          </div>
-        </div>
-      )}
-
       {/* sign out  */}
       {session ? (
-        <div className="hidden lg:block">
-          <button className="bg-black text-white rounded-md px-2 py-1 w-20">
-            Log Out
-          </button>
-        </div>
+        <SessionProvider>
+          <UserButton/>
+        </SessionProvider>
       ) : (
         <div className="hidden lg:block">
           <Link href="/home/login">

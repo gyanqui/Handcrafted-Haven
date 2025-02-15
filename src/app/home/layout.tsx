@@ -8,6 +8,7 @@ export const experimental_ppr = true;
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const session = await auth() as Session
   
+  
   return (
     <div className="flex flex-col max-w-screen min-h-screen">
       <div>

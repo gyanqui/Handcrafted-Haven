@@ -45,18 +45,27 @@ export default function SideMenu({ toggleOpen, session }: SideMenuProps) {
           </Link>
         </div>
         {session ? (
+          
           <div>
-            <SlLogout className="inline m-4" />
-            Log Out
+            <Link href={'/api/auth/signout'}>
+              <SlLogout className="inline m-4" />
+              Log Out
+            </Link>
           </div>
         ) : (
           <Link href="/home/login" onClick={toggleOpen}>
             <div>
-              <SlLogout className="inline m-4" />
+                <SlLogout className="inline m-4" />
               Log In
             </div>
           </Link>
         )}
+        {/* <div>
+          <SlLogout className="inline m-4" />
+            Log Out
+          </div> */}
+
+        
       </div>
 
       {/* close button */}
