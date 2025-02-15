@@ -6,13 +6,18 @@ import {
   NewPopularCard,
 } from "@/app/ui/landing/PromotionComponents";
 import Footer from "./ui/landing/footer";
+import { auth } from "@/auth";
+import { SessionProvider } from "next-auth/react";
 import { getArtisanStory } from "./lib/data";
 
 export default async function Home() {
+  const session = await auth();
   const artisan = await getArtisanStory()
   return (
     <>
+    <SessionProvider session={session}>
       <HeroSection />
+    </SessionProvider>
       <div className="p-5 bg-white md:h-96 lg:h-[450px]">
         <Heading content="New Arrivals" />
         <div className="flex justify-evenly my-5">

@@ -107,7 +107,8 @@ export type ReviewWrapperProps = {
 
 export type SideMenuProps = {
   toggleOpen: () => void;
-};
+  session: Session | null
+}
 
 export type CategoryCardProps = {
   category_id: string;
@@ -158,3 +159,9 @@ export type ArtisanStoryProps = {
   lastname: string | null;
   profile_image_url : string | null;
 };
+
+export type Session = {
+  user: {
+    email: string;
+  } | null
+}

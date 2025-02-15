@@ -5,7 +5,7 @@ import { poppins } from "../font";
 import { LuUsersRound } from "react-icons/lu";
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
-import { RxAvatar } from "react-icons/rx";
+// import { RxAvatar } from "react-icons/rx";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import SideMenu from "./SideMenu";
@@ -13,8 +13,19 @@ import { Drawer } from "antd";
 import { useState } from "react";
 import Link from "next/link";
 import Form from 'next/form'
+import { SessionProvider } from "next-auth/react";
+import { UserButton } from "./UserButton";
+import { Session } from "@/app/lib/definitions";
+// import UserButtonServer from '@/app/ui/SignOut.Server';
 
-export default function TopNav() {
+// export default function TopNav() {
+  export default function TopNav({
+    session,
+  }: {
+    session: Session | null;
+  }) {
+  
+  // const session = useSession();
   const [isOpen, setIsOpen] = useState(false); // side menu open status
   
   const toggleOpen = () => setIsOpen((current) => !current); // toggle side menu
@@ -87,21 +98,20 @@ export default function TopNav() {
         </button>
       </Form>
 
-      {/* management dashboard */}
-      <div className="hidden lg:block">
-        <div className="flex flex-row gap-4 px-2">
-          <Link href="/home/dashboard">
-            <RxAvatar className="inline text-2xl" />
+      {/* sign out  */}
+      {session ? (
+        <SessionProvider>
+          <UserButton/>
+        </SessionProvider>
+      ) : (
+        <div className="hidden lg:block">
+          <Link href="/home/login">
+            <button className="bg-black text-white rounded-md px-2 py-1 w-20">
+              Log In
+            </button>
           </Link>
         </div>
-      </div>
-
-      {/* sign out  */}
-      <div className="hidden lg:block">
-        <button className="bg-black text-white rounded-md px-2 py-1">
-          Log Out
-        </button>
-      </div>
+      )}
 
       {/* side menu */}
       <Drawer
@@ -112,7 +122,7 @@ export default function TopNav() {
         closable={false}
         style={{ backgroundColor: "black", color: "white" }}
       >
-        <SideMenu toggleOpen={toggleOpen} />
+        <SideMenu toggleOpen={toggleOpen} session={session}/>
       </Drawer>
     </div>
   );

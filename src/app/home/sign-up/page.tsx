@@ -1,4 +1,4 @@
-import HandCraftedLogo from '@/app/ui/handcrafted-logo';
+// import HandCraftedLogo from '@/app/ui/handcrafted-logo';
 import SignUpForm from '@/app/ui/sign-up-form';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -9,16 +9,18 @@ export const metadata: Metadata = {
  
 export default function SignUpPage() {
   return (
-    <main className="flex items-center justify-center md:h-screen">
-      <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4">
-        <div className="flex h-20 w-full items-end rounded-lg bg-custom-yellow p-3 md:h-32 ">
+    // <main className="flex items-center justify-center md:h-screen">
+    <main className="flex items-center justify-center md:h-full">
+      {/* <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4"> */}
+      <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-30">
+        {/* <div className="flex h-20 w-full items-end rounded-lg bg-custom-yellow p-3 md:h-32 ">
           <div className="w-32 text-white md:w-36 ">
             <HandCraftedLogo />
           </div>
-        </div>
+        </div> */}
         <SignUpForm />
         <div>
-            <Link href='/login'>
+            <Link href='/home/login'>
                 <span className='text-blue-500 hover:text-purple-500 text-sm mt-5 mb-3 px-4 '>
                     Already have an account?
                 </span>
