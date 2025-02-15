@@ -1,13 +1,14 @@
 import { MdClose } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
-import { BsCart } from "react-icons/bs";
+// import { BsCart } from "react-icons/bs";
 import { LuUsersRound } from "react-icons/lu";
 import { AiOutlineProduct } from "react-icons/ai";
 import { SlLogout } from "react-icons/sl";
 import Link from "next/link";
 import { SideMenuProps } from "@/app/lib/definitions";
 
-export default function SideMenu({ toggleOpen }: SideMenuProps) {
+// export default function SideMenu({ toggleOpen }: SideMenuProps) {
+  export default function SideMenu({ toggleOpen, session }: SideMenuProps) {
   return (
     <div className="bg-black text-custom-yellow flex flex-col items-center h-full justify-between">
       {/* logo */}
@@ -37,10 +38,26 @@ export default function SideMenu({ toggleOpen }: SideMenuProps) {
           Products
           </Link>
         </div>
-        <div>
+        {session ? (
+          <div>
+            <Link href={'/api/auth/signout'}>
+              <SlLogout className="inline m-4" />
+              Log Out
+            </Link>
+          </div>
+        ) : (
+          <Link href="/home/login" onClick={toggleOpen}>
+            <div>
+              <SlLogout className="inline m-4" />
+              Log In
+            </div>
+          </Link>
+        )}
+        {/* <div>
           <SlLogout className="inline m-4" />
           Log Out
-        </div>
+        </div> */}
+
       </div>
 
       {/* close button */}

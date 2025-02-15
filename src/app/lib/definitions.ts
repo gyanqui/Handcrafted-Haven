@@ -94,6 +94,7 @@ export type ReviewWrapperProps = {
 
 export type SideMenuProps = {
   toggleOpen: () => void;
+  session: Session | null
 }
 
 export type CategoryCardProps = {
@@ -104,4 +105,9 @@ export type CategoryCardProps = {
 
 export type CategoryNavProps = {
   categories: CategoryCardProps[]
+}
+export type Session = {
+  user: {
+    email: string;
+  } | null
 }

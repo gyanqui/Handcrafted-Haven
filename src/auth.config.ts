@@ -1,6 +1,4 @@
 import type { NextAuthConfig } from 'next-auth';
- 
-// export const BASE_PATH = '/api/auth';
 
 export const authConfig = {
   pages: {
@@ -26,14 +24,6 @@ export const authConfig = {
       else if (new URL(url).origin === baseUrl) return url;
       return baseUrl;
     },
-    // async redirect({ url, baseUrl }) {
-    //   // Allows relative callback URLs
-    //   if (url.startsWith("/")) return `${baseUrl}${url}`
-    //   // Allows callback URLs on the same origin
-    //   else if (new URL(url).origin === baseUrl) return url
-    //   return baseUrl
-    // },
-    // async jwt({ token, account, profile, user }) {
     async jwt({ token, user }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
       return {...token, ...user};
@@ -47,6 +37,5 @@ export const authConfig = {
     },
   },
   secret: process.env.AUTH_SECRET,
-  // basePath: BASE_PATH,
   providers: [], // Add providers with an empty array for now
 } satisfies NextAuthConfig;

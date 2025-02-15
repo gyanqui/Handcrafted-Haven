@@ -27,15 +27,15 @@ export function  UserButton() {
   if (session && isClient) {
     return (
       <>
-        <div className="flex flex-row gap-4 px-2">
-        <Link href="/home/dashboard">
+        <div className="hidden lg:flex flex flex-row gap-4 px-2">
+        <Link href="/home/dashboard" className='content-center'>
           <RxAvatar className="inline text-2xl" />
         </Link>
-        </div>
-      <div>
-        {/* {session?.user?.name} */}
         <button onClick={() => {signOut()}} className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">Sign Out</button>
-      </div>
+        </div>
+      {/* <div> */}
+        {/* {session?.user?.name} */}
+      {/* </div> */}
       </>
     )
   }
