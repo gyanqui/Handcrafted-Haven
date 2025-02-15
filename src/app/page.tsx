@@ -8,9 +8,11 @@ import {
 import Footer from "./ui/landing/footer";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
+import { getArtisanStory } from "./lib/data";
 
 export default async function Home() {
   const session = await auth();
+  const artisan = await getArtisanStory()
   return (
     <>
     <SessionProvider session={session}>
@@ -24,7 +26,7 @@ export default async function Home() {
           <ArrivalCard />
         </div>
       </div>
-      <ArtisanStory />
+      {artisan && <ArtisanStory artisan={artisan}/>}
       <div className="bg-white p-5 md:flex justify-evenly">
         <NewPopularCard />
         <NewPopularCard />

@@ -1,6 +1,5 @@
 import { MdClose } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
-// import { BsCart } from "react-icons/bs";
 import { LuUsersRound } from "react-icons/lu";
 import { AiOutlineProduct } from "react-icons/ai";
 import { SlLogout } from "react-icons/sl";
@@ -13,7 +12,7 @@ import { SideMenuProps } from "@/app/lib/definitions";
     <div className="bg-black text-custom-yellow flex flex-col items-center h-full justify-between">
       {/* logo */}
       <div>
-        <Link href="/home" onClick={toggleOpen}>
+        <Link href="/home" onClick={toggleOpen} className="text-custom-yellow active:text-custom-grey">
           <h1 className="font-extrabold text-4xl text-center">Handcrafted Haven</h1>
         </Link>
       </div>
