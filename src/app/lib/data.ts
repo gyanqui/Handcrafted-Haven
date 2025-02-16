@@ -3,22 +3,22 @@
 import { sql } from "@vercel/postgres";
 import { v4 as uuidv4 } from "uuid";
 import postgres from "postgres";
-import { 
-  Seller, 
-  Product, 
-  Review, 
-  ProductFormValues, 
-  ArtisanStoryProps, 
+import {
+  Seller,
+  Product,
+  Review,
+  ProductFormValues,
+  ArtisanStoryProps,
   ProductProps,
   SingleCategory,
   ProductPromotion,
   UserData,
+  SellerFormValues,
 } from "./definitions";
 
 const query = postgres({ ssl: "require" });
 
 export async function fetchNewProducts() {
-  
   try {
     const data = await query<ProductPromotion[]>`
       SELECT 
@@ -33,7 +33,7 @@ export async function fetchNewProducts() {
       GROUP BY p.product_id
       ORDER BY p.created_at DESC
       LIMIT 3;`;
-      
+
     return data;
   } catch (error) {
     console.log(error);
@@ -42,7 +42,6 @@ export async function fetchNewProducts() {
 }
 
 export async function fetchPopularProducts() {
-  
   try {
     const data = await query<ProductPromotion[]>`
       SELECT 
@@ -264,14 +263,14 @@ export async function getUserBasicDataByUserId(user_id: string) {
 
 export async function getSellerIdByUserId(user_id: string) {
   try {
-    const data = await sql<{seller_id: string}>`
+    const data = await sql<{ seller_id: string }>`
           SELECT s.seller_id
           FROM sellers s
           JOIN users u ON s.user_id = u.user_id
     
           WHERE u.user_id = ${user_id}
         `;
-        
+
     return data.rows[0];
   } catch (error) {
     console.error("Failed to get seller ID by user ID: ", error);
@@ -292,7 +291,7 @@ export async function addProduct(formData: ProductFormValues) {
   } = formData;
 
   const newSellerId = seller_id || uuidv4();
-  const productId = uuidv4()
+  const productId = uuidv4();
   try {
     await sql`
       INSERT INTO products (product_id, name, price, quantity, description, image_url, category_id, seller_id, created_at)
@@ -420,9 +419,7 @@ export async function fetchReviewsBySellerId(sellerId: string) {
   }
 }
 
-export async function listProductsByCategoryId(
-  category_id: string
-) {
+export async function listProductsByCategoryId(category_id: string) {
   try {
     const data = await sql<ProductProps>`
       SELECT 
@@ -445,7 +442,6 @@ export async function listProductsByCategoryId(
   }
 }
 
-
 export async function getUserBasicDataByEmail(email: string) {
   try {
     if (!email) return;
@@ -467,5 +463,21 @@ export async function getUserBasicDataByEmail(email: string) {
   } catch (error) {
     console.error("Failed to get the user's basic data: ", error);
     return null;
+  }
+}
+
+export async function addSeller(formData: SellerFormValues) {
+  try {
+    if (!formData) return;
+    const newSellerId = uuidv4();
+    const { seller_email, address, introduction, status, user_id } = formData;
+    await sql`
+      INSERT INTO sellers (seller_id, seller_email, address, status, introduction, user_id)
+      VALUES (${newSellerId}, ${seller_email}, ${address}, ${status}, ${introduction}, ${user_id} )
+      ON CONFLICT (seller_id) DO NOTHING
+    `;
+  } catch (error) {
+    console.error("Failed to add a seller: ", error);
+    return;
   }
 }

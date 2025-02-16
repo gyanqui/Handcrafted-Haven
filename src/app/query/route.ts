@@ -1,8 +1,8 @@
 import { sql } from "@vercel/postgres";
-const user_id = "3958dc9e-712f-4377-85e9-fec4b6a6442a";
 async function listData() {
   const data = await sql`
-    SELECT * from products`
+    SELECT * FROM sellers  
+  `
   return data.rows;
 }
 

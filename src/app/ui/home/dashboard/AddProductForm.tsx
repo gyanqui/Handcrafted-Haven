@@ -64,7 +64,7 @@ export default function AddProductForm({
 
   return (
     <div className="flex flex-col items-center max-w-[600px] mx-auto">
-      <h1 className="text-2xl font-bold">Add a Product</h1>
+      <h1 className="text-2xl font-bold mt-4">Add a Product</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full p-4">
         {/* product name */}
         <div className="flex flex-col">
