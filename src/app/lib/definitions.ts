@@ -199,3 +199,11 @@ export type ProductFormErrors = {
   description?: string;
   category_id?: string;
 }
+
+export type SellerFormValues = {
+    seller_email: string;
+    address: string;
+    introduction: string;
+    status: "active" | "inactive" | "suspended";
+    user_id: string;
+}

@@ -1,38 +1,41 @@
 import AddProductForm from "@/app/ui/home/dashboard/AddProductForm";
+import AddSellerForm from "@/app/ui/home/dashboard/AddSellerForm";
 import { getSellerIdByUserId, listCategories } from "@/app/lib/data";
+import { auth } from "@/auth";
 
-type Params = {
-  id: string;
-};
+export default async function Page() {
+  const session = await auth();
 
-export default async function Page({ params }: { params: Promise<Params> }) {
-  const {id: user_id} = await params;
+  if (!session || !session.user) {
+    return <p>Loading</p>;
+  }
 
-  return (
-    <>
-      {user_id ? (
-        <AsyncWrapper user_id={user_id} />
-      ) : (
-        <p>Loading</p>
-      )}
-    </>
-  );
-}
-
-async function AsyncWrapper({ user_id }: { user_id: string }) {
+  const { user_id, email }: { user_id?: string; email?: string } = session.user;
   const [seller, categories] = await Promise.all([
     getSellerIdByUserId(user_id),
     listCategories(),
   ]);
+
   return (
-    <div>
-      {seller && categories && user_id && (
-        <AddProductForm
-          categories={categories}
-          seller_id={seller?.seller_id || undefined}
-          user_id={user_id}
-        />
+    <>
+      {user_id ? (
+        <>
+          {!seller ? (
+            <AddSellerForm user_id={user_id} email={email} />
+          ) : (
+            categories &&
+            user_id && (
+              <AddProductForm
+                categories={categories}
+                seller_id={seller?.seller_id || undefined}
+                user_id={user_id}
+              />
+            )
+          )}
+        </>
+      ) : (
+        <p>Loading</p>
       )}
-    </div>
+    </>
   );
 }
