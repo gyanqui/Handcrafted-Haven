@@ -24,10 +24,10 @@ export default async function Page() {
     
     return (
         <>
-        <p className="mx-6 my-4">
+        {/* <p className="mx-6 my-4">
             User ID: {session?.user.user_id}
 
-        </p>
+        </p> */}
         <section className="mx-6 my-4 border-2 border-custom-grey rounded-lg">
                 <div className="my-2 flex justify-center">
                     <div>

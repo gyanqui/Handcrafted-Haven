@@ -8,6 +8,7 @@ import { auth } from "@/auth";
 export default async function Layout({children}: {children: React.ReactNode}) {
    const session = await auth();
    const email: string | null = session?.user?.email ?? null;
+   console.log(session);
    
     const user = email && await getUserBasicDataByEmail(email)
     
