@@ -1,10 +1,10 @@
-'use client'
-import { useParams } from "next/navigation"
 
-export default function Page() {
-    const params = useParams();
-    const id = params.id;
-    return (
-        <>Artisan ID <span className="font-bold">{id}</span> page</>
-    )
-}
+export default async function Page(props: { params: Promise<{ id: string }>}) {
+    const param = await props.params;
+    const id = param.id
+
+return (
+    <p> page deploy {id}</p>
+)
+
+};
