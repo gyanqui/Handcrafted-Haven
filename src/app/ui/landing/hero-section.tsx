@@ -7,8 +7,13 @@ import Link from "next/link";
 import Form from "next/form";
 import { CategoryNav } from "./categoryNav";
 import { CategoryCardProps } from "@/app/lib/definitions";
+import { SessionProvider } from "next-auth/react";
+import { UserButton } from '../home/UserButton';
+import { useSession } from "next-auth/react";
 
 export default function HeroSection({categories}: {categories: CategoryCardProps[] | []}) {
+  const session = useSession().data;
+
   return (
     <div className="bg-custom-yellow md:px-12 md:pt-12 lg:px-24 lg:pt-24">
       <div className="bg-white md:rounded-t-3xl px-2 pt-2 md:px-4 md:pt-4 lg:px-6 lg:pt-6 flex flex-col gap-4">
@@ -71,11 +76,17 @@ export default function HeroSection({categories}: {categories: CategoryCardProps
             </Form>
 
             {/* login button */}
-            <div>
+            <SessionProvider session={session}>
+              <UserButton/>
+            </SessionProvider>
+            
+
+            {/* <div>
               <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-custom-yellow hover:text-black transition-all duration-300">
                 <Link href='/home/login'>Log In</Link>
               </button>
-            </div>
+            </div> */}
+
           </div>
         </div>
         {/* header section(end) */}

@@ -54,7 +54,7 @@ export async function createUser(prevState: State, formData: FormData) {
 
     try {
         await sql`
-            INSERT INTO users (username, created_at, email, password, firstname, lastname, user_type )
+            INSERT INTO users (username, created_at, email, password, firstname, lastname, type )
             VALUES (${username}, ${created_at}, ${email}, ${hashedPassword}, ${firstname}, ${lastname}, 'User' )
         `;
     } catch (error) {

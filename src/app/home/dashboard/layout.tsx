@@ -24,7 +24,7 @@ export default async function Layout({children}: {children: React.ReactNode}) {
                 {/* managements */}
                 <div className="flex-grow flex flex-col gap-8 py-4 border border-custom-yellow m-1 px-4 rounded-lg md:text-xl">
                     <div>
-                        <Link href={`/home/dashboard/profile/${user && user?.user_id}`}>
+                        <Link href={`/home/dashboard/profile`}>
                             <HiOutlineIdentification className="inline mr-2"/>Profile
                         </Link>
                     </div>

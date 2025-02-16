@@ -4,13 +4,19 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
 // import { revalidatePath } from 'next/cache';
-// import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
+import { auth } from '@/auth';
 
 export const metadata: Metadata = {
     title : 'Login'
 }
  
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth();
+  if (session) {
+    redirect('/home');
+  }
+
   return (
     <main className="flex items-center justify-center md:h-full">
       <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-30">

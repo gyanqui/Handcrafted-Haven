@@ -107,7 +107,7 @@ export type ReviewWrapperProps = {
 
 export type SideMenuProps = {
   toggleOpen: () => void;
-  session?: Session;
+  session?: Session | null;
 };
 
 export type CategoryCardProps = {

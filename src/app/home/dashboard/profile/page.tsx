@@ -28,7 +28,10 @@ export default async function Page() {
             User ID: {session?.user.user_id}
 
         </p> */}
-        <section className="mx-6 my-4 border-2 border-custom-grey rounded-lg">
+        <fieldset className="bg-gray-50 mx-4 my-4 rounded-xl">
+            <legend className="mx-6 text-xl ">Personal information</legend>
+        {/* <section className="mx-6 my-4 border-2 border-custom-grey rounded-lg"> */}
+        <section className="mx-6 my-4 border-2 rounded-lg">
                 <div className="my-2 flex justify-center">
                     <div>
                     {/* <b>Your Image</b>: */}
@@ -96,6 +99,7 @@ export default async function Page() {
                 {/* </p> */}
             </div>
         </section>
+        </fieldset>
         </>
     )
 }
