@@ -12,7 +12,7 @@ export default function HeroSection() {
       <div className="bg-white md:rounded-t-3xl p-2 md:p-4 lg:p-6 flex flex-col gap-4">
         {/* header section(begin) */}
         <div className="flex flex-col lg:flex-row w-full justify-between">
-          <div className="flex flex-col md:flex-row flex-grow">
+          <nav className="flex flex-col md:flex-row flex-grow">
             {/* logo section */}
             <div className="flex flex-row justify-center md:justify-start items-center">
               <Link href="/">
@@ -45,7 +45,7 @@ export default function HeroSection() {
                 <li>Reviews</li>
               </Link>
             </ul>
-          </div>
+          </nav>
           <div className="flex flex-row">
             {/* search bar */}
             <Form action='/home/search'

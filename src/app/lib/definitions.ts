@@ -22,6 +22,14 @@ export type Product = {
   category_id: UUID;
 }
 
+export type ProductPromotion = {
+  product_id: UUID;
+	name: string;
+	image_url: string;
+	price: number;
+  rating: number;
+}
+
 export type User = {
   user_id: string;
   username: string;
@@ -38,6 +46,7 @@ export type Category = {
   category_id: string;
   name: string;
 };
+
 export type Rating = {
   rating_id: string;
   title: string;
@@ -109,6 +118,12 @@ export type SideMenuProps = {
   toggleOpen: () => void;
 };
 
+export type SingleCategory = {
+  category_id: UUID;
+  category: string;
+  category_url: string;
+}
+
 export type CategoryCardProps = {
   category_id: string;
   category: string;
@@ -152,9 +167,9 @@ export type ProductFormValues = {
 };
 
 export type ArtisanStoryProps = {
-  seller_id: string | null;
-  introduction: string | null;
-  firstname: string | null;
-  lastname: string | null;
-  profile_image_url : string | null;
+  seller_id: UUID
+  introduction: string;
+  firstname: string;
+  lastname: string;
+  profile_image_url : string;
 };

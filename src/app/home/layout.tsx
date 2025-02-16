@@ -6,13 +6,9 @@ export const experimental_ppr = true;
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col max-w-screen min-h-screen">
-      <div>
-        <TopNav />
-      </div>
-      <div className="flex-grow bg-white w-full">{children}</div>
-      <div>
-        <Footer />
-      </div>
+      <TopNav />
+      <main className="flex-grow bg-white ">{children}</main>
+      <Footer />
     </div>
   );
 }
