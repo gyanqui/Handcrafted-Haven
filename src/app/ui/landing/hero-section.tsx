@@ -14,7 +14,7 @@ export default function HeroSection({categories}: {categories: CategoryCardProps
       <div className="bg-white md:rounded-t-3xl px-2 pt-2 md:px-4 md:pt-4 lg:px-6 lg:pt-6 flex flex-col gap-4">
         {/* header section(begin) */}
         <div className="flex flex-col lg:flex-row w-full justify-between">
-          <div className="flex flex-col md:flex-row flex-grow">
+          <nav className="flex flex-col md:flex-row flex-grow">
             {/* logo section */}
             <div className="flex flex-row justify-center md:justify-start items-center">
               <Link href="/">
@@ -47,7 +47,7 @@ export default function HeroSection({categories}: {categories: CategoryCardProps
                 <li>Reviews</li>
               </Link>
             </ul>
-          </div>
+          </nav>
           <div className="flex flex-row">
             {/* search bar */}
             <Form action='/home/search'

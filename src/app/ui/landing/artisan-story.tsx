@@ -1,9 +1,11 @@
-import { ArtisanStoryProps } from "@/app/lib/definitions";
 import Link from "next/link";
 import { poppins } from "../font";
 import Image from "next/image";
+import { getArtisanStory } from "@/app/lib/data";
 
-export default function ArtisanStory({artisan}:{artisan: ArtisanStoryProps}) {
+export default async function ArtisanStory() {
+  const artisan = await getArtisanStory()
+
   return (
     <div className={`bg-custom-yellow py-8 md:px-12 lg:px-24 md:py-4 lg:py-8`}>
       <h2
@@ -15,25 +17,25 @@ export default function ArtisanStory({artisan}:{artisan: ArtisanStoryProps}) {
         <div className="max-w-72 h-auto flex-none mb-8 md:mb-0 md:mr-8">
           <Image
             src={
-              artisan?.profile_image_url || "/placeholder/user-placeholder.webp"
+              artisan.profile_image_url || "/placeholder/user-placeholder.webp"
             }
             width={300}
             height={400}
-            alt={`Artisan ${artisan?.firstname} ${artisan?.lastname}'s photo`}
+            alt={`Artisan ${artisan.firstname} ${artisan.lastname}'s photo`}
             className="object-contain"
           />
         </div>
         <div className={`flex flex-col justify-between`}>
           <div className="h-[250px] overflow-hidden">
             <h3 className={`${poppins.className} text-2xl mb-4`}>
-              {artisan?.firstname} {artisan?.lastname}
+              {artisan.firstname} {artisan.lastname}
             </h3>
             <p className="leading-8 p-2 md:p-0 indent-12">
-              {artisan?.introduction}
+              {artisan.introduction}
             </p>
           </div>
           <div className="flex justify-center md:justify-end">
-            <Link href={`/home/artisans/${artisan?.seller_id}`}>
+            <Link href={`/home/artisans/${artisan.seller_id}`}>
               <button className="bg-black text-white px-4 py-2 rounded-lg">
                 Check it out
               </button>

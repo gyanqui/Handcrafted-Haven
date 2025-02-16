@@ -1,19 +1,23 @@
 import HeroSection from "./ui/landing/hero-section";
 import ArtisanStory from "./ui/landing/artisan-story";
-import {
-  Heading,
-  ArrivalCard,
-  NewPopularCard,
-} from "@/app/ui/landing/PromotionComponents";
 import Footer from "./ui/landing/footer";
+import { 
+  fetchNewProducts,
+  fetchPopularProducts
+} from "./lib/data";
+import PromotionWrapper from "./ui/home/PromotionWrapper";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
-import { getArtisanStory, listCategories } from "./lib/data";
+import { listCategories } from "./lib/data";
 import { CategoryCardProps } from "./lib/definitions";
 
 export default async function Home() {
+  const [newProducts, popularProducts ] = await Promise.all([
+    fetchNewProducts(),
+    fetchPopularProducts()
+  ]);
+  
   const session = await auth();
-  const artisan= await getArtisanStory()
   const categories: CategoryCardProps[] | [] = await listCategories()
 
   return (
@@ -22,21 +26,11 @@ export default async function Home() {
       <HeroSection categories={categories}/>
     </SessionProvider>
       <div className="p-5 bg-white md:h-96 lg:h-[450px]">
-        <Heading content="New Arrivals" />
-        <div className="flex justify-evenly my-5">
-          <ArrivalCard />
-          <ArrivalCard />
-          <ArrivalCard />
-        </div>
+        <PromotionWrapper data={newProducts} title="New Arrivals" />
       </div>
-      {artisan && <ArtisanStory artisan={artisan}/>}
-      <div className="bg-white p-5 md:flex justify-evenly">
-        <NewPopularCard />
-        <NewPopularCard />
-      </div>
-      <div>
-        <Footer />
-      </div>
+      <ArtisanStory />
+      <PromotionWrapper data={popularProducts} title="Top Products" />
+      <Footer />
     </>
   );
 }

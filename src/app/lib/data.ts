@@ -3,18 +3,67 @@
 import { sql } from "@vercel/postgres";
 import { v4 as uuidv4 } from "uuid";
 import postgres from "postgres";
-import {
-  Review,
-  Product,
-  ProductFormValues,
-  ArtisanStoryProps,
+import { 
+  Seller, 
+  Product, 
+  Review, 
+  ProductFormValues, 
+  ArtisanStoryProps, 
   ProductProps,
-  CategoryCardProps,
+  SingleCategory,
+  ProductPromotion,
   UserData,
-  Seller
 } from "./definitions";
 
 const query = postgres({ ssl: "require" });
+
+export async function fetchNewProducts() {
+  
+  try {
+    const data = await query<ProductPromotion[]>`
+      SELECT 
+	      p.product_id,
+	      name,
+	      image_url,
+	      price,
+	      ROUND(AVG(rating), 1) AS "rating"
+      FROM products p
+      INNER JOIN reviews r
+      ON r.product_id = p.product_id
+      GROUP BY p.product_id
+      ORDER BY p.created_at DESC
+      LIMIT 3;`;
+      
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error fetching data");
+  }
+}
+
+export async function fetchPopularProducts() {
+  
+  try {
+    const data = await query<ProductPromotion[]>`
+      SELECT 
+	      p.product_id,
+	      name,
+	      image_url,
+	      price,
+	      ROUND(AVG(rating), 1) AS "rating"
+      FROM products p
+      INNER JOIN reviews r
+      ON r.product_id = p.product_id
+      GROUP BY p.product_id
+      ORDER BY rating DESC
+      LIMIT 3;`;
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error fetching data");
+  }
+}
 
 export async function fetchProductById(id: string) {
   try {
@@ -65,16 +114,16 @@ export async function fetchReviewsByProductId(id: string) {
 
 export async function listCategories() {
   try {
-    const data = await sql<CategoryCardProps>`
-        SELECT category_id, category, category_url FROM categories
-        `;
+    const data = await sql<SingleCategory>`
+      SELECT 
+        category_id, 
+        category, 
+        category_url 
+      FROM categories`;
+
     return data.rows;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error("Failed to list categories: ", error.message);
-    } else {
-      console.error("Failed to list categories: ", error);
-    }
+    console.log(error);
     return [];
   }
 }
@@ -267,16 +316,21 @@ export async function addProduct(formData: ProductFormValues) {
 export async function getArtisanStory() {
   try {
     const data = await sql<ArtisanStoryProps>`
-      SELECT s.seller_id, s.introduction, u.firstname, u.lastname, u.profile_image_url
+      SELECT 
+        s.seller_id, 
+        s.introduction, 
+        u.firstname, 
+        u.lastname, 
+        u.profile_image_url
       FROM sellers s
-      JOIN users u ON s.user_id = u.user_id
-
+      JOIN users u 
+      ON s.user_id = u.user_id
       ORDER BY RANDOM()
       LIMIT 1`;
     return data.rows[0];
   } catch (error) {
     console.error("Failed to get artist story: ", error);
-    // return null;
+    throw new Error("Error fetching data");
   }
 }
 

@@ -1,17 +1,17 @@
 import { Rate } from "antd";
 import Image from "next/image";
-import { ProductProps } from "@/app/lib/definitions";
+import { ProductPromotion } from "@/app/lib/definitions";
 import Link from "next/link";
 
 export default function ProductCard({
   name,
   image_url,
   price,
-  averageRate,
-  product_id,
-}: ProductProps) {
+  rating,
+  product_id
+}: ProductPromotion) {
   return (
-    <div className="border border-custom-grey rounded-t-3xl w-[200px]">
+    <div className="border border-custom-grey rounded-3xl w-[200px]">
       <Link href={`/home/products/${product_id}`}>
         <Image
           src={image_url && (image_url.startsWith('http') || image_url.startsWith('/')) ? image_url : "/placeholder/product-placeholder.webp"}
@@ -28,11 +28,11 @@ export default function ProductCard({
             <Rate
               disabled
               allowHalf
-              defaultValue={averageRate}
+              defaultValue={rating}
               style={{ fontSize: ".9rem" }}
             />
           </div>
-          <div className="text-right text-xl font-bold px-2">
+          <div className="text-right text-xl font-bold px-2 mb-3">
             <span className="text-sm">$</span>
             {price}
           </div>
