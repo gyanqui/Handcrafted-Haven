@@ -12,11 +12,11 @@ export default function ProductWrapper({
         products.map((product) => (
           <ProductCard
             key={product.product_id}
-            product_id={product.product_id}
+            product_id={product.product_id as `${string}-${string}-${string}-${string}-${string}`}
             name={product.name}
             image_url={product.image_url}
             price={product.price}
-            averageRate={product.averageRate}
+            rating={product.averageRate}
           />
         ))}
     </div>
