@@ -3,29 +3,15 @@
 import Image from "next/image";
 import { poppins } from "../font";
 import { FaSearch } from "react-icons/fa";
-import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Form from "next/form";
+import { CategoryNav } from "./categoryNav";
+import { CategoryCardProps } from "@/app/lib/definitions";
 
-export default function HeroSection() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const router = useRouter();
-
-  const handleSearch = useDebouncedCallback((term: string) => {
-    setSearchTerm(term);
-  }, 300);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!searchTerm) return;
-    router.push(`/home/search?query=${encodeURIComponent(searchTerm)}`);
-  };
-
+export default function HeroSection({categories}: {categories: CategoryCardProps[] | []}) {
   return (
-    <div className="bg-custom-yellow md:p-12 lg:p-24">
-      <div className="bg-white md:rounded-t-3xl p-2 md:p-4 lg:p-6 flex flex-col gap-4">
+    <div className="bg-custom-yellow md:px-12 md:pt-12 lg:px-24 lg:pt-24">
+      <div className="bg-white md:rounded-t-3xl px-2 pt-2 md:px-4 md:pt-4 lg:px-6 lg:pt-6 flex flex-col gap-4">
         {/* header section(begin) */}
         <div className="flex flex-col lg:flex-row w-full justify-between">
           <div className="flex flex-col md:flex-row flex-grow">
@@ -64,8 +50,7 @@ export default function HeroSection() {
           </div>
           <div className="flex flex-row">
             {/* search bar */}
-            <form
-              onSubmit={handleSubmit}
+            <Form action='/home/search'
               className="relative flex flex-grow items-center px-2 w-fit"
             >
               <label htmlFor="search" className="sr-only">
@@ -73,9 +58,9 @@ export default function HeroSection() {
               </label>
               <input
                 type="text"
+                name="query"
                 className="border border-gray-400 rounded-3xl px-2 text-lg w-full"
                 placeholder="Search"
-                onChange={(e) => handleSearch(e.target.value)}
               />
               <button
                 type="submit"
@@ -83,11 +68,11 @@ export default function HeroSection() {
               >
                 <FaSearch />
               </button>
-            </form>
+            </Form>
 
             {/* login button */}
             <div>
-              <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-gray-500 transition-all duration-300">
+              <button className="bg-black text-white text-lg py-2 px-4 rounded-lg hover:bg-custom-yellow hover:text-black transition-all duration-300">
                 <Link href='/home/login'>Log In</Link>
               </button>
             </div>
@@ -99,6 +84,7 @@ export default function HeroSection() {
         <div className="flex justify-center relative">
           <Image
             src="/hero-image.webp"
+            priority={true}
             width={1000}
             height={700}
             alt="image of a variety of handcrafted items"
@@ -113,7 +99,12 @@ export default function HeroSection() {
           </Link>
         </div>
         {/* hero section (end) */}
+
       </div>
+        {/* category nav section (begin) */}
+        <CategoryNav categories={categories}/>
+
+        {/* category nav section (end) */}
     </div>
   );
 }

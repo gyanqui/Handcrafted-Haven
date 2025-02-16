@@ -8,13 +8,18 @@ import {
 import Footer from "./ui/landing/footer";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
+import { getArtisanStory, listCategories } from "./lib/data";
+import { CategoryCardProps } from "./lib/definitions";
 
 export default async function Home() {
   const session = await auth();
+  const artisan= await getArtisanStory()
+  const categories: CategoryCardProps[] | [] = await listCategories()
+
   return (
     <>
     <SessionProvider session={session}>
-      <HeroSection />
+      <HeroSection categories={categories}/>
     </SessionProvider>
       <div className="p-5 bg-white md:h-96 lg:h-[450px]">
         <Heading content="New Arrivals" />
@@ -24,7 +29,7 @@ export default async function Home() {
           <ArrivalCard />
         </div>
       </div>
-      <ArtisanStory />
+      {artisan && <ArtisanStory artisan={artisan}/>}
       <div className="bg-white p-5 md:flex justify-evenly">
         <NewPopularCard />
         <NewPopularCard />

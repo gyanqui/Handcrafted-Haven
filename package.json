@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.6.1",
+    "@ant-design/nextjs-registry": "^1.0.2",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@heroicons/react": "^2.2.0",
     "@vercel/postgres": "^0.10.0",
     "antd": "^5.23.3",

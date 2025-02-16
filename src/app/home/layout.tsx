@@ -1,17 +1,20 @@
 import React from "react";
 import TopNav from "../ui/home/TopNav";
 import Footer from "../ui/home/Footer";
+import { auth } from "@/auth";
+import {Session} from '../lib/definitions'
 export const experimental_ppr = true;
-import { auth } from '@/auth';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
-  const session = await auth()
+  const session = await auth() as Session
+  
+  
   return (
-    <div className="flex flex-col w-full min-h-screen">
+    <div className="flex flex-col max-w-screen min-h-screen">
       <div>
-        <TopNav session={session ? session : null}/>
+        <TopNav session={session ?? undefined} />
       </div>
-      <div className="flex-grow mx-0">{children}</div>
+      <div className="flex-grow bg-white w-full">{children}</div>
       <div>
         <Footer />
       </div>

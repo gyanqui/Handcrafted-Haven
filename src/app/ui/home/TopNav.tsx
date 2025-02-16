@@ -1,31 +1,28 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import { poppins } from "../font";
 import { LuUsersRound } from "react-icons/lu";
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
-// import { RxAvatar } from "react-icons/rx";
+import { RxAvatar } from "react-icons/rx";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import SideMenu from "./SideMenu";
 import { Drawer } from "antd";
 import { useState } from "react";
 import Link from "next/link";
-import Form from 'next/form'
+import Form from "next/form";
+import { Session } from "@/app/lib/definitions";
 import { SessionProvider } from "next-auth/react";
 import { UserButton } from "./UserButton";
-import { Session } from "@/app/lib/definitions";
+// import UserButtonServer from '@/app/ui/SignOut.Server';
 
-  export default function TopNav({
-    session,
-  }: {
-    session: Session | null;
-  }) {
+export default function TopNav({ session }: {session?: Session}) {
+  
   
   // const session = useSession();
   const [isOpen, setIsOpen] = useState(false); // side menu open status
-  
   const toggleOpen = () => setIsOpen((current) => !current); // toggle side menu
 
   return (
@@ -76,7 +73,8 @@ import { Session } from "@/app/lib/definitions";
       </div>
 
       {/* search bar */}
-      <Form action='/home/search'
+      <Form
+        action="/home/search"
         className="relative flex flex-grow items-center px-2 w-fit"
       >
         <label htmlFor="search" className="sr-only">
@@ -120,7 +118,7 @@ import { Session } from "@/app/lib/definitions";
         closable={false}
         style={{ backgroundColor: "black", color: "white" }}
       >
-        <SideMenu toggleOpen={toggleOpen} session={session}/>
+        <SideMenu toggleOpen={toggleOpen} session={session} />
       </Drawer>
     </div>
   );
