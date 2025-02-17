@@ -14,6 +14,7 @@ import {
   ProductPromotion,
   UserData,
   SellerFormValues,
+  SellerProps
 } from "./definitions";
 
 const query = postgres({ ssl: "require" });
@@ -361,9 +362,11 @@ export async function listProducts() {
   }
 }
 
+
+
 export async function fetchAllSellers() {
   try {
-    const data = await sql`
+    const data = await sql<SellerProps>`
       SELECT s.seller_id, u.profile_image_url, u.firstname, u.lastname, s.seller_email, s.address, s.introduction
       FROM sellers s
       JOIN users u ON s.user_id = u.user_id
