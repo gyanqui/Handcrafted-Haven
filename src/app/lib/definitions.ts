@@ -207,3 +207,13 @@ export type SellerFormValues = {
     status: "active" | "inactive" | "suspended";
     user_id: string;
 }
+
+export type SellerProps = {
+  seller_id: string;
+  profile_image_url: string;
+  firstname: string;
+  lastname: string;
+  seller_email: string;
+  address: string;
+  introduction: string;
+}
