@@ -17,13 +17,14 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   return (
     <>
       <section className="flex flex-col items-center my-7 gap-5">
+      <div className="relative w-full md:w-1/3 lg:w-1/5 h-[400px]">
         <Image
-          className="w-full rounded-2xl shadow-xl md:w-1/3 lg:w-1/5"
-          src={profileImage}
-          width={300}
-          height={400}
-          alt={sellerFullName + " profile image."}
+            className="object-contain rounded-2xl shadow-xl"
+            src={profileImage}
+            fill
+            alt={sellerFullName + " profile image."}
         />
+        </div>
         <aside className="mx-5 md:mx-16 lg:shadow-xl lg:rounded-2xl lg:mx-24 lg:p-5">
           <h3 className="text-2xl mb-3">{sellerFullName}</h3>
           <p className="mt-3">
