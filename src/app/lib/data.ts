@@ -381,7 +381,7 @@ export async function fetchAllSellers() {
 export async function fetchSellerById(sellerId: string) {
   try {
     const data = await query<Seller[]>`
-      SELECT u.user_id, u.firstname, u.lastname, u.email, s.seller_id, s.address, s.seller_email, s.introduction
+      SELECT u.user_id, u.firstname, u.lastname, u.email, u.profile_image_url, s.seller_id, s.address, s.seller_email, s.introduction
       FROM users u
       JOIN sellers s ON s.user_id = u.user_id
       WHERE s.seller_id = ${sellerId};

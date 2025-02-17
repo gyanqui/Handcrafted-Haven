@@ -7,8 +7,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   const { id } = await props.params;
 
   const seller = (await fetchSellerById(id)) as unknown as ArtisanCardProps;
-
-
+  
   const profileImage = seller.profile_image_url || "/placeholder/user-placeholder.webp";
   const sellerFullName = `${seller.firstname} ${seller.lastname}`; 
 
