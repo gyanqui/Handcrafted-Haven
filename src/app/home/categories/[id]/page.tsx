@@ -1,10 +1,23 @@
 import { Breadcrumb } from "antd";
 import Link from "next/link";
-import { listCategories, listProductsByCategoryId } from "@/app/lib/data";
+import { listCategories, listProductsByCategoryId, listCategory } from "@/app/lib/data";
 import ProductWrapper from "@/app/ui/home/ProductWrapper";
+import { Metadata } from "next";
 
 type Params = {
   id: string;
+}
+
+export async function generateMetadata(
+  {params}: {params: Promise<Params>}
+): Promise<Metadata> {
+  const id = (await params).id
+  const category = await listCategory(id)
+
+    return {
+      title: category?.category || "Unknown Category"
+    }
+
 }
 
 export default async function Page({params}: {params: Promise<Params>}) {

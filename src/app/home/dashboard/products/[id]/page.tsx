@@ -2,10 +2,15 @@ import ManageProductWrapper from "@/app/ui/home/dashboard/ManageProductWrapper";
 import EmptyProductCard from "@/app/ui/home/dashboard/EmptyProductCard";
 import { getUserProducts, getUserBasicDataByUserId } from "@/app/lib/data";
 import Link from "next/link";
+import { Metadata } from "next";
 
 type Params = {
   id: string;
 };
+
+export const metadata: Metadata = {
+  title: 'Product Management'
+}
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const {id: user_id} = await params;

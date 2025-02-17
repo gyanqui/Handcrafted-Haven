@@ -1,7 +1,23 @@
-import { fetchProductById, fetchReviewsByProductId } from '@/app/lib/data';
+import { fetchProductById, fetchReviewsByProductId, listProductName } from '@/app/lib/data';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Review } from '@/app/lib/definitions';
+import { Metadata } from 'next';
+
+type Params = {
+    id: string
+}
+
+export async function generateMetadata(
+    {params}: {params: Promise<Params>}
+): Promise<Metadata> {
+    const id = (await params).id;
+    const product = await listProductName(id)
+
+    return {
+        title: product?.name
+    }
+}
 
 export default async function Page(props: { params: Promise<{ id: string }>}) {
     const param = await props.params;
