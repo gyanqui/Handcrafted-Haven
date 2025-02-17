@@ -1,5 +1,4 @@
 import { fetchSellerById, fetchProductsBySellerId } from '@/app/lib/data';
-import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArtisanCardProps } from '@/app/lib/definitions';
@@ -7,14 +6,11 @@ import { ArtisanCardProps } from '@/app/lib/definitions';
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const { id } = await props.params;
 
-  // Cast the returned seller to ArtisanCardProps
-  const seller = (await fetchSellerById(id)) as ArtisanCardProps;
-  if (!seller) {
-    notFound();
-  }
+  const seller = (await fetchSellerById(id)) as unknown as ArtisanCardProps;
+
 
   const profileImage = seller.profile_image_url || "/placeholder/user-placeholder.webp";
-  const sellerFullName = `${seller.firstname} ${seller.lastname}`;
+  const sellerFullName = `${seller.firstname} ${seller.lastname}`; 
 
   const products = await fetchProductsBySellerId(id);
   
