@@ -55,7 +55,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
               >
                 <div className="bg-white p-5 rounded-xl shadow-md">
                   <Image 
-                    src={product.image_url} 
+                    src={product.image_url || '/placeholder/product-placeholder.webp'} 
                     width={300} 
                     height={200} 
                     alt={`${product.name} image`}

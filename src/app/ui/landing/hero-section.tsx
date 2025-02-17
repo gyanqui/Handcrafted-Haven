@@ -40,7 +40,7 @@ export default function HeroSection({categories}: {categories: CategoryCardProps
 
             {/* nav bar */}
             <ul
-              className={`${poppins.className} text-lg flex flex-row flex-grow justify-evenly items-center py-4 lg:py-0`}
+              className={`${poppins.className} text-lg flex flex-row flex-grow justify-evenly items-center py-4 lg:py-0 space-x-2`}
             >
               <Link href="/home/artisans" className="hover:underline">
                 <li>Artisans</li>
@@ -53,10 +53,10 @@ export default function HeroSection({categories}: {categories: CategoryCardProps
               </Link>
             </ul>
           </nav>
-          <div className="flex flex-row">
+          <div className="flex flex-row items-center">
             {/* search bar */}
             <Form action='/home/search'
-              className="relative flex flex-grow items-center px-2 w-fit"
+              className="relative flex flex-grow items-center px-2 w-fit h-[30px]"
             >
               <label htmlFor="search" className="sr-only">
                 Search
@@ -69,7 +69,7 @@ export default function HeroSection({categories}: {categories: CategoryCardProps
               />
               <button
                 type="submit"
-                className="absolute top-2 right-3 lg:top-2 lg:right-3 transform translate-y-0.5 p-1 bg-custom-yellow rounded-full"
+                className="absolute top-1 right-3 p-1 bg-custom-yellow rounded-full"
               >
                 <FaSearch />
               </button>
