@@ -48,9 +48,6 @@ export default function HeroSection({categories}: {categories: CategoryCardProps
               <Link href="/home/products" className="hover:underline">
                 <li>Products</li>
               </Link>
-              <Link href="/home/reviews" className="hover:underline">
-                <li>Reviews</li>
-              </Link>
             </ul>
           </nav>
           <div className="flex flex-row items-center">
