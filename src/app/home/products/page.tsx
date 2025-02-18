@@ -1,6 +1,11 @@
 import ProductWrapper from "@/app/ui/home/ProductWrapper"
 import { ProductProps } from "@/app/lib/definitions"
 import { listProducts } from "@/app/lib/data"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: 'Products'
+}
 export default async function Page() {
     const products: ProductProps[] = await listProducts()
     

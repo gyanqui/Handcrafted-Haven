@@ -2,6 +2,11 @@ import AddProductForm from "@/app/ui/home/dashboard/AddProductForm";
 import AddSellerForm from "@/app/ui/home/dashboard/AddSellerForm";
 import { getSellerIdByUserId, listCategories } from "@/app/lib/data";
 import { auth } from "@/auth";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Add a Product"
+}
 
 export default async function Page() {
   const session = await auth();

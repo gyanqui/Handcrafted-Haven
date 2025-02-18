@@ -3,6 +3,13 @@ import TopNav from "../ui/home/TopNav";
 import Footer from "../ui/home/Footer";
 import { auth } from "@/auth";
 import {Session} from '../lib/definitions'
+import { Metadata } from "next";
+
+export const metadata: Metadata = { 
+  title: {
+    template: '%s | Handcrafted Haven',
+    default: 'Handcrafted Haven'
+  }}
 export const experimental_ppr = true;
 
 export default async function Layout({ children }: { children: React.ReactNode }) {

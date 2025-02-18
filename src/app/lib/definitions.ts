@@ -217,3 +217,11 @@ export type SellerProps = {
   address: string;
   introduction: string;
 }
+
+export type ListCategoryProps = {
+  category: string | null;
+}
+
+export type ListProductNameProps = {
+  name: string | null
+}
