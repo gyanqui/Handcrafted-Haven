@@ -2,6 +2,11 @@ import CategoryCard from "@/app/ui/home/CategoryCard";
 import { listCategories } from "@/app/lib/data";
 import { Breadcrumb } from "antd";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title : 'Categories'
+}
 
 export default async function Page() {
   const categories = await listCategories();

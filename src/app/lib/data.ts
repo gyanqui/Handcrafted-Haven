@@ -14,7 +14,9 @@ import {
   ProductPromotion,
   UserData,
   SellerFormValues,
-  SellerProps
+  SellerProps,
+  ListCategoryProps,
+  ListProductNameProps
 } from "./definitions";
 
 const query = postgres({ ssl: "require" });
@@ -482,5 +484,34 @@ export async function addSeller(formData: SellerFormValues) {
   } catch (error) {
     console.error("Failed to add a seller: ", error);
     return;
+  }
+}
+
+
+export async function listCategory(id: string) {
+  try {
+    const data = await sql<ListCategoryProps>`
+      SELECT category from categories
+      WHERE category_id = ${id}
+      LIMIT 1
+    `
+    return data.rows[0]
+  } catch (error) {
+    console.error("Failed to list category: ", error)
+    return null
+  }
+}
+
+export async function listProductName(id: string) {
+  try {
+    const data = await sql<ListProductNameProps>`
+      SELECT name FROM products
+      WHERE product_id = ${id}
+      LIMIT 1
+    `
+    return data.rows[0]
+  } catch (error) {
+    console.error('Failed to list product name: ', error)
+    return null
   }
 }
