@@ -16,7 +16,7 @@ export default function ProductWrapper({
             name={product.name}
             image_url={product.image_url}
             price={product.price}
-            rating={product.averageRate}
+            rating={product.averagerate}
           />
         ))}
     </div>
