@@ -2,6 +2,24 @@ import { fetchSellerById, fetchProductsBySellerId } from '@/app/lib/data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArtisanCardProps } from '@/app/lib/definitions';
+import { Metadata } from "next"
+
+type Params = {
+  id: string
+}
+
+export async function generateMetadata({
+  params,}: { params: Promise<Params>}
+): Promise<Metadata> {
+  const id = (await params).id;
+  const seller = (await fetchSellerById(id)) as unknown as ArtisanCardProps;
+  const sellerFullName = `${seller.firstname} ${seller.lastname}`; 
+
+    return {
+      title: seller ? sellerFullName : 'Default Title',
+    };
+  }
+
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const { id } = await props.params;
