@@ -5,6 +5,7 @@ import { Review } from '@/app/lib/definitions';
 import { auth } from "@/auth";
 import ReviewForm from '@/app/ui/home/ProductDetails/ReviewForm';
 import { Metadata } from 'next';
+import { Rate } from 'antd';
 
 type Params = {
     id: string
@@ -30,7 +31,7 @@ export default async function Page(props: { params: Promise<{ id: string }>}) {
         fetchReviewsByProductId(id)
     ]);
 
-    if (!product) {
+        if (!product) {
         notFound(); 
     }
 
@@ -41,9 +42,9 @@ export default async function Page(props: { params: Promise<{ id: string }>}) {
         price,
         quantity,
         description,
-        image_url
+        image_url,
     } = product;
-
+    
     return (
         <>
             <section className='flex flex-col items-center my-7 gap-5'>
@@ -79,8 +80,13 @@ function Reviews({ reviews } : { reviews: Review[] }) {
         <>
             {reviews.map(review => (
                 <article key={review.review_id} className='rounded-xl bg-white mb-5 mx-5 p-5 md:mx-16 lg:shadow-xl lg:rounded-2xl lg:mx-24 lg:p-5'>
-                    <h3 className='font-bold text-xl'>{review.title}</h3>
-                    <span className='underline decoration-slate-800 underline-offset-4'>{review.lastname}, {review.firstname}</span>
+                    <div className='flex flex-col md:flex-row items-start md:items-end gap-2'>
+                        <h3 className='font-bold text-base md:text-xl'>{review.title}</h3>
+                        <span className='text-xs md:text-sm text-gray-500'> by {review.lastname}, {review.firstname}</span>
+                    </div>
+                    <div className='mt-1'>
+                        <Rate value={review.rating} />
+                    </div>
                     <p>{review.review}</p>
                 </article>
             ))}

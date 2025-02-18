@@ -26,16 +26,16 @@ export async function fetchNewProducts() {
     const data = await query<ProductPromotion[]>`
       SELECT 
 	      p.product_id,
-	      name,
-	      image_url,
-	      price,
-	      ROUND(AVG(rating), 1) AS "rating"
+	      p.name,
+	      p.image_url,
+	      p.price,
+	      ROUND(COALESCE(AVG(r.rating), 0), 1) AS "rating"
       FROM products p
-      INNER JOIN reviews r
+      LEFT JOIN reviews r
       ON r.product_id = p.product_id
-      GROUP BY p.product_id
+      GROUP BY p.product_id, p.created_at
       ORDER BY p.created_at DESC
-      LIMIT 3;`;
+      LIMIT 3`
 
     return data;
   } catch (error) {
