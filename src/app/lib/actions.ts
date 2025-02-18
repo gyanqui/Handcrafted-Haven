@@ -17,6 +17,7 @@ export type State = {
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import bcrypt from 'bcrypt';
+import { UUID } from "crypto";
 
 const FormSchema = z.object({
     user_id: z.string({invalid_type_error: 'Invalid User.'}),
@@ -149,4 +150,18 @@ export async function createReview(prevState: ReviewState, formData: FormData) {
 
   revalidatePath(`/home/products/${productId}`);
   redirect(`/home/products/${productId}`);
+}
+
+export async function deleteReviewById(reviewId: UUID, user_id: string) {
+  try {
+    const resp = await sql`
+    DELETE FROM reviews WHERE review_id = ${reviewId};`;
+    console.log(resp);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error Deleting Review.")
+  }
+
+  revalidatePath(`/home/dashboard/reviews/${user_id}`);
+  redirect(`/home/dashboard/reviews/${user_id}`);
 }
