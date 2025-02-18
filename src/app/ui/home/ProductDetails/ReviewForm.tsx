@@ -26,14 +26,8 @@ export default function ReviewForm({ productId, userId }: { productId : string; 
                         defaultValue={0}
                         onChange={(value) => handleOnChange(value)}
                     />
-                    <input id="rate_value" name="rate" type="number" defaultValue={rateValue} hidden aria-describedby="status-error"/>
+                    <input id="rate_value" name="rate" type="number" defaultValue={rateValue} hidden />
                 </label>
-                {state.errors?.rate &&
-                    state.errors.rate.map((error: string) => (
-                    <p className="mt-2 text-sm text-red-500" key={error}>
-                        {error}
-                    </p>
-                ))}
             </fieldset>
             <fieldset>
                 <legend>Review</legend>

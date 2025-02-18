@@ -21,6 +21,24 @@ import {
 
 const query = postgres({ ssl: "require" });
 
+export async function fetchReviewsByUserId(userId: string) {
+  if (!userId) {
+    return;
+  }
+  try {
+    const data = await query<Review[]>`
+      SELECT review_id, title, rating, review, product_id
+      FROM reviews
+      WHERE user_id = ${userId}
+      ORDER BY created_at DESC;
+    `;
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch reviews by seller ID: ", error);
+   throw new Error("Error fetching data.")
+  }
+}
+
 export async function fetchNewProducts() {
   try {
     const data = await query<ProductPromotion[]>`
