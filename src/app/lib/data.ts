@@ -351,7 +351,7 @@ export async function deleteProduct(product_id: string) {
 export async function listProducts() {
   try {
     const data = await sql<ProductProps>`
-      SELECT p.product_id, p.name, p.image_url, p.price, ROUND(COALESCE(AVG(r.rating), 0), 1) AS averageRate
+      SELECT p.product_id, p.name, p.image_url, p.price, ROUND(COALESCE(AVG(r.rating), 0), 1) AS "averageRate"
       FROM products p
       LEFT JOIN reviews r ON p.product_id = r.product_id
       GROUP BY p.product_id  
