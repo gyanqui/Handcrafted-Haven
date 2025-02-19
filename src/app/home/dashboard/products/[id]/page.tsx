@@ -3,6 +3,8 @@ import EmptyProductCard from "@/app/ui/home/dashboard/EmptyProductCard";
 import { getUserProducts, getUserBasicDataByUserId } from "@/app/lib/data";
 import Link from "next/link";
 import { Metadata } from "next";
+import { auth } from '@/auth'
+import { redirect } from "next/navigation";
 
 type Params = {
   id: string;
@@ -13,6 +15,14 @@ export const metadata: Metadata = {
 }
 
 export default async function Page({ params }: { params: Promise<Params> }) {
+  const session = await auth();
+      
+      if (!session) {
+          return (
+              redirect('/home/login')
+          )
+      }
+
   const {id: user_id} = await params;
   const [userBasicData, userProducts] = await Promise.all([
     getUserBasicDataByUserId(user_id),
