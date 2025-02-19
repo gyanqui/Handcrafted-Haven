@@ -85,7 +85,10 @@ function Reviews({ reviews } : { reviews: Review[] }) {
                         <span className='text-xs md:text-sm text-gray-500'> by {review.lastname}, {review.firstname}</span>
                     </div>
                     <div className='mt-1'>
-                        <Rate value={review.rating} />
+                        <Rate 
+                            disabled={true}
+                            defaultValue={review.rating} 
+                        />
                     </div>
                     <p>{review.review}</p>
                 </article>
