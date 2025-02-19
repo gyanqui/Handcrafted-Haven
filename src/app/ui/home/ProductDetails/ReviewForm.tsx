@@ -26,7 +26,7 @@ export default function ReviewForm({ productId, userId }: { productId : string; 
                         defaultValue={0}
                         onChange={(value) => handleOnChange(value)}
                     />
-                    <input id="rate_value" name="rate" type="number" defaultValue={rateValue} hidden />
+                    <input id="rate_value" name="rate" type="number" value={rateValue} defaultValue={rateValue} hidden />
                 </label>
             </fieldset>
             <fieldset className="border border-custom-grey rounded-lg my-2">
