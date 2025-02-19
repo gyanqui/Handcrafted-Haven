@@ -1,8 +1,18 @@
 import { fetchReviewsByUserId  } from "@/app/lib/data";
 import DeleteReviewForm from "@/app/ui/home/dashboard/DeleteReviewForm";
 import { Rate } from "antd";
+import { auth } from '@/auth'
+import { redirect } from "next/navigation";
 
 export default async function Page(props : { params: Promise<{id: string}>}) {
+    const session = await auth();
+        
+        if (!session) {
+            return (
+                redirect('/home/login')
+            )
+        }
+
     const userId = (await props.params).id
     const reviews = await fetchReviewsByUserId(userId); 
 
