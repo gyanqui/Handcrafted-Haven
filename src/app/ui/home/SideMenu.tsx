@@ -26,20 +26,20 @@ export default function SideMenu({ toggleOpen, session }: SideMenuProps) {
       <div className="flex-grow py-8 flex flex-col justify-evenly text-2xl">
         {session && (
           <div>
-            <Link href="/home/dashboard" onClick={toggleOpen}>
+            <Link href="/home/dashboard" className="hover:text-white text-white" onClick={toggleOpen}>
               <RxAvatar className="inline m-4" />
               Dashboard
             </Link>
           </div>
         )}
         <div>
-          <Link href="/home/artisans" onClick={toggleOpen}>
+          <Link href="/home/artisans" className="hover:text-white text-white" onClick={toggleOpen}>
             <LuUsersRound className="inline m-4" />
             Artisans
           </Link>
         </div>
         <div>
-          <Link href="/home/products" onClick={toggleOpen}>
+          <Link href="/home/products" className="hover:text-white text-white" onClick={toggleOpen}>
             <AiOutlineProduct className="inline m-4" />
             Products
           </Link>
@@ -47,13 +47,13 @@ export default function SideMenu({ toggleOpen, session }: SideMenuProps) {
         {session ? (
           
           <div>
-            <Link href={'/api/auth/signout'}>
+            <Link href={'/api/auth/signout'} className="hover:text-white text-white">
               <SlLogout className="inline m-4" />
               Log Out
             </Link>
           </div>
         ) : (
-          <Link href="/home/login" onClick={toggleOpen}>
+          <Link href="/home/login" className="hover:text-white text-white" onClick={toggleOpen}>
             <div>
                 <SlLogout className="inline m-4" />
               Log In
@@ -70,7 +70,7 @@ export default function SideMenu({ toggleOpen, session }: SideMenuProps) {
 
       {/* close button */}
       <div>
-        <MdClose onClick={toggleOpen} className="cursor-pointer text-4xl" />
+        <MdClose onClick={toggleOpen} className="cursor-pointer text-4xl text-white" />
       </div>
     </div>
   );
